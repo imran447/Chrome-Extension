@@ -1,0 +1,56 @@
+<div class="header top-nav">
+  <div class="inner-content">
+    <div class="pull-left nav-icon">
+      <div class="googleapps_icon">
+        <button class="btn btn-custom GoogleApps align" onclick="abc()" data-toggle="tooltip"
+                data-placement="bottom" data-original-title="Google Apps">
+          <img src="../../assets/images/googleappsoff.svg" alt="googleappsoff">
+          <img src="../../assets/images/googleappson.svg" class="img-top" alt="googleappson">
+        </button>
+      </div>
+      <div class="search-container">
+        <form ng-submit="search(searchModel[activeSearch], $event, activeSearch)" id="searchForm"
+              class="ng-pristine ng-valid ng-valid-maxlength">
+
+          <div class="input">
+            <i class="material-icons">search</i>
+            <input class="searchBar" maxlength="50" type="text" ng-model="searchModel.google"
+                   placeholder="Search Google" tabindex="2" ng-focus="setSearch('google', $event)"
+                   lookahead="" autocomplete="off">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="pull-right top-logo">
+      <div class="socials-icon">
+        <ul>
+          <li data-toggle="tooltip" data-placement="bottom" title="Add shortcuts">
+            <a href="javascript:void(0)">
+              <svg width="11" height="10" viewBox="0 0 11 10" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M6.16379 0.353027H4.83615V4.33573L0.853149 4.33573L0.853149 5.66337H4.83615V9.6465H6.16379V5.66337H10.1466V4.33573L6.16379 4.33573V0.353027Z"
+                      fill="#202124"></path>
+              </svg>
+            </a>
+          </li>
+          <li data-toggle="tooltip" data-placement="bottom" title="Amazon seller">
+            <a href="https://sellercentral.amazon.com/"><img src="../../assets/images/Amazon seller.png"></a>
+          </li>
+          <li data-toggle="tooltip" data-placement="bottom" title="Facebook">
+            <a href="https://facebook.com/"><img src="../../assets/images/Facebook.png"></a></li>
+          <li data-toggle="tooltip" data-placement="bottom" title="Whatapp"><a
+            href="https://web.whatsapp.com/"><img src="../../assets/images/Whatapp.png"></a></li>
+          <li data-toggle="tooltip" data-placement="bottom" title="Amazon"><a
+            href="https://amazon.com/"><img src="../../assets/images/Amazon.png"></a></li>
+          <li data-toggle="tooltip" data-placement="bottom" title="Shopify"><a
+            href="https://Shopify.com/"><img src="../../assets/images/Shopify.png"></a></li>
+          <li data-toggle="tooltip" data-placement="bottom" title="Gmail"><a
+            href="https://mail.google.com/"><img src="../../assets/images/gmail.png"></a></li>
+        </ul>
+      </div>
+      <!--  <a class="logo" href="#"><img src="images/logo.png" alt="" class="img-responsive"></a>-->
+    </div>
+  </div>
+</div>
