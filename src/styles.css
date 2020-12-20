@@ -879,6 +879,7 @@ line-height: 40px;
   line-height: 30px;
   display: block;
   transition: color 0.35s;
+  text-decoration: none;
   /*font-size: 14px;*/
 }
 
@@ -2532,6 +2533,7 @@ h4 {
 .rowinfo h5>span {
   font-size: 11px;
   color: rgba(24,25,27,0.6);
+  background-color: transparent;
 }
 
 .rowinfo span {
@@ -2539,6 +2541,7 @@ h4 {
   -webkit-line-clamp: 1;
   display: -webkit-box;
   overflow: hidden;
+  text-decoration: none;
   -webkit-box-orient: vertical;
   color: #545663;
   letter-spacing: 0.2px;
@@ -2555,12 +2558,14 @@ h4 {
 
 .userinfo img {
   width: 35px;
+  background-color: transparent;
   margin-right: 10px;
 }
 
 .rowinfo h5 {
   font-size: 13px;
   color: #000;
+  background-color: transparent;
   margin: 0 !important;
   float: left;
   padding: 5px 0;
@@ -3046,6 +3051,7 @@ header .searchOptions i{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: transparent;
 
 }
 .icon  {
@@ -3469,6 +3475,7 @@ li.select-box .nice-select.right .list {
 
 .align {
   display: flex;
+  background-color: transparent;
   align-items: center;
   justify-content: center;
 }

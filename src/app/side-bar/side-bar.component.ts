@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
-
+  settingManage : boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  profileSettingMange=()=>{
+    this.settingManage=!(this.settingManage);
+  }
 }

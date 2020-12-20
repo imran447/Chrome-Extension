@@ -61,7 +61,7 @@
         </div>
         <div class="sidebar-bottom">
           <li class="position-relative group_list_style">
-            <a data-tab="tab" href="#tab13" class="'sidebar_link'" data-toggle="tooltip" data-placement="right" title="Profile" onclick="Settingsopen()">
+            <a data-tab="tab" href="#tab13" class="'sidebar_link'" data-toggle="tooltip" data-placement="right" title="Profile" (click)="profileSettingMange()">
               <div class="sidebar_content_col">
                 <div class="sidebar_content_col_inner sidebar_content_col_inner_1">
                   <i href="#" class="btn-custom profile align">
@@ -74,4 +74,122 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="settings_sidebar" [ngClass]="{'active ':settingManage}" id="Settings">
+  <div class="Settingsmenu_content">
+    <div class="menu-section-body">
+      <h4 class="sidebartiltle">Layout</h4>
+      <img src="../../assets/images/cross.png" alt="" class="profile-setting-close"  (click)="profileSettingMange()" style="cursor: pointer">
+      <div class="group-settings">
+        <li class="position-relative group_list_style">
+          <div class="rowinfo checkboxrow">
+            <div class="icon">
+              <img src="../../assets/images/fullload.png" alt="" class="img-responsive"/>
+            </div>
+            <span>Full view on load</span>
+          </div>
+          <input type='checkbox' class="settingtoggle"/>
+        </li>
+        <li class="position-relative group_list_style">
+          <div class="rowinfo checkboxrow">
+            <div class="icon">
+              <img src="../../assets/images/mostvisited.png" alt="" class="img-responsive"/>
+            </div>
+            <span>Most visited websites</span>
+          </div>
+          <input type='checkbox' class="settingtoggle"/>
+        </li>
+      </div>
+      <h4 class="sidebartiltle">Explore</h4>
+      <div class="group-settings">
+        <li class="position-relative group_list_style" onclick="openNew()">
+          <a data-tab="ta" href="#b1" class="linkhover">
+            <div class="rowinfo">
+              <div class="align">
+                <div class="icon">
+                  <img src="../../assets/images/Explore.png" class="img-responsive"/>
+                </div>
+                <span>What's new</span>
+              </div>
+              <img src="../../assets/images/arrow.png" class="arrowright"/>
+            </div>
+          </a>
+        </li>
+      </div>
+      <h4 class="sidebartiltle">How you can halp</h4>
+      <div class="group-settings">
+        <li class="position-relative group_list_style">
+          <a data-tab="ta" href="#b1" class="linkhover">
+            <div class="rowinfo">
+              <div class="align">
+                <div class="icon">
+                  <img src="../../assets/images/Doante.png" class="img-responsive"/>
+                </div>
+                <span>Doante</span>
+              </div>
+              <img src="../../assets/images/arrow.png" class="arrowright"/>
+            </div>
+          </a>
+        </li>
+        <li class="position-relative group_list_style">
+          <a data-tab="ta" href="#b1" class="linkhover">
+            <div class="rowinfo">
+              <div class="align">
+                <div class="icon">
+                  <img src="../../assets/images/Plusinvite.png" class="img-responsive"/>
+                </div>
+                <span>Invite friends</span>
+              </div>
+              <img src="../../assets/images/arrow.png" alt="" class="arrowright"/>
+            </div>
+          </a>
+        </li>
+        <li class="position-relative group_list_style">
+          <a data-tab="ta" href="#b1" class="linkhover">
+            <div class="rowinfo">
+              <div class="align">
+                <div class="icon">
+                  <img src="../../assets/images/feedback.png" class="img-responsive"/>
+                </div>
+                <span>Give us feedback</span>
+              </div>
+              <img src="../../assets/images/arrow.png" class="arrowright"/>
+            </div>
+          </a>
+        </li>
+        <li class="position-relative group_list_style">
+          <div data-tab="ta" onclick="subitweb()" class="linkhover">
+            <div class="rowinfo">
+              <div class="align">
+                <div class="icon">
+                  <img src="../../assets/images/Suggest.png" class="img-responsive"/>
+                </div>
+                <span>Suggest a link</span>
+              </div>
+              <img src="../../assets/images/arrow.png" alt="" class="arrowright"/>
+            </div>
+          </div>
+        </li>
+      </div>
+
+      <h4 class="sidebartiltle">Links</h4>
+      <div class="group-settings links">
+        <a href="http://www.Sportr.io/about/bug">Report a bug</a>
+        <a href="https://www.Sportr.io/privacy">Privacy Policy</a>
+        <a href="https://www.Sportr.io/terms">Terms of Service</a>
+      </div>
+    </div>
+    <div class="menu-section-footer userinfo">
+      <div class="rowinfo">
+        <div class="align">
+          <img src="../../assets/images/profile.png" alt="" class="profilesettings"/>
+          <h5>Matan Bloom <br><span>via Facebook</span></h5>
+        </div>
+        <button class="logout hoverbutton">Logout</button>
+      </div>
+    </div>
+  </div>
+
+
 </div>

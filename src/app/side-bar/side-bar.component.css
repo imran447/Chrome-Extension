@@ -1,2 +1,10 @@
-.sidebar{
+.profile-setting-close{
+  width: 17px;
+  float: right;
+  margin-top: -17px;
+  margin-right: 11px;
+}
+
+.settings_sidebar{
+  display: inline-block;
 }
