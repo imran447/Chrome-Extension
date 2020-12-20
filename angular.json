@@ -27,7 +27,9 @@
               "src/styles.css",
               "src/assets/css/nice-select.css"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {

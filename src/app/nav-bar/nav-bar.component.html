@@ -2,7 +2,7 @@
   <div class="inner-content">
     <div class="pull-left nav-icon">
       <div class="googleapps_icon">
-        <button class="btn btn-custom GoogleApps align" onclick="abc()" data-toggle="tooltip"
+        <button class="btn btn-custom GoogleApps align" (click)="manageGoogleBar()" data-toggle="tooltip"
                 data-placement="bottom" data-original-title="Google Apps">
           <img src="../../assets/images/googleappsoff.svg" alt="googleappsoff">
           <img src="../../assets/images/googleappson.svg" class="img-top" alt="googleappson">
@@ -51,6 +51,149 @@
         </ul>
       </div>
       <!--  <a class="logo" href="#"><img src="images/logo.png" alt="" class="img-responsive"></a>-->
+    </div>
+  </div>
+</div>
+
+
+<!--sidebar google -->
+<div class="sidebar_google "  [ngClass]="{'active':google_bar}" id="googleapps">
+  <div class="sidebar_google_content">
+    <div class="GoogleAppsList">
+      <ul>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://myaccount.google.com" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Account.png"></div>
+            <span class="sada">Account</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://www.google.com" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Search.png"></div>
+            <span class="sada">Search</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://drive.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/drive.png"></div>
+            <span class="sada">Drive</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://mail.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/gmail.png"></div>
+            <span class="sada">Gmail</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://calendar.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Calender.png"></div>
+            <span class="sada">Calendar</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://maps.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Maps.png"></div>
+            <span class="sada">Maps</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://Translate.google.com/" target="_blank">
+            <img src="../../assets/images/Googleapps/Translate.png">
+            <span class="sada">Translate</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://www.youtube.com/" target="_blank">
+            <img src="../../assets/images/Googleapps/Youtube.png">
+            <span class="sada">Youtube</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://Earth.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Earth.png"></div>
+            <span class="sada">Earth</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://Photos.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Photos.png"></div>
+            <span class="sada">Photos</span>
+          </a>
+        </li>
+      </ul>
+      <span jsname="hgDUwe" class="dGrefb"></span>
+      <ul>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://sheets.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/sheets.png"></div>
+            <span class="sada">Sheets</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://docs.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/docs.png"></div>
+            <span class="sada">Docs</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://Slides.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Slides.png"></div>
+            <span class="sada">Slides</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://Blogger.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Blogger.png"></div>
+            <span class="sada">Blogger</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://Hangout.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Hangout.png"></div>
+            <span class="sada">Hangout</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://Mybusiness.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/My business.png"></div>
+            <span class="sada">My business</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://classroom.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/classroom.png"></div>
+            <span class="sada">Classroom</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://Keep.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Keep.png"></div>
+            <span class="sada">Keep</span>
+          </a>
+        </li>
+      </ul>
+      <span jsname="hgDUwe" class="dGrefb"></span>
+      <ul>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://Jamboard.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Jamboard.png"></div>
+            <span class="sada">Jamboard</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://www.google.co.il/save" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Collections.png"></div>
+            <span class="sada">Collections</span>
+          </a>
+        </li>
+        <li class="ligoogle">
+          <a class="sidebar_applink" href="https://artsandculture.google.com/" target="_blank">
+            <div class="dsds"><img src="../../assets/images/Googleapps/Arts and culture.png"></div>
+            <span class="sada">Arts and culture</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
