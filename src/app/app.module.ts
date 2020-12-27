@@ -8,6 +8,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { BannerSportAdsComponent } from './banner-sport-ads/banner-sport-ads.component';
 import { SportsAdsComponent } from './sports-ads/sports-ads.component';
 import { HeadlineRowComponent } from './headline-row/headline-row.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HeadlineRowComponent } from './headline-row/headline-row.component';
     BannerSportAdsComponent,
     SportsAdsComponent,
     HeadlineRowComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
