@@ -8,7 +8,7 @@
               <a data-tab="tab-1" href="#tab1">
                 <div class="sidebar_content_col">
                   <div class="sidebar_content_col_inner sidebar_content_col_inner_1">
-                    <img class="logo" src="../../assets/images/logoill.png" alt=""/>
+                    <img class="logo" src="../../assets/images/logoill.png" alt="" (click)="removeFavoriteArticle()"/>
                   </div>
                 </div>
               </a>
@@ -31,7 +31,7 @@
           <div class="toolnew">
             <li id="SaveArticle" class="group_list_style">
               <a data-tab="tab-1" href="#tab1" class="sidebar_link" data-toggle="tooltip" data-placement="right"
-                 title="Saved Items">
+                 title="Saved Items" (click)="addFavoriteArticle()" >
                 <div class="sidebar_content_col">
                   <div class="sidebar_content_col_inner sidebar_content_col_inner_1">
                     <i class="material-icons">bookmark_border</i>
@@ -70,7 +70,7 @@
               <div class="sidebar_content_col">
                 <div class="sidebar_content_col_inner sidebar_content_col_inner_1">
                   <i href="#" class="btn-custom profile align">
-                    <img src="../../assets/images/profile.png"></i>
+                    <img src="{{loginData.photoUrl}}"></i>
                 </div>
               </div>
             </a>
@@ -189,10 +189,10 @@
     <div class="menu-section-footer userinfo">
       <div class="rowinfo">
         <div class="align">
-          <img src="../../assets/images/profile.png" alt="" class="profilesettings"/>
-          <h5>Matan Bloom <br><span>via Facebook</span></h5>
+          <img src="{{loginData.photoUrl}}" alt="" class="profilesettings"/>
+          <h5>{{loginData.name}} <br><span>via {{loginData.provider}}</span></h5>
         </div>
-        <button class="logout hoverbutton">Logout</button>
+        <button class="logout hoverbutton" (click)="signOut()">Logout</button>
       </div>
     </div>
   </div>

@@ -4,8 +4,10 @@ var router = express.Router();
 
 router.get("/", ArticleController.articleList);
 router.get("/:id", ArticleController.articleDetail);
+router.post("/add-visitor",ArticleController.addVisitor);
+router.post("/favorite-article",ArticleController.favoriteArticle);
+router.get("/favorite-article/:id",ArticleController.favoriteArticleList);
 router.post("/", ArticleController.storeArticle);
 router.put("/:id", ArticleController.articleUpdate);
-router.delete("/:id", ArticleController.articleDelete);
 
 module.exports = router;

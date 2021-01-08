@@ -2,17 +2,17 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
-    title: {type: String, required: true},
-    description: {type: String, required: true},
-    source: {type: String, required: true},
-    image:{type: String, required: true},
-    link:{type: String, required: true},
-    sportType:{type: String, required: true},
-    team:{type: String, required: true},
-    player:{type: String, required: true},
-    language:{type: String, required: true},
+    title: {type: String, required: false},
+    description: {type: String, required: false},
+    source: {type: String, required: false},
+    image:{type: String, required: false},
+    link:{type: String, required: false},
+    sportType:{type: String, required: false},
+    team:{type: String, required: false},
+    player:{type: String, required: false},
+    language:{type: String, required: false},
     picks:{type: String, required: false},
-    user: {type: Schema.ObjectId, ref: "User", required: true},
+    visitor:{type:Number,required:false,default : 0}
 }, {timestamps: true});
 
 module.exports = mongoose.model("Article", ArticleSchema);

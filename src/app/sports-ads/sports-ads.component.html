@@ -1,14 +1,13 @@
 <div class="small_desk">
-
-  <!-- Youtube post veiw-->
-  <div class="article">
+  <div *ngFor="let article of articles">
+     <div class="article">
     <div class="tile-post">
       <div class="hover-options">
-        <span class="Bookmark-icon" ng-click="::openSharer($event, 'save', item)" data-toggle="tooltip" data-placement="left" title="Save for later"></span>
+        <span class="Bookmark-icon"  (click)="addFavoriteArticle(article._id)" data-toggle="tooltip" data-placement="left" title="Save for later"></span>
         <span class="Share-icon" ng-click="::openSharer($event, 'share', item)" data-toggle="tooltip" data-placement="left" title="Share"></span>
       </div>
       <!-- Post link-->
-      <a class="post-link" target="_blank" href="https://www.youtube.com/watch?v=dYSIZ13yS64&ab_channel=Muzli">
+      <a class="post-link" target="_blank" href="https://www.youtube.com/watch?v=dYSIZ13yS64&ab_channel=Muzli" (click)="addVisitor(article._id)">
         <div class="post-photo video-photo">
           <!-- logo -->
           <div class="source-logo" data-toggle="tooltip" data-placement="top" title="Bleacher report">
@@ -19,12 +18,12 @@
              <span class="duration">6:31</span>
          </span>-->
           <!-- post main image -->
-          <img class="image_url" src="../../assets/../../assets/images/muzli.jpg">
+          <img class="image_url" src="" >
 
         </div>
         <div class="postInfo videoinfo">
           <!-- Post Title-->
-          <h3 class="title">Nick Saban's open-door policy a factor in Alabama's draft success</h3>
+          <h3 class="title">{{article.title}}</h3>
           <!-- Post publish time-->
           <span class="created">2 hours ago</span>
         </div>
@@ -48,241 +47,11 @@
         </div>
         <div class="click-count" data-toggle="tooltip" data-placement="top" data-original-title="View" ng-if="::item.clicks > 0">
           <i class="material-icons">visibility</i>
-          <span>3</span>
+          <span>{{article.visitor}}</span>
         </div>
       </div>
     </div>
   </div>
-  <div class="article">
-    <div class="tile-post">
-      <div class="hover-options">
-        <span class="Bookmark-icon" ng-click="::openSharer($event, 'save', item)" data-toggle="tooltip" data-placement="left" title="Save for later"></span>
-        <span class="Share-icon" ng-click="::openSharer($event, 'share', item)" data-toggle="tooltip" data-placement="left" title="Share"></span>
-      </div>
-      <a class="post-link" target="_blank" href="https://www.espn.com/blog/ncfnation/post/_/id/140684/nick-sabans-open-door-policy-a-factor-in-alabamas-draft-success">
-        <div class="post-photo">
-          <div class="source-logo" data-toggle="tooltip" data-placement="top" title="Espn">
-            <img class="image-source" src="../../assets/images/Espn.png">
-          </div>
-          <img class="image_url" src="https://a.espncdn.com/photo/2020/0223/r670151_600x400_3-2.jpg">
-        </div>
-        <div class="postInfo">
-          <h3 class="title">Fury-Wilder III moving off Dec.19; new date TBA</h3>
-          <span class="created">an hour ago</span>
-        </div>
-      </a>
-      <div class="post-meta">
-        <div class="left-pull">
-          <button class="btn btn-menu upvote" data-toggle="tooltip" data-placement="top" data-original-title="Upvote">
-            <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill"><path pid="0" d="M13.162 3.813a2 2 0 01.465.465l6.674 9.343a1 1 0 01-1.102 1.539l-4.032-1.21a1 1 0 00-1.277.816l-.767 5.375a1 1 0 01-.99.859h-.266a1 1 0 01-.99-.859l-.767-5.375a1 1 0 00-1.278-.816l-4.031 1.21a1 1 0 01-1.102-1.54l6.674-9.342a2 2 0 012.79-.465z" _fill="#fff" fill-rule="evenodd"></path></svg>
-            <span>5</span>
-          </button>
-          <div class="btn-group dropup">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="material-icons icon-menu" data-toggle="tooltip" data-placement="top" data-original-title="More options">more_horiz</i>
-            </button>
-            <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Hide post</a>
-              <a class="dropdown-item" href="#">Broken link</a>
-              <a class="dropdown-item" href="#">Report NSFW</a>
-            </div>
-          </div>
-        </div>
-        <div class="click-count" data-toggle="tooltip" data-placement="top" data-original-title="View" ng-if="::item.clicks > 0">
-          <i class="material-icons">visibility</i>
-          <span>3</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="article">
-    <div class="tile-post">
-      <div class="hover-options">
-        <span class="Bookmark-icon" ng-click="::openSharer($event, 'save', item)" data-toggle="tooltip" data-placement="left" title="Save for later"></span>
-        <span class="Share-icon" ng-click="::openSharer($event, 'share', item)" data-toggle="tooltip" data-placement="left" title="Share"></span>
-      </div>
-      <a class="post-link" target="_blank" href="https://www.espn.com/blog/ncfnation/post/_/id/140684/nick-sabans-open-door-policy-a-factor-in-alabamas-draft-success">
-        <div class="post-photo">
-          <div class="source-logo" data-toggle="tooltip" data-placement="top" title="sport1">
-            <img class="image-source" src="../../assets/images/sport1.png">
-          </div>
-          <img class="image_url" src="https://a.espncdn.com/photo/2020/0928/r752754_576x324_16-9.jpg">
-        </div>
-        <div class="postInfo">
-          <h3 class="title">Eagles' Doug Pederson must 'unclutter' Carson Wentz's mind, and his own</h3>
-          <span class="created">an hour ago</span>
-        </div>
-      </a>
-      <div class="post-meta">
-        <div class="left-pull">
-          <button class="btn btn-menu upvote" data-toggle="tooltip" data-placement="top" data-original-title="Upvote">
-            <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill"><path pid="0" d="M13.162 3.813a2 2 0 01.465.465l6.674 9.343a1 1 0 01-1.102 1.539l-4.032-1.21a1 1 0 00-1.277.816l-.767 5.375a1 1 0 01-.99.859h-.266a1 1 0 01-.99-.859l-.767-5.375a1 1 0 00-1.278-.816l-4.031 1.21a1 1 0 01-1.102-1.54l6.674-9.342a2 2 0 012.79-.465z" _fill="#fff" fill-rule="evenodd"></path></svg>
-            <span>5</span>
-          </button>
-          <div class="btn-group dropup">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="material-icons icon-menu" data-toggle="tooltip" data-placement="top" data-original-title="More options">more_horiz</i>
-            </button>
-            <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Hide post</a>
-              <a class="dropdown-item" href="#">Broken link</a>
-              <a class="dropdown-item" href="#">Report NSFW</a>
-            </div>
-          </div>
-        </div>
-        <div class="click-count" data-toggle="tooltip" data-placement="top" data-original-title="View" ng-if="::item.clicks > 0">
-          <i class="material-icons">visibility</i>
-          <span>3</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="article">
-    <div class="tile-post">
-      <div class="hover-options">
-        <span class="Bookmark-icon" ng-click="::openSharer($event, 'save', item)" data-toggle="tooltip" data-placement="left" title="Save for later"></span>
-        <span class="Share-icon" ng-click="::openSharer($event, 'share', item)" data-toggle="tooltip" data-placement="left" title="Share"></span>
-      </div>
-      <a class="post-link" target="_blank" href="https://www.espn.com/blog/ncfnation/post/_/id/140684/nick-sabans-open-door-policy-a-factor-in-alabamas-draft-success">
-        <div class="post-photo">
-          <div class="source-logo" data-toggle="tooltip" data-placement="top" title="Walla">
-            <img class="image-source" src="../../assets/images/walla.png">
-          </div>
-          <img class="image_url" src="https://a.espncdn.com/photo/2020/0603/r704734_600x400_3-2.jpg">
-        </div>
-        <div class="postInfo">
-          <h3 class="title">NASCAR to run first dirt race in Cup since 1970</h3>
-          <span class="created">an hour ago</span>
-        </div>
-      </a>
-      <div class="post-meta">
-        <div class="left-pull">
-          <button class="btn btn-menu upvote" data-toggle="tooltip" data-placement="top" data-original-title="Upvote">
-            <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill"><path pid="0" d="M13.162 3.813a2 2 0 01.465.465l6.674 9.343a1 1 0 01-1.102 1.539l-4.032-1.21a1 1 0 00-1.277.816l-.767 5.375a1 1 0 01-.99.859h-.266a1 1 0 01-.99-.859l-.767-5.375a1 1 0 00-1.278-.816l-4.031 1.21a1 1 0 01-1.102-1.54l6.674-9.342a2 2 0 012.79-.465z" _fill="#fff" fill-rule="evenodd"></path></svg>
-            <span>5</span>
-          </button>
-          <div class="btn-group dropup">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="material-icons icon-menu" data-toggle="tooltip" data-placement="top" data-original-title="More options">more_horiz</i>
-            </button>
-            <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Hide post</a>
-              <a class="dropdown-item" href="#">Broken link</a>
-              <a class="dropdown-item" href="#">Report NSFW</a>
-            </div>
-          </div>
-        </div>
-        <div class="click-count" data-toggle="tooltip" data-placement="top" data-original-title="View" ng-if="::item.clicks > 0">
-          <i class="material-icons">visibility</i>
-          <span>3</span>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="article">
-    <div class="tile-post">
-      <div class="hover-options">
-        <span class="Bookmark-icon" ng-click="::openSharer($event, 'save', item)" data-toggle="tooltip" data-placement="left" title="Save for later"></span>
-        <span class="Share-icon" ng-click="::openSharer($event, 'share', item)" data-toggle="tooltip" data-placement="left" title="Share"></span>
-      </div>
-      <a class="post-link" target="_blank" href="https://www.espn.com/blog/ncfnation/post/_/id/140684/nick-sabans-open-door-policy-a-factor-in-alabamas-draft-success">
-        <div class="post-photo">
-          <div class="source-logo" data-toggle="tooltip" data-placement="top" title="sport5">
-            <img class="image-source" src="../../assets/images/sport5.png">
-          </div>
-          <img class="image_url" src="https://a.espncdn.com/photo/2020/0223/r670151_600x400_3-2.jpg">
-        </div>
-        <div class="postInfo">
-          <h3 class="title">Fury-Wilder III moving off Dec.19; new date TBA</h3>
-          <span class="created">an hour ago</span>
-        </div>
-      </a>
-      <div class="post-meta">
-        <div class="left-pull">
-          <button class="btn btn-menu upvote" data-toggle="tooltip" data-placement="top" data-original-title="Upvote">
-            <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill"><path pid="0" d="M13.162 3.813a2 2 0 01.465.465l6.674 9.343a1 1 0 01-1.102 1.539l-4.032-1.21a1 1 0 00-1.277.816l-.767 5.375a1 1 0 01-.99.859h-.266a1 1 0 01-.99-.859l-.767-5.375a1 1 0 00-1.278-.816l-4.031 1.21a1 1 0 01-1.102-1.54l6.674-9.342a2 2 0 012.79-.465z" _fill="#fff" fill-rule="evenodd"></path></svg>
-            <span>5</span>
-          </button>
-          <div class="btn-group dropup">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="material-icons icon-menu" data-toggle="tooltip" data-placement="top" data-original-title="More options">more_horiz</i>
-            </button>
-            <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Hide post</a>
-              <a class="dropdown-item" href="#">Broken link</a>
-              <a class="dropdown-item" href="#">Report NSFW</a>
-            </div>
-          </div>
-        </div>
-        <div class="click-count" data-toggle="tooltip" data-placement="top" data-original-title="View" ng-if="::item.clicks > 0">
-          <i class="material-icons">visibility</i>
-          <span>3</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="article">
-    <div class="tile-post">
-      <div class="hover-options">
-        <span class="Bookmark-icon" ng-click="::openSharer($event, 'save', item)" data-toggle="tooltip" data-placement="left" title="Save for later"></span>
-        <span class="Share-icon" ng-click="::openSharer($event, 'share', item)" data-toggle="tooltip" data-placement="left" title="Share"></span>
-      </div>
-      <a class="post-link" target="_blank" href="https://www.espn.com/blog/ncfnation/post/_/id/140684/nick-sabans-open-door-policy-a-factor-in-alabamas-draft-success">
-        <div class="post-photo">
-          <div class="source-logo" data-toggle="tooltip" data-placement="top" title="hartz">
-            <img class="image-source" src="../../assets/images/hartz.png">
-          </div>
-          <img class="image_url" src="https://a.espncdn.com/photo/2020/0928/r752754_576x324_16-9.jpg">
-        </div>
-        <div class="postInfo">
-          <h3 class="title">Eagles' Doug Pederson must 'unclutter' Carson Wentz's mind, and his own</h3>
-          <span class="created">an hour ago</span>
-        </div>
-      </a>
-      <div class="post-meta">
-        <div class="left-pull">
-          <button class="btn btn-menu upvote" data-toggle="tooltip" data-placement="top" data-original-title="Upvote">
-            <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill"><path pid="0" d="M13.162 3.813a2 2 0 01.465.465l6.674 9.343a1 1 0 01-1.102 1.539l-4.032-1.21a1 1 0 00-1.277.816l-.767 5.375a1 1 0 01-.99.859h-.266a1 1 0 01-.99-.859l-.767-5.375a1 1 0 00-1.278-.816l-4.031 1.21a1 1 0 01-1.102-1.54l6.674-9.342a2 2 0 012.79-.465z" _fill="#fff" fill-rule="evenodd"></path></svg>
-            <span>5</span>
-          </button>
-          <div class="btn-group dropup">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="material-icons icon-menu" data-toggle="tooltip" data-placement="top" data-original-title="More options">more_horiz</i>
-            </button>
-            <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Hide post</a>
-              <a class="dropdown-item" href="#">Broken link</a>
-              <a class="dropdown-item" href="#">Report NSFW</a>
-            </div>
-          </div>
-        </div>
-        <div class="click-count" data-toggle="tooltip" data-placement="top" data-original-title="View" ng-if="::item.clicks > 0">
-          <i class="material-icons">visibility</i>
-          <span>3</span>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- promoted item -->
-  <div class="article">
-    <div class="tile-post promoted" target="_blank" href="https://www.espn.com/blog/ncfnation/post/_/id/140684/nick-sabans-open-door-policy-a-factor-in-alabamas-draft-success">
-      <div class="post-photo">
-        <img class="image_url" src="https://i.ytimg.com/vi/GyLoPn-qw7A/maxresdefault.jpg">
-      </div>
-      <div class="postInfo">
-        <div class="title">
-          <!-- <h2>Get free months now!</h2> -->
-          <span>The FIFA 21 trailer is coming soon, so we decide to make our own concept for FIFA 21 PS5 Trailer.</span>
-        </div>
-      </div>
-      <div class="post-meta">
-        <div class="promoted-button">Promoted</div>
-      </div>
-
-    </div>
   </div>
 
   <div class="loading-article">

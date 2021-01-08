@@ -1,21 +1,25 @@
-<div class="side-bar">
-  <app-side-bar ></app-side-bar>
+<div *ngIf="isLogin">
+  <div class="side-bar">
+    <app-side-bar [loginData]="loginData" (loginManage)="loginManage($event)" (favoriteArticle)="favoriteArticle($event)"></app-side-bar>
 
-</div>
-<div class="nav-bar">
-  <app-nav-bar></app-nav-bar>
-</div>
+  </div>
+  <div class="nav-bar">
+    <app-nav-bar></app-nav-bar>
+  </div>
 
 
-<div class="banner" >
-  <app-banner-sport-ads></app-banner-sport-ads>
-</div>
-<div class="headline-row" >
-  <app-headline-row></app-headline-row>
+  <div class="banner" >
+    <app-banner-sport-ads *ngIf="!(favArtcile)"></app-banner-sport-ads>
+  </div>
+  <div class="headline-row" >
+    <app-headline-row *ngIf="!(favArtcile)"></app-headline-row>
+  </div>
+
+  <div >
+    <app-sports-ads *ngIf="!(favArtcile)"> </app-sports-ads>
+    <app-favorite-article *ngIf="favArtcile"></app-favorite-article>
+  </div>
 </div>
 
-<div >
-  <app-sports-ads></app-sports-ads>
-</div>
-<router-outlet></router-outlet>
-<!--<app-login></app-login>-->
+<!--<router-outlet></router-outlet>-->
+<app-login *ngIf="!isLogin" (sendLoginData)="sendLoginData($event)" ></app-login>

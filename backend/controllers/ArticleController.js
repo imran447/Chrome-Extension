@@ -1,4 +1,5 @@
 const Article = require("../models/ArticleModel");
+const FavoriteArticle = require("../models/FavoriteArticleModel");
 const {body, validationResult} = require("express-validator");
 const {sanitizeBody} = require("express-validator");
 const apiResponse = require("../helpers/apiResponse");
@@ -7,10 +8,9 @@ var mongoose = require("mongoose");
 mongoose.set("useFindAndModify", false);
 
 exports.articleList = [
-    auth,
     function (req, res) {
         try {
-            Article.find({user: req.user._id}, "_id title description isbn createdAt").then((articles) => {
+            Article.find({}).then((articles) => {
                 if (articles.length > 0) {
                     return apiResponse.successResponseWithData(res, "Operation success", articles);
                 } else {
@@ -25,13 +25,12 @@ exports.articleList = [
 ];
 
 exports.articleDetail = [
-    auth,
     function (req, res) {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
             return apiResponse.successResponseWithData(res, "Operation success", {});
         }
         try {
-            Article.findOne({_id: req.params.id, user: req.user._id},).then((article) => {
+            Article.findOne({_id: req.params.id}).then((article) => {
                 if (article !== null) {
                     return apiResponse.successResponseWithData(res, "Operation success", article);
                 } else {
@@ -44,19 +43,84 @@ exports.articleDetail = [
         }
     }
 ];
+exports.addVisitor = [
+    sanitizeBody("*").escape(),
+    (req, res) => {
+        try {
+            Article.findById(req.body.id, function (err, article) {
+                console.log(article);
+                if (article === null) {
+                    return apiResponse.notFoundResponse(res, "article not exists with this id");
+                } else {
+                    Article.findByIdAndUpdate(req.body.id, {visitor:(++article.visitor)}, function (err,data) {
+                        if (err) {
+                            return apiResponse.ErrorResponse(res, err);
+                        } else {
+                            return apiResponse.successResponseWithData(res, "article update Success.", data);
+                        }
+                    });
+                    
+                }
+            });
+        } catch (err) {
+            //throw error in json response with status 500.
+            return apiResponse.ErrorResponse(res, err);
+        }
+    }
+];
+exports.favoriteArticle =[
+    sanitizeBody("*").escape(),
+    (req,res)=>{
+        try{
+            FavoriteArticle.findOne({user:req.body.userId,article:req.body.article}).then((data)=>{
+                if(!data){
+                    var article = new FavoriteArticle({
+                        user: req.body.userId,
+                        article: req.body.article,
+                    });
 
+                    article.save(function (err) {
+                        if (err) {
+                            return apiResponse.ErrorResponse(res, err);
+                        }
+                        return apiResponse.successResponseWithData(res, "Favorite Article add Success.", article);
+                    });
+                }
+                return apiResponse.successResponse(res,"Favorite Article add Success.");
+            });
 
+        }
+        catch (e) {
+            return apiResponse.ErrorResponse(res, e);
+        }
+    }
+];
+exports.favoriteArticleList =[
+    (req,res)=>{
+        try{
+          FavoriteArticle.find({user:req.params.id}).populate("article").
+          exec(function (err,favArticle) {
+              if (err) {
+                  return apiResponse.ErrorResponse(res, err);
+              }
+              return apiResponse.successResponseWithData(res, "Favorite Article add Success.", favArticle);
+          });
+        }
+        catch (e) {
+            return apiResponse.ErrorResponse(res, err);
+        }
+    }
+];
 exports.storeArticle = [
-    auth,
-    body("title", "Title must not be empty.").isLength({min: 1}).trim(),
-    body("description", "Description must not be empty.").isLength({min: 1}).trim(),
-    body("source", "source must not be empty").isLength({min: 1}).trim(),
-    body("image", "image must not be empty").isLength({min: 1}).trim(),
-    body("links", "link must not be empty").isLength({min: 1}).trim(),
-    body("sportType", "sportType must not be empty").isLength({min: 1}).trim(),
-    body("team", "team must not be empty").isLength({min: 1}).trim(),
-    body("player", "player must not be empty").isLength({min: 1}).trim(),
-    body("language", "language must not be empty").isLength({min: 1}).trim(),
+    body("title", "Title must not be empty.").trim(),
+    body("description", "Description must not be empty.").trim(),
+    body("source", "source must not be empty").trim(),
+    body("image", "image must not be empty").trim(),
+    body("links", "link must not be empty").trim(),
+    body("sportType", "sportType must not be empty").trim(),
+    body("team", "team must not be empty").trim(),
+    body("player", "player must not be empty").trim(),
+    body("language", "language must not be empty").trim(),
 
 
     sanitizeBody("*").escape(),
@@ -66,7 +130,6 @@ exports.storeArticle = [
             var article = new Article(
                 {
                     title: req.body.title,
-                    user: req.user,
                     description: req.body.description,
                     source: req.body.source,
                     image: req.body.image,
@@ -96,16 +159,15 @@ exports.storeArticle = [
 ];
 
 exports.articleUpdate = [
-    auth,
-    body("title", "Title must not be empty.").isLength({min: 1}).trim(),
-    body("description", "Description must not be empty.").isLength({min: 1}).trim(),
-    body("source", "source must not be empty").isLength({min: 1}).trim(),
-    body("image", "image must not be empty").isLength({min: 1}).trim(),
-    body("links", "link must not be empty").isLength({min: 1}).trim(),
-    body("sportType", "sportType must not be empty").isLength({min: 1}).trim(),
-    body("team", "team must not be empty").isLength({min: 1}).trim(),
-    body("player", "player must not be empty").isLength({min: 1}).trim(),
-    body("language", "language must not be empty").isLength({min: 1}).trim(),
+    body("title", "Title must not be empty.").trim(),
+    body("description", "Description must not be empty.").trim(),
+    body("source", "source must not be empty").trim(),
+    body("image", "image must not be empty").trim(),
+    body("links", "link must not be empty").trim(),
+    body("sportType", "sportType must not be empty").trim(),
+    body("team", "team must not be empty").trim(),
+    body("player", "player must not be empty").trim(),
+    body("language", "language must not be empty").trim(),
 
     sanitizeBody("*").escape(),
     (req, res) => {
@@ -114,7 +176,6 @@ exports.articleUpdate = [
             var article = new Article(
                 {
                     title: req.body.title,
-                    user: req.user,
                     description: req.body.description,
                     source: req.body.source,
                     image: req.body.image,
@@ -136,9 +197,6 @@ exports.articleUpdate = [
                             return apiResponse.notFoundResponse(res, "article not exists with this id");
                         } else {
                             //Check authorized user
-                            if (article.user.toString() !== req.user._id) {
-                                return apiResponse.unauthorizedResponse(res, "You are not authorized to do this operation.");
-                            } else {
                                 article.findByIdAndUpdate(req.params.id, article, {}, function (err) {
                                     if (err) {
                                         return apiResponse.ErrorResponse(res, err);
@@ -146,7 +204,7 @@ exports.articleUpdate = [
                                         return apiResponse.successResponseWithData(res, "article update Success.", article);
                                     }
                                 });
-                            }
+
                         }
                     });
                 }
@@ -159,33 +217,3 @@ exports.articleUpdate = [
 ];
 
 
-exports.articleDelete = [
-    auth,
-    function (req, res) {
-        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-            return apiResponse.validationErrorWithData(res, "Invalid Error.", "Invalid ID");
-        }
-        try {
-            Article.findById(req.params.id, function (err, article) {
-                if (article === null) {
-                    return apiResponse.notFoundResponse(res, "Article not exists with this id");
-                } else {
-                    //Check authorized user
-                    if (article.user.toString() !== req.user._id) {
-                        return apiResponse.unauthorizedResponse(res, "You are not authorized to do this operation.");
-                    } else {
-                        article.findByIdAndRemove(req.params.id, function (err) {
-                            if (err) {
-                                return apiResponse.ErrorResponse(res, err);
-                            } else {
-                                return apiResponse.successResponse(res, "Article delete Success.");
-                            }
-                        });
-                    }
-                }
-            });
-        } catch (err) {
-            return apiResponse.ErrorResponse(res, err);
-        }
-    }
-];
