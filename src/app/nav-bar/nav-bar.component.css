@@ -1,0 +1,10 @@
+.chromeTopSitesCrossButton{
+  height: 21px;
+  width: 43px;
+  overflow: hidden;
+  border: none;
+  margin-top: -8px
+}
+.websiteLink{
+  margin-right: 65px;
+}

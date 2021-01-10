@@ -282,6 +282,8 @@ body {
   position: relative;
   border-radius: 25px;
   overflow: hidden;
+  background-color: #e2e1e1;
+  color: white;
   display: inline-block;
   vertical-align: middle;
 }
@@ -292,6 +294,7 @@ body {
   left: 15px;
   top: 0;
   height: 40px;
+  background-color: #e2e1e1;
 line-height: 40px;
   pointer-events: none;
   font-size: 18px;
@@ -736,6 +739,8 @@ line-height: 40px;
 .btn-menu span {
   font-size: 13px;
   font-weight: 700;
+  background-color: transparent;
+  color:#c8cdd2;
   font-family: sans-serif;
 }
 
@@ -752,7 +757,7 @@ line-height: 40px;
 }
 .left-pull .btn {
   border-radius: 20px;
-  background-color: transparent;
+ border: none;
 }
 
 .loading-article {
@@ -2208,6 +2213,7 @@ main section#sticky ul.home {
   border: 0;
   position: absolute;
   top: 0;
+  overflow: hidden;
   left: 0;
   opacity: 1;
   border-radius: 6px 6px 0 0;
@@ -2730,6 +2736,7 @@ h4 {
   display: flex !important;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
   color: #D7DBE4;
 }
 
@@ -3133,9 +3140,12 @@ header .searchOptions i{
   background: #eef2f438;
 }
 .book-save i {
-  color: #c8cdd2
+  color: #c8cdd2;
+  background-color: transparent;
 }
-
+.btn-group.dropup{
+  background-color: transparent;
+}
 .book-save.active i{
   color: #fff !important;
 
@@ -3775,6 +3785,7 @@ textarea:focus, input:focus{
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
+  background-color: #f7f8f9;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -3817,14 +3828,18 @@ textarea:focus, input:focus{
 }
 
 .btn>.svg-icon {
-  color: var(--button-color);
+  color:#c8cdd2;
 }
 .btn-icon>.svg-icon, .btn>.svg-icon {
   color: var(--button-color);
+  background-color: transparent;
 }
 .svg-fill {
-  fill: currentColor;
+  fill: #c8cdd2;
   stroke: none;
+}
+.svg-fill:hover{
+  color:white;
 }
 .svg-icon {
   width: 24px;

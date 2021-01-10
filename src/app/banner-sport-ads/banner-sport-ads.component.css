@@ -3,5 +3,9 @@ ul{
   margin-top: 131px;
   margin-left: 215px;
 }
+.hover-options, material-icons.icon-menu{
+  background-color: transparent;
+}
+
 
 
