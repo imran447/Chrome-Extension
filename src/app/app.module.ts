@@ -44,12 +44,12 @@ import { FavoriteArticleComponent } from './favorite-article/favorite-article.co
             {
               id: GoogleLoginProvider.PROVIDER_ID,
               provider: new GoogleLoginProvider(
-                '1095448180134-0uvsd95b4v0k2710ibdfj7jufjonpft6.apps.googleusercontent.com'
+                ''
               ),
             },
             {
               id: FacebookLoginProvider.PROVIDER_ID,
-              provider: new FacebookLoginProvider('156243312599078'),
+              provider: new FacebookLoginProvider(''),
             },
           ],
         } as SocialAuthServiceConfig,
