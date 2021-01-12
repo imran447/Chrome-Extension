@@ -1,0 +1,75 @@
+<div class="small_desk">
+  <div *ngFor="let article of articles">
+    <div class="article">
+      <div class="tile-post">
+        <div class="hover-options">
+          <span class="Bookmark-icon"   data-toggle="tooltip" data-placement="left" title="Save for later"></span>
+          <span class="Share-icon" ng-click="::openSharer($event, 'share', item)" data-toggle="tooltip" data-placement="left" title="Share"></span>
+        </div>
+        <!-- Post link-->
+        <a class="post-link" target="_blank" href="https://www.youtube.com/watch?v=dYSIZ13yS64&ab_channel=Muzli" >
+          <div class="post-photo video-photo">
+            <!-- logo -->
+            <div class="source-logo" data-toggle="tooltip" data-placement="top" title="Bleacher report">
+              <img class="image-source" src="../../assets/images/BleacherReport.png">
+            </div>
+            <div class="player-image"></div>
+            <!--<span class="icon-play-plain video-modal video-play-button-external">
+               <span class="duration">6:31</span>
+           </span>-->
+            <!-- post main image -->
+            <img class="image_url" src="" >
+
+          </div>
+          <div class="postInfo videoinfo">
+            <!-- Post Title-->
+            <h3 class="title">{{article.article.title}}</h3>
+            <!-- Post publish time-->
+            <span class="created">2 hours ago</span>
+          </div>
+        </a>
+        <div class="post-meta">
+          <div class="left-pull">
+            <button class="btn btn-menu upvote" data-toggle="tooltip" data-placement="top" data-original-title="Upvote">
+              <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill"><path pid="0" d="M13.162 3.813a2 2 0 01.465.465l6.674 9.343a1 1 0 01-1.102 1.539l-4.032-1.21a1 1 0 00-1.277.816l-.767 5.375a1 1 0 01-.99.859h-.266a1 1 0 01-.99-.859l-.767-5.375a1 1 0 00-1.278-.816l-4.031 1.21a1 1 0 01-1.102-1.54l6.674-9.342a2 2 0 012.79-.465z" _fill="#fff" fill-rule="evenodd"></path></svg>
+              <span>5</span>
+            </button>
+            <div class="btn-group dropup">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons icon-menu" data-toggle="tooltip" data-placement="top" data-original-title="More options">more_horiz</i>
+              </button>
+              <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Hide post</a>
+                <a class="dropdown-item" href="#">Broken link</a>
+                <a class="dropdown-item" href="#">Report NSFW</a>
+              </div>
+            </div>
+          </div>
+          <div class="click-count" data-toggle="tooltip" data-placement="top" data-original-title="View" ng-if="::item.clicks > 0">
+            <i class="material-icons">visibility</i>
+            <span>{{article.article.visitor}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-article">
+    <div class="col-6">
+      <div class="card">
+        <div class="logo-image"></div>
+        <div class="item-image"></div>
+        <div class="footer"></div>
+        <div class="card-body item">
+          <div class="d-flex">
+            <div class="content">
+              <div class="title"></div>
+              <div class="short-title"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
