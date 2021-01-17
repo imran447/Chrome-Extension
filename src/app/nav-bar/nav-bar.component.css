@@ -8,3 +8,10 @@
 .websiteLink{
   margin-right: 65px;
 }
+.topsites-container{
+  height: 330px;
+  width: 500px;
+}
+.transparent-background{
+  background-color: transparent;
+}

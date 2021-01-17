@@ -1,26 +1,30 @@
-<div class="limiter">
-  <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-    <div class="wrap-login100">
-					<span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
-					</span>
-
-        <span class="login100-form-title p-b-34 p-t-27">
-						Log in
-					</span>
-
-        <div class="container-login100-form-btn">
-          <button class="login100-form-btn"  (click)="signInWithGoogle()">
-            Continue with Google
-          </button>
-
-        </div>
-        <div class="container-login100-form-btn">
-          <button class="login100-form-btn" (click)="signInWithFB()">
-            Continue with Facebook
-          </button>
-        </div>
-
+<div class="modal fade login-modal model in" id="SignUp_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+    <div class="modal-content">
+      <div class="modal-body">
+        <a class="logo" href="#"> <img  src="../../assets/images/logoill.png" alt="" class="img-responsive white-background"></a>
+        <form action="#" style="" class="login-form" id="UserLoginForm" method="post" accept-charset="utf-8">
+          <div class="social-ssn">
+            <div class="facebook-signing-button" (click)="signInWithFB()">
+              <a class="fit-icon" ><img class="transparent-background" src="../../assets/images/facebookssn.png"></a>
+              <p class="transparent-background ">Continue with Facebook</p>
+            </div>
+            <div class="google-signing-button" (click)="signInWithGoogle()">
+              <a class="fit-icon"  ><img class="transparent-background" src="../../assets/images/Googlessn.png"></a>
+              <p class="transparent-background">Continue with Google</p>
+            </div>
+          </div>
+          <div class="control-group social-login white-background" >
+            <span class="seprater-or white-background">Or</span>
+          </div>
+          <div class="control-group " >
+            <input class="btn btn-primary btn-large btn-block" type="submit" style=" width: 100%"   value="Continue with Email">
+          </div>
+        </form>
+        <p class="signup-txt white-background" >By sign-up you agree to our <br><span>Terms</span> & <span>privacy Pocily</span></p>
+      </div>
     </div>
   </div>
 </div>
+

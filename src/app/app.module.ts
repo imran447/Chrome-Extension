@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +8,6 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { BannerSportAdsComponent } from './banner-sport-ads/banner-sport-ads.component';
 import { SportsAdsComponent } from './sports-ads/sports-ads.component';
-import { HeadlineRowComponent } from './headline-row/headline-row.component';
 import { LoginComponent } from './login/login.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {
@@ -24,7 +22,6 @@ import { FavoriteArticleComponent } from './favorite-article/favorite-article.co
     SideBarComponent,
     BannerSportAdsComponent,
     SportsAdsComponent,
-    HeadlineRowComponent,
     LoginComponent,
     FavoriteArticleComponent,
   ],
@@ -44,7 +41,7 @@ import { FavoriteArticleComponent } from './favorite-article/favorite-article.co
             {
               id: GoogleLoginProvider.PROVIDER_ID,
               provider: new GoogleLoginProvider(
-                ''
+                '1095448180134-0uvsd95b4v0k2710ibdfj7jufjonpft6.apps.googleusercontent.com'
               ),
             },
             {

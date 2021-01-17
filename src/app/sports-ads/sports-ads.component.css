@@ -2,3 +2,31 @@
   width: 75%;
   margin-left:  216px;
 }
+.headline{
+  width: 70%;
+  margin:auto;
+}
+.display-none{
+  display: none;
+}
+.filter-list{
+  float: left;
+}
+.filter-select{
+  width: 230px;
+  height: 35px;
+  margin-right: 40px;
+  font-size: 17px;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+.iframe{
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 171px;
+}
+.transparent-background{
+  background-color: transparent;
+}

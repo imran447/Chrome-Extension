@@ -335,6 +335,7 @@ line-height: 40px;
   position: absolute;
   right: 15px;
   top: 15px;
+  background-color: transparent;
   box-sizing: border-box;
   opacity: 0;
   transition: opacity .35s;
@@ -363,6 +364,7 @@ line-height: 40px;
 .hover-options span {
   display: block;
   width: 26px;
+  overflow: hidden;
   height: 26px;
   line-height: 26px;
   text-align: center;
@@ -426,8 +428,8 @@ line-height: 40px;
 }
 
 .dropdown-item {
-  display: none;
-  width: 100%;
+
+width: 100%;
   clear: both;
   font-weight: 400;
   color: #212529;
@@ -460,8 +462,12 @@ line-height: 40px;
 }*/
 
 .dropdown-menu {
+  overflow-y: hidden;
+  position: absolute;
   border: none;
   box-shadow: 0 4px 12px rgba(0,0,0,.175);
+  top: 206px;
+  height: 123px;
 }
 
 .more-open {
@@ -485,6 +491,8 @@ line-height: 40px;
   width: 0;
   position: absolute;
   pointer-events: none;
+
+
   border-color: rgba(255,255,255,0);
   border-top-color: #FFFFFF;
   border-width: 6px;
@@ -921,7 +929,7 @@ line-height: 40px;
 }
 .display-filter {
   display: none;
-  transition: .3s;
+  margin-bottom: 20px;
 }
 
 .display-filter.active {
@@ -964,7 +972,7 @@ line-height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 25px 0px 37px 35px;
+  padding: 25px 0px 37px 0px;
   font-family: 'Poppins';
 }
 
@@ -2222,7 +2230,7 @@ main section#sticky ul.home {
 .source-logo {
   position: absolute;
   top: 0;
-  background-color: #ffffffb8;
+  background-color: transparent;
   width: 35px;
   height: 35px;
   border-radius: 5px 0 4px 0;

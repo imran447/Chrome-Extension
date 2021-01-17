@@ -26,8 +26,8 @@
       <div class="socials-icon">
         <ul>
           <li data-toggle="tooltip" data-placement="bottom" title="Add shortcuts">
-            <a  (click)="handleChromeTopSites()">
-              <svg width="11" height="10" viewBox="0 0 11 10" fill="none"
+            <a (click)="handleChromeTopSites()">
+              <svg class="transparent-background" width="11" height="10" viewBox="0 0 11 10" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                       d="M6.16379 0.353027H4.83615V4.33573L0.853149 4.33573L0.853149 5.66337H4.83615V9.6465H6.16379V5.66337H10.1466V4.33573L6.16379 4.33573V0.353027Z"
@@ -35,19 +35,9 @@
               </svg>
             </a>
           </li>
-          <li data-toggle="tooltip" data-placement="bottom" title="Amazon seller">
-            <a href="https://sellercentral.amazon.com/"><img src="../../assets/images/Amazon seller.png"></a>
+          <li data-toggle="tooltip" data-placement="bottom"  *ngFor="let topsite of topSites">
+            <a href="{{topsite.url}}">  <img class="transparent-background" src="https://www.google.com/s2/favicons?domain={{topsite.url}}"></a>
           </li>
-          <li data-toggle="tooltip" data-placement="bottom" title="Facebook">
-            <a href="https://facebook.com/"><img src="../../assets/images/Facebook.png"></a></li>
-          <li data-toggle="tooltip" data-placement="bottom" title="Whatapp"><a
-            href="https://web.whatsapp.com/"><img src="../../assets/images/Whatapp.png"></a></li>
-          <li data-toggle="tooltip" data-placement="bottom" title="Amazon"><a
-            href="https://amazon.com/"><img src="../../assets/images/Amazon.png"></a></li>
-          <li data-toggle="tooltip" data-placement="bottom" title="Shopify"><a
-            href="https://Shopify.com/"><img src="../../assets/images/Shopify.png"></a></li>
-          <li data-toggle="tooltip" data-placement="bottom" title="Gmail"><a
-            href="https://mail.google.com/"><img src="../../assets/images/gmail.png"></a></li>
         </ul>
       </div>
       <!--  <a class="logo" href="#"><img src="images/logo.png" alt="" class="img-responsive"></a>-->
@@ -57,7 +47,7 @@
 
 
 <!--sidebar google -->
-<div class="sidebar_google "  [ngClass]="{'active':google_bar}" id="googleapps">
+<div class="sidebar_google " [ngClass]="{'active':google_bar}" id="googleapps">
   <div class="sidebar_google_content">
     <div class="GoogleAppsList">
       <ul>
@@ -199,46 +189,54 @@
 </div>
 
 <div class="modal" abindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <dialog [ngClass]="{'sourceForm bookmark-modal new-source': chromeTopSite}" ><div class="modal__background"></div><div class="modal__container shadow2">
-    <button class="btn-icon modal__close-btn" (click)="handleChromeTopSites()">
-      <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill"><path pid="0" d="M12 9.44l3.91-3.91a1.81 1.81 0 012.56 2.56L14.56 12l3.91 3.91a1.81 1.81 0 01-2.56 2.56L12 14.56l-3.91 3.91a1.81 1.81 0 11-2.56-2.56L9.44 12 5.53 8.09a1.81 1.81 0 112.56-2.56L12 9.44z" _fill="#FFF" fill-rule="evenodd" ></path></svg></button>
-    <div class="new-source__header"><h3>Edit shortcut</h3><p>
-      Want to add new shortcut?
-      Insert its link below to add it to your quick access row.
-    </p><form><div class="text-field"><div class="text-field__box field active"> <div class="text-field__input-container"><label class="text-field__label micro2" style="display: none;">Source url</label><input required="required" type="url" placeholder="Paste url" aria-label="Source url" autofocus="autofocus" class="text-field__input"></div> <button type="submit" class="text-field__right-slot btn btn-invert">Add</button></div>
-      <div class="text-field__hint micro2">
-      </div></div></form></div>
-    <div class="new-source__footer no-padding"><div class="radio">
-      <div class="radio-item">
-        <img src="./../assets/images/Whatapp.png">
-        <span class="webAddress websiteLink">https://web.whatsapp.com/</span>
-        <button class="btn-icon modal__close-btn chromeTopSitesCrossButton" >
-          <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill"><path pid="0" d="M12 9.44l3.91-3.91a1.81 1.81 0 012.56 2.56L14.56 12l3.91 3.91a1.81 1.81 0 01-2.56 2.56L12 14.56l-3.91 3.91a1.81 1.81 0 11-2.56-2.56L9.44 12 5.53 8.09a1.81 1.81 0 112.56-2.56L12 9.44z" _fill="#FFF" fill-rule="evenodd" ></path></svg></button>
+  <dialog [ngClass]="{'sourceForm bookmark-modal new-source': chromeTopSite}">
+    <div class="modal__background"></div>
+    <div class="modal__container shadow2">
+      <button class="btn-icon modal__close-btn" (click)="handleChromeTopSites()">
+        <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill">
+          <path pid="0"
+                d="M12 9.44l3.91-3.91a1.81 1.81 0 012.56 2.56L14.56 12l3.91 3.91a1.81 1.81 0 01-2.56 2.56L12 14.56l-3.91 3.91a1.81 1.81 0 11-2.56-2.56L9.44 12 5.53 8.09a1.81 1.81 0 112.56-2.56L12 9.44z"
+                _fill="#FFF" fill-rule="evenodd"></path>
+        </svg>
+      </button>
+      <div class="new-source__header"><h3>Edit shortcut</h3>
+        <p>
+          Want to add new shortcut?
+          Insert its link below to add it to your quick access row.
+        </p>
+        <form>
+          <div class="text-field">
+            <div class="text-field__box field active"><div class="text-field__input-container"><label class="text-field__label micro2" style="display: none;">Source
+                url</label><input required="required" type="url" name="url" [(ngModel)]="siteUrl" placeholder="Paste url" aria-label="Source url"
+                                  autofocus="autofocus" class="text-field__input" ></div>
+              <button type="button" class="text-field__right-slot btn btn-invert" (click)="addChromeSite()">Add</button>
+            </div>
+            <div class="text-field__hint micsro2">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="topsites-container">
+        <div class="new-source__footer no-padding">
+          <div class="radio" *ngFor="let topsite of topSites">
+            <div class="radio-item">
+              <img src="https://www.google.com/s2/favicons?domain={{topsite.url}}">
+              <span class="webAddress websiteLink">{{topsite.url}}</span>
+              <button class="btn-icon modal__close-btn chromeTopSitesCrossButton" (click)="removeTopSites(topsite._id)" >
+                <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill">
+                  <path pid="0"
+                        d="M12 9.44l3.91-3.91a1.81 1.81 0 012.56 2.56L14.56 12l3.91 3.91a1.81 1.81 0 01-2.56 2.56L12 14.56l-3.91 3.91a1.81 1.81 0 11-2.56-2.56L9.44 12 5.53 8.09a1.81 1.81 0 112.56-2.56L12 9.44z"
+                        _fill="#FFF" fill-rule="evenodd"></path>
+                </svg>
+              </button>
 
-      </div>
-      <div class="radio-item">
-        <img src="./../assets/images/Amazon seller.png">
-        <span class="webAddress">https://sellercentral.amazon.com/</span>
-      </div>
-      <div class="radio-item">
-        <img src="./../assets/images/Facebook.png">
-        <span class="webAddress">https://www.facebook.com/</span>
-      </div>
-      <div class="radio-item">
-        <img src="./../assets/images/Amazon.png">
-        <span class="webAddress">https://www.amazon.com/</span>
-      </div>
-      <div class="radio-item">
-        <img src="../../assets/images/gmail.png">
-        <span class="webAddress">https://mail.google.com/</span>
-      </div>
-      <div class="radio-item">
-        <div>
-          <img src="./../assets/images/Shopify.png">
-          <span class="webAddress">https://www.shopify.com/</span>
+            </div>
+
+          </div>
+          <button class="btn btn-big btn-invert new-source__confirm">Continue</button>
         </div>
-        <div>
-                </div>
       </div>
-    </div><button class="btn btn-big btn-invert new-source__confirm">Continue</button></div></div></dialog>
+
+    </div>
+  </dialog>
 </div>

@@ -1,29 +1,54 @@
 const Article = require("../models/ArticleModel");
+const UserModel = require("../models/UserModel");
 const FavoriteArticle = require("../models/FavoriteArticleModel");
 const {body, validationResult} = require("express-validator");
 const {sanitizeBody} = require("express-validator");
 const apiResponse = require("../helpers/apiResponse");
-const auth = require("../middlewares/jwt");
 var mongoose = require("mongoose");
 mongoose.set("useFindAndModify", false);
 
 exports.articleList = [
     function (req, res) {
         try {
-            Article.find({}).then((articles) => {
-                if (articles.length > 0) {
-                    return apiResponse.successResponseWithData(res, "Operation success", articles);
-                } else {
-                    return apiResponse.successResponseWithData(res, "Operation success", []);
-                }
-            });
+            UserModel.findOne({_id:req.params.id}).then((data)=>{
+                var articleArry=data.hideArticle;
+                Article.find({"_id":{$nin:articleArry}}).skip(req.params.pageNo*30).limit(30).then((articles) => {
+                    if (articles.length > 0) {
+                        return apiResponse.successResponseWithData(res, "Operation success", articles);
+                    } else {
+                        return apiResponse.successResponseWithData(res, "Operation success", []);
+                    }
+                });
+
+            })
+
         } catch (err) {
             //throw error in json response with status 500.
             return apiResponse.ErrorResponse(res, err);
         }
     }
 ];
+exports.filterArticle =[
+    function (req, res) {
+        try {
+            UserModel.findOne({_id:req.params.userId}).then((data)=>{
+                var articleArry=data.hideArticle;
+                Article.find({"_id":{$nin:articleArry},"sportType":req.params.filter}).then((articles) => {
+                    if (articles.length > 0) {
+                        return apiResponse.successResponseWithData(res, "Operation success", articles);
+                    } else {
+                        return apiResponse.successResponseWithData(res, "Operation success", []);
+                    }
+                });
 
+            })
+
+        } catch (err) {
+            //throw error in json response with status 500.
+            return apiResponse.ErrorResponse(res, err);
+        }
+    }
+];
 exports.articleDetail = [
     function (req, res) {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
