@@ -1,16 +1,40 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {LoginService} from "./login.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Chrome-Extension-Like-Muszli-main';
   isLogin=false;
   loginData:any;
   favArtcile:any;
+  constructor(private loginService: LoginService) {
+  }
+  ngOnInit() {
+    if(localStorage.getItem("userId")){
+      this.loginService.logedUser(localStorage.getItem("userId")).subscribe((response)=>{
+        console.log(response);
+        let loginData={
+          email:String,
+          name:String,
+          provider:String,
+          photoUrl:String
+        };
+        loginData.email=response.data.email;
+        loginData.name=response.data.name;
+        loginData.photoUrl=response.data.picture.replaceAll("&#x2F;","/");
+        loginData.provider=response.data.provder;
+        this.sendLoginData(loginData);
+      });
+      // this.sendLoginData(user);
+    }
+  }
+
   sendLoginData=(data)=>{
+    console.log("asdf");
     this.loginData=data;
     this.isLogin=true;
   }

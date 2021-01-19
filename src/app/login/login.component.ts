@@ -27,11 +27,9 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
-    console.log("sdf");
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data)=>{
       this._loginService.registerUser(this.user);
         this.sendLoginData.emit(this.user);
-
     });
 
   }

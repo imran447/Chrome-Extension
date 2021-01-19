@@ -33,6 +33,7 @@ export class SideBarComponent implements OnInit {
   }
   signOut(): void {
     this.authService.signOut();
+    localStorage.clear();
     this.loginManage.emit(false);
   }
   addFavoriteArticle():void{

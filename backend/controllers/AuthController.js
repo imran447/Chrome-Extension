@@ -7,6 +7,7 @@ const apiResponse = require("../helpers/apiResponse");
 exports.register = [
 	// Validate fields.
 	body("name").isLength({ min: 1 }).trim().withMessage("name must be specified."),
+	body("provider").isLength({ min: 1 }).trim().withMessage("provider must be specified."),
 	body("picture").isLength({ min: 1 }).trim().withMessage("Picture must be specified."),
 	body("email").isLength({ min: 1 }).trim().withMessage("Email must be specified.")
 		.isEmail().withMessage("Email must be a valid email address."),
@@ -26,6 +27,7 @@ exports.register = [
 						name: req.body.name,
 						email: req.body.email,
 						picture: req.body.picture,
+						provider:req.body.provider
 					}
 				);
 				 UserModel.findOne({email : req.body.email}).then((u) => {
@@ -34,7 +36,8 @@ exports.register = [
 							 _id: u._id,
 							 name: u.name,
 							 email: u.email,
-							 picture:u.picture
+							 picture:u.picture,
+							 provider:u.provider
 						 };
 					 	return apiResponse.successResponseWithData(res, "Registration Success.", uData);
 					 }
@@ -83,6 +86,18 @@ exports.addChromeSites = [
 					return apiResponse.successResponseWithData(res,"add Chrome top sites Successfully.", chromeTopSitesModel);
 				});
 			}
+		} catch (err) {
+			return apiResponse.ErrorResponse(res, err);
+		}
+	}
+];
+exports.getUser=[
+	(req, res) => {
+		try {
+			UserModel.findOne({_id:req.params.id}).then((data,err)=>{
+				if (!data) { return apiResponse.ErrorResponse(res, err); }
+				return apiResponse.successResponseWithData(res,"user", data);
+			});
 		} catch (err) {
 			return apiResponse.ErrorResponse(res, err);
 		}
