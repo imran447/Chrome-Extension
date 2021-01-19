@@ -15,7 +15,10 @@ export class LoginService {
    apiURL: string = 'http://localhost:8000/api';
    constructor(private httpClient: HttpClient) { }
    public registerUser(user:any){
-
+      this.loginUser.email=user.email;
+      this.loginUser.name=user.name;
+      this.loginUser.picture=user.photoUrl;
+      this.loginUser.provider=user.provider;
        this.httpClient.post(this.apiURL+"/auth/register",this.loginUser).toPromise().then((data:any)=>{
          localStorage.setItem("userId",data.data._id);
        });

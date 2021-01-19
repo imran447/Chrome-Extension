@@ -34,7 +34,6 @@ export class AppComponent implements OnInit{
   }
 
   sendLoginData=(data)=>{
-    console.log("asdf");
     this.loginData=data;
     this.isLogin=true;
   }
