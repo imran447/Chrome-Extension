@@ -12,7 +12,8 @@ export class LoginService {
     picture: String,
     provider:String
   };
-   apiURL: string = 'http://localhost:8000/api';
+  // apiURL: string = 'http://localhost:8000/api';
+  apiURL:string ="api";
    constructor(private httpClient: HttpClient) { }
    public registerUser(user:any){
       this.loginUser.email=user.email;
