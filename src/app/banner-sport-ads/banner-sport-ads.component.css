@@ -6,6 +6,8 @@ ul{
 .hover-options, material-icons.icon-menu{
   background-color: transparent;
 }
-
+.dropdown-menu{
+  z-index: 10;
+}
 
 

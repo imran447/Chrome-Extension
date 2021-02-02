@@ -1,5 +1,5 @@
 <div class="small_desk">
-  <div *ngFor="let article of articles">
+  <div *ngFor="let article of articles;let i =index">
     <div class="article">
       <div class="tile-post">
         <div class="hover-options">
@@ -7,7 +7,7 @@
           <span class="Share-icon" ng-click="::openSharer($event, 'share', item)" data-toggle="tooltip" data-placement="left" title="Share"></span>
         </div>
         <!-- Post link-->
-        <a class="post-link" target="_blank" href="https://www.youtube.com/watch?v=dYSIZ13yS64&ab_channel=Muzli" >
+        <a class="post-link" href="https://www.youtube.com/watch?v=dYSIZ13yS64&ab_channel=Muzli"  >
           <div class="post-photo video-photo">
             <!-- logo -->
             <div class="source-logo" data-toggle="tooltip" data-placement="top" title="Bleacher report">
@@ -23,9 +23,9 @@
           </div>
           <div class="postInfo videoinfo">
             <!-- Post Title-->
-            <h3 class="title">{{article.article.title}}</h3>
+            <h3 class="title">{{article.title}}</h3>
             <!-- Post publish time-->
-            <span class="created">2 hours ago</span>
+            <span class="created">{{article.createdAt | date}}</span>
           </div>
         </a>
         <div class="post-meta">
@@ -35,19 +35,19 @@
               <span>5</span>
             </button>
             <div class="btn-group dropup">
-              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="activateOption(i)">
                 <i class="material-icons icon-menu" data-toggle="tooltip" data-placement="top" data-original-title="More options">more_horiz</i>
               </button>
-              <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Hide post</a>
-                <a class="dropdown-item" href="#">Broken link</a>
-                <a class="dropdown-item" href="#">Report NSFW</a>
+              <div class="dropdown-menu display-none" aria-labelledby="dropdownMenuButton" id="{{i}}">
+                <a class="dropdown-item"  href="#"  (click)="hideArticle(article._id)" >Hide post</a><br>
+                <a class="dropdown-item"   href="#" >Broken link</a><br>
+                <a class="dropdown-item"  href="#"  (click)="hideArticle(article._id)">Report NSFW</a> <br>
               </div>
             </div>
           </div>
           <div class="click-count" data-toggle="tooltip" data-placement="top" data-original-title="View" ng-if="::item.clicks > 0">
             <i class="material-icons">visibility</i>
-            <span>{{article.article.visitor}}</span>
+            <span>{{article.visitor}}</span>
           </div>
         </div>
       </div>

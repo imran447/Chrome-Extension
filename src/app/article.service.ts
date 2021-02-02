@@ -14,7 +14,7 @@ export class ArticleService {
     return this.http.get<[]>(this.baseUrl+"/article/"+id+"/"+this.pageNo);
   }
   getFavoriteArticle(id):Observable<any>{
-    return this.http.get<[]>(this.baseUrl+"/article/favorite-article/"+id);
+    return this.http.get<[]>(this.baseUrl+"/article/favorite/article/"+id);
   }
   addVisitor(id){
     this.http.post(this.baseUrl+"/article/add-visitor",{id:id}).toPromise().then((data:any)=>{

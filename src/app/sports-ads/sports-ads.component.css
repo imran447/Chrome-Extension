@@ -30,3 +30,6 @@
 .transparent-background{
   background-color: transparent;
 }
+.dropdown-menu{
+  z-index: 20;
+}
