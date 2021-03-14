@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {LoginService} from "./login.service";
 
 @Component({
@@ -10,7 +10,10 @@ export class AppComponent implements OnInit{
   title = 'Chrome-Extension-Like-Muszli-main';
   isLogin=false;
   loginData:any;
+  public scrollEffect:boolean=true;
   favArtcile:any;
+  newsApiFlag:any;
+
   constructor(private loginService: LoginService) {
   }
   ngOnInit() {
@@ -42,5 +45,8 @@ export class AppComponent implements OnInit{
   }
   favoriteArticle=(event)=>{
     this.favArtcile=event;
+  }
+  newsApiManage=(event)=>{
+    this.newsApiFlag=event;
   }
 }

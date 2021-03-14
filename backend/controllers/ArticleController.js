@@ -12,7 +12,43 @@ exports.articleList = [
         try {
             UserModel.findOne({_id:req.params.id}).then((data)=>{
                 var articleArry=data.hideArticle;
-                Article.find({"_id":{$nin:articleArry}}).skip(req.params.pageNo*30).limit(30).then((articles) => {
+                if(data.selectedSources.length>0){
+                    Article.find({ $and:[
+                    {"_id":{$nin:articleArry}},
+                    {"source":{$in:data.selectedSources}}
+                            ]}
+                    ).skip(req.params.pageNo*30).limit(30).sort({created_date:-1}).then((articles) => {
+                      if(articles.length>0){
+                            return apiResponse.successResponseWithData(res, "Operation success", articles);
+                        } else {
+                            return apiResponse.successResponseWithData(res, "Operation success", []);
+                        }
+                    });
+                }
+                else{
+                    Article.find({"_id":{$nin:articleArry}}).skip(req.params.pageNo*30).limit(30).sort({created_date:-1}).then((articles) => {
+                        if(articles.length>0){
+                            return apiResponse.successResponseWithData(res, "Operation success", articles);
+                        } else {
+                            return apiResponse.successResponseWithData(res, "Operation success", []);
+                        }
+                    });
+                }
+
+            })
+        } catch (err) {
+            //throw error in json response with status 500.
+            return apiResponse.ErrorResponse(res, err);
+        }
+    }
+];
+
+exports.filterArticle =[
+    function (req, res) {
+        try {
+            UserModel.findOne({_id:req.params.userId}).then((data)=>{
+                var articleArry=data.hideArticle;
+                Article.find({"_id":{$nin:articleArry},"game":req.params.filter}).then((articles) => {
                     if (articles.length > 0) {
                         return apiResponse.successResponseWithData(res, "Operation success", articles);
                     } else {
@@ -28,12 +64,93 @@ exports.articleList = [
         }
     }
 ];
-exports.filterArticle =[
+
+exports.mostUpvote=[
+    function (req, res) {
+        try {
+            var articleArry=[];
+            UserModel.findOne({_id:req.params.userId}).then((data)=>{
+                if(data.hideArticle!=null)
+                 articleArry=data.hideArticle;
+                if(data.selectedSources.length>0){
+                    Article.find({ $and:[
+                            {"_id":{$nin:articleArry}},
+                            {"source":{$in:data.selectedSources}}
+                        ]}
+                    ).skip(req.params.pageNo*30).limit(30).sort({upvoteCounter:-1}).then((articles) => {
+                        if(articles.length>0){
+                            return apiResponse.successResponseWithData(res, "Operation success", articles);
+                        } else {
+                            return apiResponse.successResponseWithData(res, "Operation success", []);
+                        }
+                    });
+                }
+                else{
+                    Article.find({"_id":{$nin:articleArry}}).skip(req.params.pageNo*30).limit(30).sort({upvoteCounter:-1}).then((articles) => {
+                        console.log(articles.length);
+
+                        if(articles.length>0){
+                            return apiResponse.successResponseWithData(res, "Operation success", articles);
+                        } else {
+                            return apiResponse.successResponseWithData(res, "Operation success", []);
+                        }
+                    });
+                }
+
+
+            })
+
+        } catch (err) {
+            //throw error in json response with status 500.
+            return apiResponse.ErrorResponse(res, err);
+        }
+    }
+]
+exports.mostViewed=[
+    function (req, res) {
+        try {
+            var articleArry=[];
+            UserModel.findOne({_id:req.params.userId}).then((data)=>{
+                if(data.hideArticle!=null)
+                    articleArry=data.hideArticle;
+                if(data.selectedSources.length>0){
+                    Article.find({ $and:[
+                            {"_id":{$nin:articleArry}},
+                            {"source":{$in:data.selectedSources}}
+                        ]}
+                    ).skip(req.params.pageNo*30).limit(30).sort({visitor:-1}).then((articles) => {
+                        if(articles.length>0){
+                            return apiResponse.successResponseWithData(res, "Operation success", articles);
+                        } else {
+                            return apiResponse.successResponseWithData(res, "Operation success", []);
+                        }
+                    });
+                }
+                else{
+                    Article.find({"_id":{$nin:articleArry}}).skip(req.params.pageNo*30).limit(30).sort({visitor:-1}).then((articles) => {
+                        if(articles.length>0){
+                            return apiResponse.successResponseWithData(res, "Operation success", articles);
+                        } else {
+                            return apiResponse.successResponseWithData(res, "Operation success", []);
+                        }
+                    });
+                }
+
+
+            })
+
+        } catch (err) {
+            //throw error in json response with status 500.
+            return apiResponse.ErrorResponse(res, err);
+        }
+    }
+]
+exports.filterSourceArticle =[
     function (req, res) {
         try {
             UserModel.findOne({_id:req.params.userId}).then((data)=>{
                 var articleArry=data.hideArticle;
-                Article.find({"_id":{$nin:articleArry},"sportType":req.params.filter}).then((articles) => {
+                Article.find({"_id":{$nin:articleArry},"source":req.params.filter}).then((articles) => {
                     if (articles.length > 0) {
                         return apiResponse.successResponseWithData(res, "Operation success", articles);
                     } else {
@@ -84,7 +201,7 @@ exports.addVisitor = [
                             return apiResponse.successResponseWithData(res, "article update Success.", data);
                         }
                     });
-                    
+
                 }
             });
         } catch (err) {
@@ -98,7 +215,10 @@ exports.favoriteArticle =[
     (req,res)=>{
         try{
             FavoriteArticle.findOne({user:req.body.userId,article:req.body.article}).then((data)=>{
-                if(!data){
+                if(data){
+                    return apiResponse.successResponse(res,"Already Add.");
+                }
+                else{
                     var article = new FavoriteArticle({
                         user: req.body.userId,
                         article: req.body.article,
@@ -111,7 +231,6 @@ exports.favoriteArticle =[
                         return apiResponse.successResponseWithData(res, "Favorite Article add Success.", article);
                     });
                 }
-                return apiResponse.successResponse(res,"Favorite Article add Success.");
             });
 
         }
@@ -120,16 +239,86 @@ exports.favoriteArticle =[
         }
     }
 ];
+exports.getHigherArticle=[
+    (req,res)=>{
+        try{
+            Article.find().sort({"visitor":"desc"}).limit(7).then((favArticle)=> {
+                if (!favArticle) {
+                    return apiResponse.successResponse(res, "hi");
+                }
+                return apiResponse.successResponseWithData(res, "Favorite Articles.", favArticle);
+            });
+
+        }
+        catch (e) {
+            return apiResponse.ErrorResponse(res, e);
+        }
+    }
+];
+
+exports.uniqueSource = [
+    (req,res)=>{
+        try{
+            Article.distinct("source").then((data)=>{
+                if(data){
+                    return apiResponse.successResponseWithData(res, "Sources",data);
+                }
+            })
+        }
+        catch (e) {
+            return apiResponse.ErrorResponse(res, err);
+        }
+    }
+];
+    exports.uniqueSourceArticle = [
+     async (req,res)=>{
+        try{
+            var arry=[];
+            var data= await  Article.distinct("source").exec();
+            for(var i=0;i<data.length;i++){
+             var result=  await Article.findOne({source:data[i]}).exec();
+             let source={
+                 source:result.source,
+                 link:result.link
+             }
+                arry.push(source);
+            }
+            return apiResponse.successResponseWithData(res, "Sources",arry);
+
+        }
+        catch (e) {
+            return apiResponse.ErrorResponse(res, err);
+        }
+    }
+];
 exports.favoriteArticleList =[
     (req,res)=>{
         try{
-          FavoriteArticle.find({user:req.params.id}).populate("article").
-          exec(function (err,favArticle) {
-              if (err) {
-                  return apiResponse.ErrorResponse(res, err);
-              }
-              return apiResponse.successResponseWithData(res, "Favorite Article add Success.", favArticle);
-          });
+
+            UserModel.findOne({_id:req.params.userId}).then((data)=>{
+                var articleArry=data.hideArticle;
+                FavoriteArticle.find({user:req.params.userId}).populate("article").then((favArticle)=> {
+                   var data=[];
+                   var flag=0;
+                   for(var i=0;i<favArticle.length;i++){
+                       console.log(favArticle[i]);
+                       flag=0;
+                       for(var j=0;j<articleArry.length;j++){
+                           if(favArticle[i].article._id==articleArry[j]){
+                               flag=1;
+                               break;
+                           }
+                       }
+                       if(flag==0){
+                           data.push(favArticle[i]);
+                       }
+                   }
+                    if (!favArticle) {
+                        return apiResponse.ErrorResponse(res, err);
+                    }
+                    return apiResponse.successResponseWithData(res, "Favorite Articles.", data);
+                });
+            })
         }
         catch (e) {
             return apiResponse.ErrorResponse(res, err);

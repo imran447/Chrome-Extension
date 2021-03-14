@@ -1,21 +1,21 @@
-<div class="header top-nav">
-  <div class="inner-content">
+ <div class="header top-nav">
+  <div class="inner-content" style="z-index: 1">
     <div class="pull-left nav-icon">
       <div class="googleapps_icon">
-        <button class="btn btn-custom GoogleApps align" (click)="manageGoogleBar()" data-toggle="tooltip"
-                data-placement="bottom" data-original-title="Google Apps">
-          <img src="../../assets/images/googleappsoff.svg" alt="googleappsoff">
-          <img src="../../assets/images/googleappson.svg" class="img-top" alt="googleappson">
+        <button class="btn btn-custom GoogleApps align" (click)="manageGoogleBar()"
+                flow="down" tooltip="Google Apps">
+          <img src="assets/images/googleappsoff.svg" alt="googleappsoff">
+          <img id="clickImage" src="assets/images/googleappson.svg" class="img-top" alt="googleappson">
         </button>
       </div>
       <div class="search-container">
-        <form ng-submit="search(searchModel[activeSearch], $event, activeSearch)" id="searchForm"
+        <form id="searchForm" (ngSubmit)="openGoogle(google.value)"
               class="ng-pristine ng-valid ng-valid-maxlength">
 
           <div class="input">
             <i class="material-icons">search</i>
-            <input class="searchBar" maxlength="50" type="text" ng-model="searchModel.google"
-                   placeholder="Search Google" tabindex="2" ng-focus="setSearch('google', $event)"
+            <input class="searchBar" maxlength="50" type="text"
+                   placeholder="Search Google" tabindex="2" #google
                    lookahead="" autocomplete="off">
           </div>
         </form>
@@ -25,7 +25,7 @@
     <div class="pull-right top-logo">
       <div class="socials-icon">
         <ul>
-          <li data-toggle="tooltip" data-placement="bottom" title="Add shortcuts">
+          <li flow="down" tooltip="Add shortcuts">
             <a (click)="handleChromeTopSites()">
               <svg class="transparent-background" width="11" height="10" viewBox="0 0 11 10" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@
               </svg>
             </a>
           </li>
-          <li data-toggle="tooltip" data-placement="bottom"  *ngFor="let topsite of topSites">
+          <li data-toggle="tooltip" flow="down"  *ngFor="let topsite of topSites">
             <a href="{{topsite.url}}">  <img class="transparent-background" src="https://www.google.com/s2/favicons?domain={{topsite.url}}"></a>
           </li>
         </ul>
@@ -46,68 +46,67 @@
 </div>
 
 
-<!--sidebar google -->
-<div class="sidebar_google " [ngClass]="{'active':google_bar}" id="googleapps">
+<div class="sidebar_google" [ngClass]="{'active':google_bar}" id="googleapps">
   <div class="sidebar_google_content">
     <div class="GoogleAppsList">
-      <ul>
+      <ul id="googleUl">
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://myaccount.google.com" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Account.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Account.png"></div>
             <span class="sada">Account</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://www.google.com" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Search.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Search.png"></div>
             <span class="sada">Search</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://drive.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/drive.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/drive.png"></div>
             <span class="sada">Drive</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://mail.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/gmail.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/gmail.png"></div>
             <span class="sada">Gmail</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://calendar.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Calender.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Calender.png"></div>
             <span class="sada">Calendar</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://maps.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Maps.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Maps.png"></div>
             <span class="sada">Maps</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://Translate.google.com/" target="_blank">
-            <img src="../../assets/images/Googleapps/Translate.png">
+            <img src="assets/images/Googleapps/Translate.png">
             <span class="sada">Translate</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://www.youtube.com/" target="_blank">
-            <img src="../../assets/images/Googleapps/Youtube.png">
+            <img src="assets/images/Googleapps/Youtube.png">
             <span class="sada">Youtube</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://Earth.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Earth.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Earth.png"></div>
             <span class="sada">Earth</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://Photos.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Photos.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Photos.png"></div>
             <span class="sada">Photos</span>
           </a>
         </li>
@@ -116,49 +115,49 @@
       <ul>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://sheets.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/sheets.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/sheets.png"></div>
             <span class="sada">Sheets</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://docs.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/docs.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/docs.png"></div>
             <span class="sada">Docs</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://Slides.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Slides.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Slides.png"></div>
             <span class="sada">Slides</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://Blogger.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Blogger.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Blogger.png"></div>
             <span class="sada">Blogger</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://Hangout.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Hangout.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Hangout.png"></div>
             <span class="sada">Hangout</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://Mybusiness.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/My business.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/My business.png"></div>
             <span class="sada">My business</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://classroom.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/classroom.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/classroom.png"></div>
             <span class="sada">Classroom</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://Keep.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Keep.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Keep.png"></div>
             <span class="sada">Keep</span>
           </a>
         </li>
@@ -167,19 +166,19 @@
       <ul>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://Jamboard.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Jamboard.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Jamboard.png"></div>
             <span class="sada">Jamboard</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://www.google.co.il/save" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Collections.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Collections.png"></div>
             <span class="sada">Collections</span>
           </a>
         </li>
         <li class="ligoogle">
           <a class="sidebar_applink" href="https://artsandculture.google.com/" target="_blank">
-            <div class="dsds"><img src="../../assets/images/Googleapps/Arts and culture.png"></div>
+            <div class="dsds"><img src="assets/images/Googleapps/Arts and culture.png"></div>
             <span class="sada">Arts and culture</span>
           </a>
         </li>
@@ -188,9 +187,10 @@
   </div>
 </div>
 
-<div class="modal" abindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <dialog [ngClass]="{'sourceForm bookmark-modal new-source': chromeTopSite}">
-    <div class="modal__background"></div>
+<div class="fade book_modal_block" [ngClass]="{'show':chromeTopSite}"  id="bookmark_modal_1" tabindex="-1" role="dialog"
+   aria-labelledby="myModalLabel" aria-hidden="true">
+  <dialog class="sourceForm bookmark-modal new-source">
+    <div id="bookmark_modalCustome" class="modal__background"></div>
     <div class="modal__container shadow2">
       <button class="btn-icon modal__close-btn" (click)="handleChromeTopSites()">
         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill">
@@ -204,10 +204,14 @@
           Want to add new shortcut?
           Insert its link below to add it to your quick access row.
         </p>
+        <span style="color: red"  [ngClass]="{'display-none':!this.siteURLFlag}">{{this.siteUrlError}}</span>
         <form>
+
           <div class="text-field">
-            <div class="text-field__box field active"><div class="text-field__input-container"><label class="text-field__label micro2" style="display: none;">Source
-                url</label><input required="required" type="url" name="url" [(ngModel)]="siteUrl" placeholder="Paste url" aria-label="Source url"
+
+            <div class="text-field__box field active" [ngClass]="{'red-border':this.siteURLFlag}"><div class="text-field__input-container"><label class="text-field__label micro2" style="display: none;">Source
+                url</label>
+             <input required="required" type="url" name="url" [(ngModel)]="siteUrl" placeholder="Please Enter Https Url" aria-label="Source url"
                                   autofocus="autofocus" class="text-field__input" ></div>
               <button type="button" class="text-field__right-slot btn btn-invert" (click)="addChromeSite()">Add</button>
             </div>
@@ -229,14 +233,53 @@
                         _fill="#FFF" fill-rule="evenodd"></path>
                 </svg>
               </button>
-
+<!---->
             </div>
-
+<!---->
           </div>
           <button class="btn btn-big btn-invert new-source__confirm">Continue</button>
         </div>
       </div>
-
+<!---->
     </div>
   </dialog>
 </div>
+
+ <section id="quickAccess" class="navbar-custom">
+   <div class="search-container">
+     <form (ngSubmit)="openGoogle(search.value)"
+           class="ng-pristine ng-valid ng-valid-maxlength">
+
+       <div class="input">
+         <i class="material-icons">search</i>
+         <input class="searchBar" maxlength="50" type="text"
+                placeholder="Search Google" tabindex="2" #search  lookahead=""
+                autocomplete="off"/>
+       </div>
+     </form>
+     <div class="social_drop_min">
+       <div class="social_header">
+         <div class="social_icon">
+           <ul>
+             <li  flow="down" tooltip="Add shortcuts" class="social-icons-custom">
+               <a (click)="handleChromeTopSites()">
+                 <svg class="transparent-background" width="20" height="20" viewBox="0 0 11 10" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                   <path fill-rule="evenodd" clip-rule="evenodd"
+                         d="M6.16379 0.353027H4.83615V4.33573L0.853149 4.33573L0.853149 5.66337H4.83615V9.6465H6.16379V5.66337H10.1466V4.33573L6.16379 4.33573V0.353027Z"
+                         fill="#202124"></path>
+                 </svg>
+               </a>
+             </li>
+
+             <li class="btn btn-custom social-icons-custom" data-toggle="tooltip"
+                   *ngFor="let topsite of topSites">
+               <a href="{{topsite.url}}">  <img class="" src="https://www.google.com/s2/favicons?domain={{topsite.url}}"></a>
+             </li>
+           </ul>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+

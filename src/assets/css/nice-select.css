@@ -72,7 +72,9 @@
       left: 0 !important;
       right: 0 !important; }
   .nice-select.right {
-    float: right; }
+    float: right;
+    width:100%;
+  }
     .nice-select.right .list {
       left: auto;
       right: 0; }

@@ -11,6 +11,7 @@ var ArticleSchema = new Schema({
     team:{type: String, required: false},
     player:{type: String, required: false},
     language:{type: String, required: false},
+    upvoteCounter:{type:Number,required:false,default:0},
     picks:{type: String, required: false},
     visitor:{type:Number,required:false,default : 0}
 }, {timestamps: true});

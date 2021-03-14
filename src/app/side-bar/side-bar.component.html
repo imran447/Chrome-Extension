@@ -1,23 +1,24 @@
+
 <div id="sidebar" class="sidebar">
   <div class="sidebar_content">
     <div class="spaces-bar">
       <div class="spaces-bar-content">
         <div class="sidebar-top">
           <div class="toolnew">
-            <li id="home" class="sidebar_link" data-toggle="tooltip" data-placement="right" title="Home">
-              <a data-tab="tab-1" href="#tab1">
+            <li id="home" class="sidebar_link"flow="right" tooltip="Home">
+              <a data-tab="tab-1" href="#tab1" (click)="removeFavoriteArticle()">
                 <div class="sidebar_content_col">
                   <div class="sidebar_content_col_inner sidebar_content_col_inner_1">
-                    <img class="logo" src="../../assets/images/logoill.png" alt="" (click)="removeFavoriteArticle()"/>
+                    <img class="logo" src="assets/images/logoill.png" alt=""/>
                   </div>
                 </div>
               </a>
             </li>
           </div>
           <div class="toolnew">
-            <li id="#" class="group_list_style" (click)="sideFeedBarManage()">
-              <a data-tab="tab-1" href="#tab1" class="sidebar_link" data-toggle="tooltip" data-placement="right"
-                 title="Feed">
+            <li id="#" class="group_list_style" onclick="menu()">
+              <a data-tab="tab-1" href="#tab1" class="sidebar_link" flow="right"
+                 tooltip="Feed">
                 <div class="sidebar_content_col">
                   <div class="sidebar_content_col_inner sidebar_content_col_inner_1">
                     <i class="material-icons">menu</i>
@@ -30,8 +31,8 @@
         <div class="sidebar-body">
           <div class="toolnew">
             <li id="SaveArticle" class="group_list_style">
-              <a data-tab="tab-1" href="#tab1" class="sidebar_link" data-toggle="tooltip" data-placement="right"
-                 title="Saved Items" (click)="addFavoriteArticle()" >
+              <a data-tab="tab-1" href="#tab1" class="sidebar_link"flow="right"
+                 tooltip="Saved Items" (click)="addFavoriteArticle()">
                 <div class="sidebar_content_col">
                   <div class="sidebar_content_col_inner sidebar_content_col_inner_1">
                     <i class="material-icons">bookmark_border</i>
@@ -41,8 +42,8 @@
             </li>
           </div>
           <li class="position-relative group_list_style">
-            <a data-tab="tab" href="#tab15" class="sidebar_link" (click)="notificationOpen()" data-toggle="tooltip"
-               data-placement="right" title="Notifications">
+            <a data-tab="tab" href="#tab15" class="sidebar_link" onclick="Notificationopen()"
+              flow="right" tooltip="Notifications">
               <div class="sidebar_content_col">
                 <div class="sidebar_content_col_inner sidebar_content_col_inner_1">
                   <i class="material-icons">notifications_none</i>
@@ -52,10 +53,10 @@
           </li>
           <div class="toolnew">
             <li id="dark-mode-toggle" class="dark-mode-toggle group_list_style">
-              <a data-tab="#" href="#tab1" class="sidebar_link"  data-toggle="tooltip"
-                 data-placement="right" title="Switch lighting Mode">
+              <a data-tab="#" href="#tab1" class="sidebar_link" onclick="myFunction();"
+                 flow="right" tooltip="Switch lighting Mode">
                 <div class="sidebar_content_col">
-                  <div class="sidebar_content_col_inner sidebar_content_col_inner_1" style="overflow: hidden">
+                  <div class="sidebar_content_col_inner sidebar_content_col_inner_1">
                     <i class="material-icons-outlined" (click)="darkmode()">brightness_2</i> <!-- wb_sunny -->
                   </div>
                 </div>
@@ -65,8 +66,8 @@
         </div>
         <div class="sidebar-bottom">
           <li class="position-relative group_list_style">
-            <a data-tab="tab" href="#tab13" class="'sidebar_link'" data-toggle="tooltip" data-placement="right"
-               title="Profile" (click)="profileSettingMange()">
+            <a data-tab="tab" href="#tab13" class="sidebar_link"flow="right"
+               tooltip="Profile" onclick="Settingsopen()">
               <div class="sidebar_content_col">
                 <div class="sidebar_content_col_inner sidebar_content_col_inner_1">
                   <i href="#" class="btn-custom profile align">
@@ -80,380 +81,19 @@
     </div>
   </div>
 </div>
-<!--profile setting sidebar-->
-<div class="settings_sidebar" [ngClass]="{'active ':settingManage}" id="Settings">
-  <div class="Settingsmenu_content">
-    <div class="menu-section-body">
-      <h4 class="sidebartiltle">Layout</h4>
-      <img src="../../assets/images/cross.png" alt="" class="profile-setting-close" (click)="profileSettingMange()"
-           style="cursor: pointer">
-      <div class="group-settings">
-        <li class="position-relative group_list_style">
-          <div class="rowinfo checkboxrow">
-            <div class="icon">
-              <img src="../../assets/images/fullload.png" alt="" class="img-responsive"/>
-            </div>
-            <span>Full view on load</span>
-          </div>
-          <input type='checkbox' class="settingtoggle"/>
-        </li>
-        <li class="position-relative group_list_style">
-          <div class="rowinfo checkboxrow">
-            <div class="icon">
-              <img src="../../assets/images/mostvisited.png" alt="" class="img-responsive"/>
-            </div>
-            <span>Most visited websites</span>
-          </div>
-          <input type='checkbox' class="settingtoggle"/>
-        </li>
-      </div>
-      <h4 class="sidebartiltle">Explore</h4>
-      <div class="group-settings">
-        <li class="position-relative group_list_style" onclick="openNew()">
-          <a data-tab="ta" href="#b1" class="linkhover">
-            <div class="rowinfo">
-              <div class="align">
-                <div class="icon">
-                  <img src="../../assets/images/Explore.png" class="img-responsive"/>
-                </div>
-                <span>What's new</span>
-              </div>
-              <img src="../../assets/images/arrow.png" class="arrowright"/>
-            </div>
-          </a>
-        </li>
-      </div>
-      <h4 class="sidebartiltle">How you can halp</h4>
-      <div class="group-settings">
-        <li class="position-relative group_list_style">
-          <a data-tab="ta" href="#b1" class="linkhover">
-            <div class="rowinfo">
-              <div class="align">
-                <div class="icon">
-                  <img src="../../assets/images/Doante.png" class="img-responsive"/>
-                </div>
-                <span>Doante</span>
-              </div>
-              <img src="../../assets/images/arrow.png" class="arrowright"/>
-            </div>
-          </a>
-        </li>
-        <li class="position-relative group_list_style">
-          <a data-tab="ta" href="#b1" class="linkhover">
-            <div class="rowinfo">
-              <div class="align">
-                <div class="icon">
-                  <img src="../../assets/images/Plusinvite.png" class="img-responsive"/>
-                </div>
-                <span>Invite friends</span>
-              </div>
-              <img src="../../assets/images/arrow.png" alt="" class="arrowright"/>
-            </div>
-          </a>
-        </li>
-        <li class="position-relative group_list_style">
-          <a data-tab="ta" href="#b1" class="linkhover">
-            <div class="rowinfo">
-              <div class="align">
-                <div class="icon">
-                  <img src="../../assets/images/feedback.png" class="img-responsive"/>
-                </div>
-                <span>Give us feedback</span>
-              </div>
-              <img src="../../assets/images/arrow.png" class="arrowright"/>
-            </div>
-          </a>
-        </li>
-        <li class="position-relative group_list_style">
-          <div data-tab="ta" onclick="subitweb()" class="linkhover">
-            <div class="rowinfo">
-              <div class="align">
-                <div class="icon">
-                  <img src="../../assets/images/Suggest.png" class="img-responsive"/>
-                </div>
-                <span>Suggest a link</span>
-              </div>
-              <img src="../../assets/images/arrow.png" alt="" class="arrowright"/>
-            </div>
-          </div>
-        </li>
-      </div>
-
-      <h4 class="sidebartiltle">Links</h4>
-      <div class="group-settings links">
-        <a href="http://www.Sportr.io/about/bug">Report a bug</a>
-        <a href="https://www.Sportr.io/privacy">Privacy Policy</a>
-        <a href="https://www.Sportr.io/terms">Terms of Service</a>
-      </div>
-    </div>
-    <div class="menu-section-footer userinfo">
-      <div class="rowinfo">
-        <div class="align">
-          <img src="{{loginData.photoUrl}}" alt="" class="profilesettings"/>
-          <h5>{{loginData.name}} <br><span>via {{loginData.provider}}</span></h5>
-        </div>
-        <button class="logout hoverbutton" (click)="signOut()">Logout</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
-<!-- feed sidebar-->
-<div class="feed_sidebar" [ngClass]="{'active':sideFeedBar}" id="feed">
-  <div class="Settingsmenu_content feedmenu_content">
-    <ul class="fevoriteSources">
-      <div class="titleRow">
-        <h4 class="sidebartiltle"><span class="sourceNumber">7</span> sources selected</h4>
-      </div>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/Filter/Websites/Home-web.png" class="fevorite-image website"/>
-              <span>Home</span>
-            </div>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/Filter/Websites/sport5-web.png" class="fevorite-image website"/>
-              <span>Sport 5</span>
-            </div>
-            <i class="material-icons remove">close</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/Filter/Websites/espn-web.png" class="fevorite-image website"/>
-              <span>Espn</span>
-            </div>
-            <i class="material-icons remove">close</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/onetest.png" class="fevorite-image website"/>
-              <span>One.co.il</span>
-            </div>
-            <i class="material-icons remove">close</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/Filter/Websites/twitter-web.png" class="fevorite-image website"/>
-              <span>Twitter</span>
-            </div>
-            <i class="material-icons remove">close</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <div data-tab="ta" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/Filter/Websites/avp-web.png" class="fevorite-image website"/>
-              <span>Avp Volleyball</span>
-            </div>
-            <i class="material-icons remove">close</i>
-          </div>
-        </div>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/Filter/Websites/BleacherReport-web.png" class="fevorite-image website"/>
-              <span>Bleacher Report</span>
-            </div>
-            <i class="material-icons remove">close</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/Filter/Websites/facebook-web.png" class="fevorite-image website"/>
-              <span>Facebook</span>
-            </div>
-            <i class="material-icons remove">close</i>
-          </div>
-        </a>
-      </li>
-    </ul>
-    <span class="line-break"></span>
-    <ul class="moreSources">
-      <div class="titleRow">
-        <h4 class="sidebartiltle">More sources</h4>
-      </div>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img
-                src="https://yt3.ggpht.com/a/AATXAJzX1FNqcbmQdZQVrPwEZgDAprPmMyyRrSbtj48-h5U=s88-c-k-c0xffffffff-no-rj-mo"
-                alt="" class="fevorite-image website"/>
-              <span>Bloomberg QuickTake</span>
-            </div>
-            <i href="#" class="right-cuts">Add</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img
-                src="https://yt3.ggpht.com/a/AATXAJwnVxHV9cR_nofTeCXS3x2H2jRQjH3YEq8sYqpM=s88-c-k-c0xffffffff-no-rj-mo"
-                alt="" class="fevorite-image website"/>
-              <span>Joma Tech</span>
-            </div>
-            <i href="javascript:void(0)" class="right-cuts">Add</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/onetest.png" alt="" class="fevorite-image website"/>
-              <span>One.co.il</span>
-            </div>
-            <i href="javascript:void(0)" class="right-cuts">Add</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <div data-tab="ta" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img
-                src="https://yt3.ggpht.com/a/AATXAJw3Ixs39Fb7enc-OssVPZ90cWqOdL1Yn41eZMepmw=s88-c-k-c0xffffffff-no-rj-mo"
-                alt="" class="fevorite-image website"/>
-              <span>European Volleyball</span>
-            </div>
-            <i href="javascript:void(0)" class="right-cuts">Add</i>
-          </div>
-        </div>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/Filter/Websites/BleacherReport-web.png" alt="" class="fevorite-image"/>
-              <span>Bleacher Report</span>
-            </div>
-            <i href="javascript:void(0)" class="right-cuts">Add</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img
-                src="https://yt3.ggpht.com/a/AATXAJzX1FNqcbmQdZQVrPwEZgDAprPmMyyRrSbtj48-h5U=s88-c-k-c0xffffffff-no-rj-mo"
-                alt="" class="fevorite-image website"/>
-              <span>Bloomberg QuickTake</span>
-            </div>
-            <i href="#" class="right-cuts">Add</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img
-                src="https://yt3.ggpht.com/a/AATXAJwnVxHV9cR_nofTeCXS3x2H2jRQjH3YEq8sYqpM=s88-c-k-c0xffffffff-no-rj-mo"
-                alt="" class="fevorite-image website"/>
-              <span>Joma Tech</span>
-            </div>
-            <i href="javascript:void(0)" class="right-cuts">Add</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/onetest.png" alt="" class="fevorite-image website"/>
-              <span>One.co.il</span>
-            </div>
-            <i href="javascript:void(0)" class="right-cuts">Add</i>
-          </div>
-        </a>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <div data-tab="ta" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img
-                src="https://yt3.ggpht.com/a/AATXAJw3Ixs39Fb7enc-OssVPZ90cWqOdL1Yn41eZMepmw=s88-c-k-c0xffffffff-no-rj-mo"
-                alt="" class="fevorite-image website"/>
-              <span>European Volleyball</span>
-            </div>
-            <i href="javascript:void(0)" class="right-cuts">Add</i>
-          </div>
-        </div>
-      </li>
-      <li class="position-relative group_list selector" data-toggle="tooltip" data-placement="top"
-          data-original-title="View source">
-        <a data-tab="ta" href="#b1" class="linkhover">
-          <div class="rowinfo">
-            <div class="align">
-              <img src="../../assets/images/Filter/Websites/BleacherReport-web.png" alt="" class="fevorite-image"/>
-              <span>Bleacher Report</span>
-            </div>
-            <i href="javascript:void(0)" class="right-cuts">Add</i>
-          </div>
-        </a>
-      </li>
-    </ul>
-    <!-- <button class="sidebar__element btn btn-menu"><svg version="1.1" viewBox="0 0 24 24" class="sidebar__element__image svg-icon svg-fill"><path pid="0" d="M13.78 10.22h4.44a1.78 1.78 0 010 3.56h-4.44v4.44a1.78 1.78 0 01-3.56 0v-4.44H5.78a1.78 1.78 0 010-3.56h4.44V5.78a1.78 1.78 0 013.56 0v4.44z" _fill="#FFF" fill-rule="evenodd"></path></svg><span>Add new source</span></button> -->
-  </div>
-</div>
 
-<!--Notification side_bar-->
-<div class="Notification_sidebar " [ngClass]="{'active':notificationManage}"  id="Notification">
+
+<div class="Notification_sidebar"  id="Notification">
   <div class="Notification_content">
     <div class="noti-title">
       <h5>Notification
         <span class="float-right">
-            <a href="javascript: void(0);">
-                  <small>Clear All</small>
-              </a>
-          </span>
+                      <a href="javascript: void(0);">
+                            <small>Clear All</small>
+                        </a>
+                    </span>
       </h5>
     </div>
     <div class="scrolllist">
@@ -463,8 +103,10 @@
           <i class="material-icons">perm_identity</i>
         </div>
         <div class="notify-details">
-          <p><small class="msg-time">1 min ago</small> If you like what we do, please tell your friends and share the love for Sportr.</p>
-          <div class="cta">
+          <p><small class="msg-time">1 min ago</small> If you like what we do, please tell your friends and share
+            the love for Sportr.</p>
+          <div class="cta" ng-if="notification.cta"
+               ng-click="logNotificationCta(notification, $event)">
             <a href="" ng-click="::shareAfterLogin('twitter')" class="twitter">Twitter</a>
             <a href="" class="facebook" ng-click="::shareAfterLogin('facebook')">Facebook</a>
           </div>
@@ -474,7 +116,7 @@
       <!-- item-->
       <div class="notify-item">
         <div class="notify-icon">
-          <img src="images/profilenoti.png" class="img-fluid rounded-circle" alt=""> </div>
+          <img src="assets/images/profilenoti.png" class="img-fluid rounded-circle" alt=""></div>
         <div class="notify-details">
           <small><b>Founder</b> Yam Sasson</small>
           <p class="user-msg">Thank you for helping Sportr grow!</p>
@@ -495,7 +137,9 @@
       <!-- item-->
       <div class=" notify-item">
         <div class="notify-icon">
-          <img src="https://yt3.ggpht.com/ytc/AAUvwngHSD7Xxh5h1yH1RAJfpTIHujIEYI3eyncOB5fwyA=s88-c-k-c0x00ffffff-no-rj" class="img-fluid rounded-circle" alt=""> </div>
+          <img
+            src="https://yt3.ggpht.com/ytc/AAUvwngHSD7Xxh5h1yH1RAJfpTIHujIEYI3eyncOB5fwyA=s88-c-k-c0x00ffffff-no-rj"
+            class="img-fluid rounded-circle" alt=""></div>
         <div class="notify-details"><small><b>Founder</b> Dan Bloom</small>
           <p class="user-msg">Hi, I want to welcome you to Sportr. Please let us know what you think</p>
         </div>
@@ -507,3 +151,121 @@
     </a>
   </div>
 </div>
+
+<div class="settings_sidebar" id="Settings">
+    <div class="Settingsmenu_content">
+      <div class="menu-section-body">
+        <h4 class="sidebartiltle">Layout</h4>
+<!---->
+        <div class="group-settings">
+          <li class="position-relative group_list_style">
+            <div class="rowinfo checkboxrow">
+              <div class="icon">
+                <img src="assets/images/fullload.png" alt="" class="img-responsive"/>
+              </div>
+              <span>Full view on load</span>
+            </div>
+            <input type='checkbox' class="settingtoggle"/>
+          </li>
+          <li class="position-relative group_list_style">
+            <div class="rowinfo checkboxrow">
+              <div class="icon">
+                <img src="assets/images/mostvisited.png" alt="" class="img-responsive"/>
+              </div>
+              <span>Most visited websites</span>
+            </div>
+            <input type='checkbox' class="settingtoggle"/>
+          </li>
+        </div>
+        <h4 class="sidebartiltle">Explore</h4>
+        <div class="group-settings">
+          <li class="position-relative group_list_style" onclick="openNew()">
+            <a data-tab="ta" href="#b1" class="linkhover">
+              <div class="rowinfo">
+                <div class="align">
+                  <div class="icon">
+                    <img src="assets/images/Explore.png" class="img-responsive"/>
+                  </div>
+                  <span>What's new</span>
+                </div>
+                <img src="assets/images/arrow.png" class="arrowright"/>
+              </div>
+            </a>
+          </li>
+        </div>
+        <h4 class="sidebartiltle">How you can halp</h4>
+        <div class="group-settings">
+          <li class="position-relative group_list_style">
+            <a data-tab="ta" href="#b1" class="linkhover">
+              <div class="rowinfo">
+                <div class="align">
+                  <div class="icon">
+                    <img src="assets/images/Doante.png" class="img-responsive"/>
+                  </div>
+                  <span>Doante</span>
+                </div>
+                <img src="assets/images/arrow.png" class="arrowright"/>
+              </div>
+            </a>
+          </li>
+          <li class="position-relative group_list_style">
+            <a data-tab="ta" href="#b1" class="linkhover">
+              <div class="rowinfo">
+                <div class="align">
+                  <div class="icon">
+                    <img src="assets/images/Plusinvite.png" class="img-responsive"/>
+                  </div>
+                  <span>Invite friends</span>
+                </div>
+                <img src="assets/images/arrow.png" alt="" class="arrowright"/>
+              </div>
+            </a>
+          </li>
+          <li class="position-relative group_list_style">
+            <a data-tab="ta" href="#b1" class="linkhover">
+              <div class="rowinfo">
+                <div class="align">
+                  <div class="icon">
+                    <img src="assets/images/feedback.png" class="img-responsive"/>
+                  </div>
+                  <span>Give us feedback</span>
+                </div>
+                <img src="assets/images/arrow.png" class="arrowright"/>
+              </div>
+            </a>
+          </li>
+          <li class="position-relative group_list_style">
+            <div data-tab="ta" onclick="subitweb()" class="linkhover">
+              <div class="rowinfo">
+                <div class="align">
+                  <div class="icon">
+                    <img src="assets/images/Suggest.png" class="img-responsive"/>
+                  </div>
+                  <span>Suggest a link</span>
+                </div>
+                <img src="assets/images/arrow.png" alt="" class="arrowright"/>
+              </div>
+            </div>
+          </li>
+        </div>
+<!---->
+        <h4 class="sidebartiltle">Links</h4>
+        <div class="group-settings links">
+          <a href="http://www.Sportr.io/about/bug">Report a bug</a>
+          <a href="https://www.Sportr.io/privacy">Privacy Policy</a>
+          <a href="https://www.Sportr.io/terms">Terms of Service</a>
+        </div>
+      </div>
+      <div class="menu-section-footer userinfo">
+        <div class="rowinfo">
+          <div class="align">
+            <img src="{{loginData.photoUrl}}" alt="" class="profilesettings"/>
+            <h5>{{loginData.name}} <br><span>via {{loginData.provider}}</span></h5>
+          </div>
+          <button class="logout hoverbutton" (click)="signOut()">Logout</button>
+        </div>
+      </div>
+</div>
+</div>
+
+

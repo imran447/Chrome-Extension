@@ -1,35 +1,74 @@
-.small_desk{
-  width: 75%;
-  margin-left:  216px;
-}
-.headline{
-  width: 70%;
-  margin:auto;
-}
 .display-none{
   display: none;
 }
-.filter-list{
-  float: left;
+.success-container{
+  position: fixed;
+  right: 0px;
+  z-index: 13;
+  top: 15%;
+  background-color: green;
+  padding: 14px
 }
-.filter-select{
-  width: 230px;
-  height: 35px;
-  margin-right: 40px;
-  font-size: 17px;
-  background-color: white;
-  border: 1px solid grey;
-  border-radius: 5px;
+.success-container h3{
+  font-size: 19px;
+  color: white;
+  background-color: transparent;
+}
+.iframe-mainContainer{
+  position: fixed;
+  right: 1%;
+  bottom: 10%;
+  z-index: 20
 }
 .iframe{
   position: fixed;
   z-index: 1;
-  right: 0;
-  top: 171px;
+  bottom: 0;
+  right: 0%;
 }
+
 .transparent-background{
   background-color: transparent;
 }
 .dropdown-menu{
   z-index: 20;
+  margin-top: -10px
+}
+.closeButton{
+  position: fixed;
+  right: 1%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 74;
+  margin-top: -26px;
+  border-radius: 4px;
+}
+.closeButton:hover{
+  background-color: white;
+}
+
+.btn-g-height{
+  width: 31px;
+  height: 24px
+}
+.loadingIcons{
+  position:fixed;
+  bottom: 1%;
+  left: 43%;
+  width: 70px;
+  height: 70px;
+}
+.loadingIconsImage{
+  height: 100%;
+  width: 100%;
+}
+.filtersCustom{
+  position: relative;
+  top: 15px;
+  left: 18px;
+  background-color: #f3f4f4;
+}
+.filterCustomParagraph{
+  width: 76px;
 }

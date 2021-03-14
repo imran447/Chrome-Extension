@@ -1,5 +1,6 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, HostListener,ElementRef} from '@angular/core';
 import { SocialAuthService } from "angularx-social-login";
+import {ManageArticleService} from "../manage-article.service";
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -10,26 +11,36 @@ export class SideBarComponent implements OnInit {
   sideFeedBar       : boolean = false;
   notificationManage :boolean = false;
   dMode            :boolean =false;
+  showNotification :boolean =false;
   favArticle :boolean =false;
   darkModeArray :any=[];
   @Input() loginData;
   @Output()  loginManage:EventEmitter<any>= new EventEmitter();
   @Output()   favoriteArticle:EventEmitter<any>=new EventEmitter();
+  @Output() newsApi:EventEmitter<any>=new EventEmitter();
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if(this.eRef.nativeElement.contains(event.target)) {
 
-  constructor(private authService: SocialAuthService) {
+    } else {
+      document.getElementById("Settings").classList.remove("active");
+        document.getElementById("Notification").classList.remove("active");
+    }
+  }
+  constructor(private authService: SocialAuthService ,private  manageArticle: ManageArticleService,private eRef: ElementRef) {
   }
 
   ngOnInit(): void {
 
   }
   profileSettingMange=()=>{
-    this.settingManage=!(this.settingManage);
+    this.settingManage=true;
   }
   sideFeedBarManage=()=>{
-    this.sideFeedBar=!(this.sideFeedBar);
+    this.sideFeedBar=true;
   }
   notificationOpen=()=>{
-    this.notificationManage=!(this.notificationManage);
+    this.notificationManage=true;
   }
   signOut(): void {
     this.authService.signOut();
@@ -43,23 +54,17 @@ export class SideBarComponent implements OnInit {
     this.favoriteArticle.emit(false);
   }
   darkmode=()=>{
-    var arry=  document.getElementsByTagName('*');
-    for (var i=0;i<arry.length;i++){
-      this.darkModeArray.push(arry[i]);
+    var appBody= document.getElementsByTagName("BODY")[0];
 
-    }
     if(!this.dMode){
-      for (var i=0;i<this.darkModeArray.length;i++){
-        this.darkModeArray[i].classList.add('darkmode');
-      }
-      this.darkModeArray=[];
+        appBody.classList.add('darkmode');
     }
     else{
-      for (var i=0;i<this.darkModeArray.length;i++){
-        this.darkModeArray[i].classList.remove('darkmode');
-      }
-      this.darkModeArray=[];
+        appBody.classList.remove('darkmode');
     }
     this.dMode=!this.dMode;
+  }
+  getNewsApi=()=>{
+    this.newsApi.emit(this.manageArticle.getNewsApiFlag());
   }
 }

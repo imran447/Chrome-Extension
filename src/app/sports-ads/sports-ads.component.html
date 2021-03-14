@@ -1,117 +1,578 @@
-<div class="headline">
-  <div class="headline-row">
-    <div>
-      <div class="title">Article's that match your search</div>
-      <h4 class="SearchResultsHeadings__ResultCountText">720 article's are available</h4>
+<div class="success-container display-none" id="successContainer">
+  <h3>Article Save for later Succussfully.</h3>
+</div>
+<div [ngClass]="{'display-none':activeIframe}" class="iframe-mainContainer">
+  <button class="closeButton" (click)="closeIframe()"><img src="assets/images/cross.png" width="20px"/></button>
+  <div class=""  >
+    <iframe  id="iframVideo" class="embed-responsive-item" width="500" height="300" [src]="youtubeVideo" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>
+<div class="manager2_container">
+  <div class="manager2_container-inner">
+    <div class="cu-dashboard">
+      <div class="seemore-scroll">
+        <a (click)="showSeeMore()" class="see_more" id="see_more">See more</a>
+      </div>
+
+      <div id="featured-feed-menu" class="dashboard_body">
+        <div class="home-title">
+          <div class="mostVisitedContainer">
+          </div>
+        </div>
+
+
+
+        <ul class="aboveTheFold" >
+
+            <div class="article">
+             <div class="tile-post">
+                <div class="hover-options">
+                  <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                </div>
+                <a class="post-link" (click)="addVisitor(bannerArticles[0]._id,bannerArticles[0].link)">
+                  <div class="post-photo">
+                    <div class="hot-article-badge">
+                      <img class="image-source" src="assets/images/very-hot.svg">
+                    </div>
+                    <div [ngClass]="{'player-image':bannerArticles[0].playerVideo}"></div>
+                    <img class="image_url footer-pan" [src]="bannerArticles[0].image_url">
+                  </div>
+                  <div class="postInfo">
+                    <h3 class="title">{{bannerArticles[0].title}}</h3>
+                    <span class="source" ng-bind="::item.source.title">{{bannerArticles[0].source}}</span>
+                  </div>
+                </a>
+                <div class="post-meta">
+                  <div class="left-pull">
+                    <div class="book-save btn btn-custom transparent"    tooltip="Save item">
+                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[0]._id)"></i>
+                    </div>
+                    <div class="btn-group dropup btn-g-height">
+                      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                        <i class="material-icons icon-menu"   tooltip="More options" flow="up">more_horiz</i>
+                      </button>
+                      <div class="dropdown-menu " aria-labelledby="dropdownMenuButton" >
+                        <a class="dropdown-item" href="#">Hide post</a>
+                        <a class="dropdown-item" href="#">Broken link</a>
+                        <a class="dropdown-item" href="#">Report NSFW</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="click-count"   tooltip="View" flow="up" ng-if="::item.clicks > 0">
+                    <i class="material-icons">visibility</i>
+                    <span>{{bannerArticles[0].visitor}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="article">
+              <div class="tile-post">
+                <div class="hover-options">
+                  <span class="Share-icon"  flow="left" title="" tooltip="Share"></span>
+                </div>
+                <a class="post-link" (click)="addVisitor(bannerArticles[1]._id,bannerArticles[1].link)">
+                  <div class="post-photo">
+                    <div class="hot-article-badge">
+                      <img class="image-source" src="assets/images/very-hot.svg">
+                    </div>
+                    <div [ngClass]="{'player-image':bannerArticles[1].playerVideo}"></div>
+                    <img class="image_url footer-pan" [src]="bannerArticles[1].image_url">
+                  </div>
+                  <div class="postInfo">
+                    <h3 class="title">{{bannerArticles[1].title}}</h3>
+                    <span class="source" ng-bind="::item.source.title">{{bannerArticles[1].source}}</span>
+                  </div>
+                </a>
+                <div class="post-meta">
+                  <div class="left-pull">
+                    <div class="book-save btn btn-custom transparent"   data-custom-class="tooltip-primary" title="" tooltip="Save item">
+                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[1]._id)"></i>
+                    </div>
+                    <div class="btn-group dropup btn-g-height">
+                      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons icon-menu"   tooltip="More options" flow="up">more_horiz</i>
+                      </button>
+                      <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Hide post</a>
+                        <a class="dropdown-item" href="#">Broken link</a>
+                        <a class="dropdown-item" href="#">Report NSFW</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="click-count"   tooltip="View" flow="up" ng-if="::item.clicks > 0">
+                    <i class="material-icons">visibility</i>
+                    <span>{{bannerArticles[1].visitor}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="article">
+            <div class="tile-post">
+              <div class="hover-options">
+                <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+              </div>
+              <a class="post-link" (click)="addVisitor(bannerArticles[2]._id,bannerArticles[2].link)">
+                <div class="post-photo">
+                  <div class="hot-article-badge">
+                    <img class="image-source" src="assets/images/very-hot.svg">
+                  </div>
+                  <div [ngClass]="{'player-image':bannerArticles[2].playerVideo}"></div>
+                  <img class="image_url footer-pan" [src]="bannerArticles[2].image_url">
+                </div>
+                <div class="postInfo">
+                  <h3 class="title">{{bannerArticles[2].title}}</h3>
+                  <span class="source" ng-bind="::item.source.title">{{bannerArticles[2].source}}</span>
+                </div>
+              </a>
+              <div class="post-meta">
+                <div class="left-pull">
+                  <div class="book-save btn btn-custom transparent"   data-custom-class="tooltip-primary" title="" tooltip="Save item">
+                    <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[2]._id)"></i>
+                  </div>
+                  <div class="btn-group dropup btn-g-height">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="material-icons icon-menu"   tooltip="More options" flow="up">more_horiz</i>
+                    </button>
+                    <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Hide post</a>
+                      <a class="dropdown-item" href="#">Broken link</a>
+                      <a class="dropdown-item" href="#">Report NSFW</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="click-count"   tooltip="View" flow="up" ng-if="::item.clicks > 0">
+                  <i class="material-icons">visibility</i>
+                  <span>{{bannerArticles[2].visitor}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="article">
+              <div class="tile-post">
+                <div class="hover-options">
+                  <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                </div>
+                <a class="post-link" (click)="addVisitor(bannerArticles[3]._id,bannerArticles[3].link)">
+                  <div class="post-photo">
+                    <div class="hot-article-badge">
+                      <img class="image-source" src="assets/images/very-hot.svg">
+                    </div>
+                    <div [ngClass]="{'player-image':bannerArticles[3].playerVideo}"></div>
+                    <img class="image_url footer-pan" [src]="bannerArticles[3].image_url">
+                  </div>
+                  <div class="postInfo">
+                    <h3 class="title">{{bannerArticles[3].title}}</h3>
+                    <span class="source" ng-bind="::item.source.title">{{bannerArticles[3].source}}</span>
+                  </div>
+                </a>
+                <div class="post-meta">
+                  <div class="left-pull">
+                    <div class="book-save btn btn-custom transparent"   flow="left" tooltip="Save item">
+                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[3]._id)"></i>
+                    </div>
+                    <div class="btn-group dropup btn-g-height">
+                      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons icon-menu"   tooltip="More options" flow="up" flow="up">more_horiz</i>
+                      </button>
+                      <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Hide post</a>
+                        <a class="dropdown-item" href="#">Broken link</a>
+                        <a class="dropdown-item" href="#">Report NSFW</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="click-count"   tooltip="View" flow="up" ng-if="::item.clicks > 0">
+                    <i class="material-icons">visibility</i>
+                    <span>{{bannerArticles[3].visitor}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="article">
+              <div class="tile-post">
+                <div class="hover-options">
+                  <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                </div>
+                <a class="post-link" (click)="addVisitor(bannerArticles[4]._id,bannerArticles[4].link)">
+                  <div class="post-photo">
+                    <div class="hot-article-badge">
+                      <img class="image-source" src="assets/images/very-hot.svg">
+                    </div>
+                    <div [ngClass]="{'player-image':bannerArticles[4].playerVideo}"></div>
+                    <img class="image_url footer-pan" [src]="bannerArticles[4].image_url">
+                  </div>
+                  <div class="postInfo">
+                    <h3 class="title">{{bannerArticles[4].title}}</h3>
+                    <span class="source" ng-bind="::item.source.title">{{bannerArticles[4].source}}</span>
+                  </div>
+                </a>
+                <div class="post-meta">
+                  <div class="left-pull">
+                    <div class="book-save btn btn-custom transparent"   data-custom-class="tooltip-primary" title="" tooltip="Save item">
+                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[4]._id)"></i>
+                    </div>
+                    <div class="btn-group dropup btn-g-height">
+                      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons icon-menu"   tooltip="More options" flow="up">more_horiz</i>
+                      </button>
+                      <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Hide post</a>
+                        <a class="dropdown-item" href="#">Broken link</a>
+                        <a class="dropdown-item" href="#">Report NSFW</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="click-count"   tooltip="View" flow="up" ng-if="::item.clicks > 0">
+                    <i class="material-icons">visibility</i>
+                    <span>{{bannerArticles[4].visitor}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="article">
+              <div class="tile-post">
+                <div class="hover-options">
+                  <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                </div>
+                <a class="post-link" (click)="addVisitor(bannerArticles[5]._id,bannerArticles[5].link)">
+                  <div class="post-photo">
+                    <div class="hot-article-badge">
+                      <img class="image-source" src="assets/images/very-hot.svg">
+                    </div>
+                    <div [ngClass]="{'player-image':bannerArticles[5].playerVideo}"></div>
+                    <img class="image_url footer-pan" [src]="bannerArticles[5].image_url">
+                  </div>
+                  <div class="postInfo">
+                    <h3 class="title">{{bannerArticles[5].title}}</h3>
+                    <span class="source" ng-bind="::item.source.title">{{bannerArticles[5].source}}</span>
+                  </div>
+                </a>
+                <div class="post-meta">
+                  <div class="left-pull">
+                    <div class="book-save btn btn-custom transparent"   data-custom-class="tooltip-primary" title="" tooltip="Save item">
+                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[5]._id)"></i>
+                    </div>
+                    <div class="btn-group dropup btn-g-height">
+                      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons icon-menu"   tooltip="More options" flow="up">more_horiz</i>
+                      </button>
+                      <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Hide post</a>
+                        <a class="dropdown-item" href="#">Broken link</a>
+                        <a class="dropdown-item" href="#">Report NSFW</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="click-count"   tooltip="View" flow="up" ng-if="::item.clicks > 0">
+                    <i class="material-icons">visibility</i>
+                    <span>{{bannerArticles[5].visitor}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="article">
+              <div class="tile-post">
+                <div class="hover-options">
+                  <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                </div>
+                <a class="post-link" (click)="addVisitor(bannerArticles[6]._id,bannerArticles[6].link)">
+                  <div class="post-photo">
+                    <div class="hot-article-badge">
+                      <img class="image-source" src="assets/images/very-hot.svg">
+                    </div>
+                    <div [ngClass]="{'player-image':bannerArticles[6].playerVideo}"></div>
+                    <img class="image_url footer-pan" [src]="bannerArticles[6].image_url">
+                  </div>
+                  <div class="postInfo">
+                    <h3 class="title">{{bannerArticles[6].title}}</h3>
+                    <span class="source" ng-bind="::item.source.title">{{bannerArticles[6].source}}</span>
+                  </div>
+                </a>
+                <div class="post-meta">
+                  <div class="left-pull">
+                    <div class="book-save btn btn-custom transparent"   data-custom-class="tooltip-primary" title="" tooltip="Save item">
+                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[6]._id)"></i>
+                    </div>
+                    <div class="btn-group dropup btn-g-height">
+                      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons icon-menu"   tooltip="More options" flow="up">more_horiz</i>
+                      </button>
+                      <div class="dropdown-menu more-open" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Hide post</a>
+                        <a class="dropdown-item" href="#">Broken link</a>
+                        <a class="dropdown-item" href="#">Report NSFW</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="click-count"   tooltip="View" flow="up" ng-if="::item.clicks > 0">
+                    <i class="material-icons">visibility</i>
+                    <span>{{bannerArticles[6].visitor}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </ul>
+
+      </div>
+
+      <div id="feed-menu" class="dashboard_body content-tab">
+        <div class="headline">
+          <div class="headline-row">
+            <div>
+              <div class="title">Article's that match your search</div>
+              <h4 class="SearchResultsHeadings__ResultCountText">720 article's are available</h4>
+            </div>
+            <div class="right-pull">
+              <div class="sortBy">
+                <p class="filterCustomParagraph">Sort by:</p>
+                <div class="nice-select custom-t right filtersCustom" tabindex="0"><span class="current">Most Popular</span>
+
+                  <ul class="list">
+                  <li  (click)="mostUpvoteArticles()" class="option">Most upvote</li>
+                  <li (click)="mostViewedArticles()" class="option">Most Viewed</li>
+                    <li (click)="mostRecentArticles()" class="option">Most Recent</li>
+
+                </ul>
+                </div>
+
+              </div>
+              <div onclick="openfilter()" class="filter-btn outlined filters-toggle-btn" href="#">
+                <img src="assets/images/filtertr.png">
+                <span class="label" title="Filters">Filters</span>
+              </div>
+            </div>
+          </div>
+          <div id="filter" class="display-filter">
+            <ul class="filter">
+              <li class="select-box">
+
+                <div class="nice-select custom-t right" tabindex="0"><span class="current">All websites</span>
+                  <ul class="list" >
+                    <li  (click)="applySourceFilter('')" class="option selected">All websites</li>
+                    <li  *ngFor="let article of sources;let i=index" (click)="applySourceFilter(article.source)"
+                         class="option">{{article.source}}</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="select-box">
+
+                <div class="nice-select custom-t right" tabindex="0"><span class="current">All sports</span>
+                  <ul class="list">
+                    <li  (click)="applyFilter('')" class="option selected">All sports</li>
+                    <li  class="option" (click)="applyFilter('baseball')">Baseball</li>
+                    <li class="option" (click)="applyFilter('soccer')">Soccer</li>
+                    <li class="option" (click)="applyFilter('basketball')">Basketball</li>
+                    <li class="option" (click)="applyFilter('tennis')">Tennis</li>
+                    <li  class="option" (click)="applyFilter('football')">Football</li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="small_desk" id="small_desk">
+            <div *ngFor="let article of articles;let i =index">
+              <div class="article">
+              <div class="tile-post">
+                <div class="hover-options">
+                  <span class="Bookmark-icon" (click)="addFavoriteArticle(article._id)"
+                        flow="left" tooltip="Save for later"></span>
+                  <span class="Share-icon" ng-click="::openSharer($event, 'share', item)"
+                        flow="left" tooltip="Share"></span>
+                </div>
+                <!-- Post link-->
+                <a class="post-link"  target="_blank"  (click)="addVisitor(article._id,article.link)">
+                  <div class="post-photo video-photo">
+                    <!-- logo -->
+                    <div class="source-logo" tooltip="{{article.source}}" flow="up">
+                      <img class="image-source" (click)="applySourceFilter(article.source)" src="https://www.google.com/s2/favicons?domain={{article.link}}">
+                    </div>
+                    <div [ngClass]="{'player-image':article.playerVideo}"></div>
+                    <!--<span class="icon-play-plain video-modal video-play-button-external">
+                       <span class="duration">6:31</span>
+                   </span>-->
+                    <!-- post main image -->
+                    <img  class="image_url" src="{{article.image_url}}" />
+
+                  </div>
+                  <div class="postInfo " [ngClass]="{'videoinfo':article.playerVideo}">
+                    <!-- Post Title-->
+                    <h3 class="title">{{article.title}}</h3>
+                    <!-- Post publish time-->
+                    <span class="created">{{article.published_date | date}}</span>
+                  </div>
+                </a>
+                <div class="post-meta">
+                  <div class="left-pull">
+                    <button class="btn btn-menu upvote"
+                            tooltip="Upvote" (click)="addUpvote(article._id)">
+                      <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill">
+                        <path pid="0"
+                              d="M13.162 3.813a2 2 0 01.465.465l6.674 9.343a1 1 0 01-1.102 1.539l-4.032-1.21a1 1 0 00-1.277.816l-.767 5.375a1 1 0 01-.99.859h-.266a1 1 0 01-.99-.859l-.767-5.375a1 1 0 00-1.278-.816l-4.031 1.21a1 1 0 01-1.102-1.54l6.674-9.342a2 2 0 012.79-.465z"
+                              _fill="#fff" fill-rule="evenodd"></path>
+                      </svg>
+                      <span>{{article.upvote}}</span>
+                    </button>
+                    <div class="btn-group dropup">
+                      <button type="button" class="btn btn-secondary dropdown-toggle btn-g-height" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false" >
+                        <i class="material-icons icon-menu"
+                           tooltip="More options" flow="up">more_horiz</i>
+                      </button>
+                      <div class="dropdown-menu more-open " aria-labelledby="dropdownMenuButton" id="{{i}}">
+                        <button class="dropdown-item"  (click)="hideArticle(article._id)">Hide post</button>
+                        <button class="dropdown-item"  (click)="hideArticle(article._id)">Broken link</button>
+                        <button class="dropdown-item"  (click)="hideArticle(article._id)">Report NSFW</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="click-count"   tooltip="View" flow="up"
+                       ng-if="::item.clicks > 0">
+                    <i class="material-icons">visibility</i>
+                    <span>{{article.visitor}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="right-pull">
-      <div class="sortBy">
-        <p>Sort by:</p>
-        <a href="">Most Popular</a>
-        <i class="material-icons">keyboard_arrow_down</i>
+
+    <div class="step-welcome" id="videoplay">
+      <div class="video-overlay">
+        <div class="video-container">
+          <video class="video-screen" src="images/y2mate.com - Muzli 2_dYSIZ13yS64_1080p copy 2.mp4" loop=""
+                 controls=""></video>
+        </div>
       </div>
-      <div (click)="openfilter()" class="filter-btn outlined filters-toggle-btn" href="#">
-        <img src="../../assets/images/filtertr.png" class="transparent-background">
-        <span class="label" title="Filters" >Filters</span>
-      </div>
+      <div class="background-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" onclick="closevideo()"
+           aria-hidden="true"></div>
+    </div>
+
+
+    <div class="modal fade book_modal_block" id="bookmark_modal_1" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+      <dialog class="sourceForm bookmark-modal new-source" open="">
+        <div class="modal__background"></div>
+        <div class="modal__container shadow2">
+          <button class="btn-icon modal__close-btn" data-dismiss="modal">
+            <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill">
+              <path pid="0"
+                    d="M12 9.44l3.91-3.91a1.81 1.81 0 012.56 2.56L14.56 12l3.91 3.91a1.81 1.81 0 01-2.56 2.56L12 14.56l-3.91 3.91a1.81 1.81 0 11-2.56-2.56L9.44 12 5.53 8.09a1.81 1.81 0 112.56-2.56L12 9.44z"
+                    _fill="#FFF" fill-rule="evenodd"></path>
+            </svg>
+          </button>
+          <div class="new-source__header"><h3>Edit shortcut</h3>
+            <p>
+              Want to add new shortcut?
+              Insert its link below to add it to your quick access row.
+            </p>
+            <form>
+              <div class="text-field">
+                <div class="text-field__box field active">
+                  <div class="text-field__input-container"><label class="text-field__label micro2" style="display: none;">Source
+                    url</label><input required="required" type="url" placeholder="Paste url" aria-label="Source url"
+                                      autofocus="autofocus" class="text-field__input"></div>
+                  <button type="submit" class="text-field__right-slot btn btn-invert">Add</button>
+                </div>
+                <div class="text-field__hint micro2">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="new-source__footer no-padding">
+            <div class="radio">
+              <div class="radio-item">
+                <img src="images/Whatapp.png">
+                <span class="webAddress">https://web.whatsapp.com/</span>
+              </div>
+              <div class="radio-item">
+                <img src="images/Amazon seller.png">
+                <span class="webAddress">https://sellercentral.amazon.com/</span>
+              </div>
+              <div class="radio-item">
+                <img src="images/Facebook.png">
+                <span class="webAddress">https://www.facebook.com/</span>
+              </div>
+              <div class="radio-item">
+                <img src="images/Amazon.png">
+                <span class="webAddress">https://www.amazon.com/</span>
+              </div>
+              <div class="radio-item">
+                <img src="images/gmail.png">
+                <span class="webAddress">https://mail.google.com/</span>
+              </div>
+              <div class="radio-item">
+                <div>
+                  <img src="images/Shopify.png">
+                  <span class="webAddress">https://www.shopify.com/</span>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Remove</button>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-big btn-invert new-source__confirm">Continue</button>
+          </div>
+        </div>
+      </dialog>
     </div>
   </div>
-  <div class="display-filter" [ngClass]="{'active':filter}">
-    <ul class="">
-      <li class="filter-list">
-        <select  class="filter-select">
-          <option value="Sport1">Sport1</option>
-          <option value="One.co.il">One.co.il</option>
-          <option value="Bleacher Report">Bleacher Report</option>
-          <option value="ESPN">ESPN</option>
-          <option value="Ufc.com">Ufc.com</option>
-        </select>
-      <li class="">
-        <select id="select_filter"  class="filter-select" [(ngModel)]="filterKeyword" (ngModelChange)="applyFilter()" >
-          <option selected readonly value="">All sports</option>
-          <option value="baseball">Baseball</option>
-          <option value="soccer">Soccer</option>
-          <option value="basketball">Basketball</option>
-          <option value="tennis">Tennis</option>
-          <option value="football">Football</option>
-        </select>
+</div>
+
+
+
+
+
+<div class="feed_sidebar" id="feed">
+  <div class="Settingsmenu_content feedmenu_content">
+    <ul class="fevoriteSources">
+      <div class="titleRow">
+        <h4 class="sidebartiltle"><span class="sourceNumber">{{selectedSources.length}}</span> sources selected</h4>
+      </div>
+
+      <li class="position-relative group_list selector"
+          tooltip="View source" *ngFor="let s of selectedSources">
+        <a data-tab="ta" href="#b1" class="linkhover">
+          <div class="rowinfo">
+            <div class="align">
+              <img   src="https://www.google.com/s2/favicons?domain={{getValue(s.source)}}"s/>
+              <span>{{s.source}}</span>
+            </div>
+            <i class="material-icons remove" (click)="userCrossSource(s.source)">close</i>
+          </div>
+        </a>
       </li>
     </ul>
+    <span class="line-break"></span>
+    <ul class="moreSources">
+      <div class="titleRow">
+        <h4 class="sidebartiltle">More sources</h4>
+      </div>
+      <li class="position-relative group_list selector"
+          tooltip="View source" *ngFor="let s of unSelectedSources">
+        <a data-tab="ta" href="#b1" class="linkhover">
+          <div class="rowinfo">
+            <div class="align">
+
+              <img
+                src="https://www.google.com/s2/favicons?domain={{getValue(s.source)}}"
+                alt="" class="fevorite-image website"/>
+              <span>{{s.source}}</span>
+            </div>
+            <i class="right-cuts" (click)="userChooseMoreSource(s.source)">Add</i>
+          </div>
+        </a>
+      </li>
+
+    </ul>
+    <!-- <button class="sidebar__element btn btn-menu"><svg version="1.1" viewBox="0 0 24 24" class="sidebar__element__image svg-icon svg-fill"><path pid="0" d="M13.78 10.22h4.44a1.78 1.78 0 010 3.56h-4.44v4.44a1.78 1.78 0 01-3.56 0v-4.44H5.78a1.78 1.78 0 010-3.56h4.44V5.78a1.78 1.78 0 013.56 0v4.44z" _fill="#FFF" fill-rule="evenodd"></path></svg><span>Add new source</span></button> -->
   </div>
 </div>
 
-<div class="small_desk" id="small_desk_mode">
-  <div *ngFor="let article of articles;let i =index">
-     <div class="article">
-    <div class="tile-post">
-      <div class="hover-options">
-        <span class="Bookmark-icon"  (click)="addFavoriteArticle(article._id)" data-toggle="tooltip" data-placement="left" title="Save for later"></span>
-        <span class="Share-icon" ng-click="::openSharer($event, 'share', item)" data-toggle="tooltip" data-placement="left" title="Share"></span>
-      </div>
-      <!-- Post link-->
-      <a class="post-link" href="https://www.youtube.com/watch?v=dYSIZ13yS64&ab_channel=Muzli" target="_blank"  (click)="addVisitor(article._id)">
-        <div class="post-photo video-photo">
-          <!-- logo -->
-          <div class="source-logo" data-toggle="tooltip" data-placement="top" title="Bleacher report">
-            <img class="image-source" src="../../assets/images/BleacherReport.png">
-          </div>
-          <div class="player-image"></div>
-          <!--<span class="icon-play-plain video-modal video-play-button-external">
-             <span class="duration">6:31</span>
-         </span>-->
-          <!-- post main image -->
-          <img class="image_url" src="" >
-
-        </div>
-        <div class="postInfo videoinfo">
-          <!-- Post Title-->
-          <h3 class="title">{{article.title}}</h3>
-          <!-- Post publish time-->
-          <span class="created">{{article.createdAt | date}}</span>
-        </div>
-      </a>
-      <div class="post-meta">
-        <div class="left-pull">
-          <button class="btn btn-menu upvote" data-toggle="tooltip" data-placement="top" data-original-title="Upvote">
-            <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill"><path pid="0" d="M13.162 3.813a2 2 0 01.465.465l6.674 9.343a1 1 0 01-1.102 1.539l-4.032-1.21a1 1 0 00-1.277.816l-.767 5.375a1 1 0 01-.99.859h-.266a1 1 0 01-.99-.859l-.767-5.375a1 1 0 00-1.278-.816l-4.031 1.21a1 1 0 01-1.102-1.54l6.674-9.342a2 2 0 012.79-.465z" _fill="#fff" fill-rule="evenodd"></path></svg>
-            <span>5</span>
-          </button>
-          <div class="btn-group dropup">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="activateOption(i)">
-              <i class="material-icons icon-menu" data-toggle="tooltip" data-placement="top" data-original-title="More options">more_horiz</i>
-            </button>
-            <div class="dropdown-menu display-none" aria-labelledby="dropdownMenuButton" id="{{i}}">
-              <a class="dropdown-item"  href="#"  (click)="hideArticle(article._id)" >Hide post</a><br>
-              <a class="dropdown-item"   href="#" >Broken link</a><br>
-              <a class="dropdown-item"  href="#"  (click)="hideArticle(article._id)">Report NSFW</a> <br>
-            </div>
-          </div>
-        </div>
-        <div class="click-count" data-toggle="tooltip" data-placement="top" data-original-title="View" ng-if="::item.clicks > 0">
-          <i class="material-icons">visibility</i>
-          <span>{{article.visitor}}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <div class="loading-article " [ngClass]="{'display-none':loadedAll}">
-    <div class="col-6">
-      <div class="card">
-        <div class="logo-image"></div>
-        <div class="item-image"></div>
-        <div class="footer"></div>
-        <div class="card-body item">
-          <div class="d-flex">
-            <div class="content">
-              <div class="title"></div>
-              <div class="short-title"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div id="loadingIcons" class="loadingIcons display-none">
+  <img class="loadingIconsImage" src="https://i.gifer.com/ZZ5H.gif" />
 </div>
-

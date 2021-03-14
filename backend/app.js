@@ -9,7 +9,7 @@ var apiResponse = require("./helpers/apiResponse");
 var cors = require("cors");
 
 // DB connection
-var MONGODB_URL = process.env.MONGODB_URL;
+var MONGODB_URL = "mongodb://chrome-extension:kjBF2uhGa3p3s5H9@cluster0-shard-00-00.qrmff.mongodb.net:27017,cluster0-shard-00-01.qrmff.mongodb.net:27017,cluster0-shard-00-02.qrmff.mongodb.net:27017/test?replicaSet=atlas-137tiu-shard-0&ssl=true&authSource=admin";
 var mongoose = require("mongoose");
 mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 	//don't show the log when it is test
@@ -31,6 +31,11 @@ var app = express();
 if(process.env.NODE_ENV !== "test") {
 	app.use(logger("dev"));
 }
+var port = process.env.PORT || 8000;
+var http = require('http');
+app.set('port',port);
+var server = http.createServer(app);
+server.listen(port);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

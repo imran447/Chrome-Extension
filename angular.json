@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Chrome-Extension-Like-Muszli-main": {
+    "chrome-extension-new": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Chrome-Extension-Like-Muszli-main",
+            "outputPath": "dist/chrome-extension-new",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -25,17 +25,25 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/css/nice-select.css"
+              "src/assets/css/owl.carousel.min.css",
+              "src/assets/css/nice-select.css",
+              "src/assets/css/font-awesome.min.css"
             ],
             "scripts": [
-
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/jquery.nice-select.min.js",
+              "src/assets/js/custom.js",
+              "src/assets/js/darkMode.js"
             ]
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts"}
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
               ],
               "optimization": true,
               "outputHashing": "all",
@@ -63,18 +71,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Chrome-Extension-Like-Muszli-main:build"
+            "browserTarget": "chrome-extension-new:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Chrome-Extension-Like-Muszli-main:build:production"
+              "browserTarget": "chrome-extension-new:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Chrome-Extension-Like-Muszli-main:build"
+            "browserTarget": "chrome-extension-new:build"
           }
         },
         "test": {
@@ -111,19 +119,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Chrome-Extension-Like-Muszli-main:serve"
+            "devServerTarget": "chrome-extension-new:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Chrome-Extension-Like-Muszli-main:serve:production"
+              "devServerTarget": "chrome-extension-new:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "Chrome-Extension-Like-Muszli-main",
+  "defaultProject": "chrome-extension-new",
   "cli": {
-    "analytics": "2065a098-ba50-4121-852a-64c3ce21e707"
+    "analytics": "bc8109d9-bab1-48ff-acc5-19b4a415060f"
   }
 }

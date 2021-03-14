@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Chrome-Extension-Like-Muszli-main app is running!');
+    expect(page.getTitleText()).toEqual('chrome-extension-new app is running!');
   });
 
   afterEach(async () => {

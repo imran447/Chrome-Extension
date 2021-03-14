@@ -8,3 +8,9 @@
 .settings_sidebar{
   display: inline-block;
 }
+.iframe{
+  position: absolute;
+  top: 2%;
+  right: 0%;
+}
+
