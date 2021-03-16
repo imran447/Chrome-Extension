@@ -1,5 +1,6 @@
 import {Component,ElementRef, HostListener, OnInit} from '@angular/core';
 import {ArticleService} from "../article.service";
+import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 @Component({
   selector: 'app-favorite-article',
   templateUrl: './favorite-article.component.html',
@@ -7,8 +8,10 @@ import {ArticleService} from "../article.service";
 })
 export class FavoriteArticleComponent implements OnInit {
 
-  constructor(private articleService: ArticleService,private eRef:ElementRef) { }
+  constructor(private articleService: ArticleService,private eRef:ElementRef,private sanitizer: DomSanitizer) { }
   public articles =[];
+  public youtubeVideo:any;
+  public activeIframe:boolean=true;
 
   ngOnInit(): void {
     this.articleService.getFavoriteArticle(localStorage.getItem("userId")).subscribe(data=>{
@@ -83,4 +86,48 @@ export class FavoriteArticleComponent implements OnInit {
       this.articles.push(articleData);
     }
   }
-}
+
+  addVisitor=(id: String,link)=> {
+    //  this.openYoutubeVideo(url);
+    var url = link;
+    if (url != undefined || url != '') {
+      var regExp = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/;
+      var match = regExp.test(link);
+      if (match) {
+        this.articleService.addVisitor(id);
+        setTimeout(() => {
+          for (let i = 0; i < this.articles.length; i++) {
+            if (id == this.articles[i]._id) {
+              this.articles[i].visitor = this.articles[i].visitor + 1;
+              break;
+            }
+          }
+        }, 1000);
+
+        this.playVideo(link);
+      } else {
+        window.open(link, "_blank");
+        this.articleService.addVisitor(id);
+        setTimeout(() => {
+          for (let i = 0; i < this.articles.length; i++) {
+            if (id == this.articles[i]._id) {
+              this.articles[i].visitor = this.articles[i].visitor + 1;
+              break;
+            }
+          }
+
+        }, 1000);
+        this.activeIframe = true;
+      }
+    }
+  }
+  playVideo(link){
+    this.youtubeVideo=this.sanitizer.bypassSecurityTrustResourceUrl(link);
+    this.activeIframe=false;
+  }
+  closeIframe(){
+    this.activeIframe=true;
+    document.getElementById('iframVideo1').setAttribute('src','');
+  }
+
+  }

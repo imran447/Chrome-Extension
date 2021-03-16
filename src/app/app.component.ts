@@ -18,6 +18,7 @@ export class AppComponent implements OnInit{
   }
   ngOnInit() {
     if(localStorage.getItem("userId")){
+      this.isLogin=true;
       this.loginService.logedUser(localStorage.getItem("userId")).subscribe((response)=>{
         console.log(response);
         let loginData={
