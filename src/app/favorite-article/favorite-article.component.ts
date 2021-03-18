@@ -18,7 +18,30 @@ export class FavoriteArticleComponent implements OnInit {
     this.arrangeArticles(data);
     });
   }
+  removeFavorite=(articleId)=>{
 
+    let a=[];
+    for(let i=0;i<this.articles.length;i++){
+      if(articleId!=this.articles[i]._id)
+        a.push(this.articles[i]);
+    }
+    this.articles=[];
+    this.articles=a;
+
+    this.articleService.removeFavorite(articleId,localStorage.getItem("userId")).then((data)=>{
+      if(data){}
+    });
+  }
+  applySourceFilter=(source)=>{
+    let a=[];
+    for(var i=0;i<this.articles.length;i++){
+      if(this.articles[i].source==source){
+        a.push(this.articles[i]);
+      }
+    }
+    this.articles=[];
+    this.articles=a;
+  }
   hideArticle=(articleId)=>{
     this.articleService.hideArticle(articleId,localStorage.getItem("userId")).then((data)=>{
       for(let i=0;i<this.articles.length;i++){
@@ -30,10 +53,10 @@ export class FavoriteArticleComponent implements OnInit {
     });
   }
   addUpvote(id:string){
-    this.articleService.upvoteArticle(id,localStorage.getItem("userId")).toPromise().then((response)=>{
+    this.articleService.upvoteArticle(id,localStorage.getItem("userId")).toPromise().then((response:any)=>{
       for(let i=0;i<this.articles.length;i++) {
         if (id == this.articles[i]._id) {
-          this.articles[i].upvote = response[0].data.upvoteCounter;
+          this.articles[i].upvote = response.data.upvoteCounter;
           break;
         }
       }

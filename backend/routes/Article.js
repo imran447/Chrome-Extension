@@ -12,6 +12,7 @@ router.post("/favorite-article",ArticleController.favoriteArticle);
 router.post("/", ArticleController.storeArticle);
 router.get("/getHigherArticle",ArticleController.getHigherArticle);
 router.get("/favorite/article/:userId",ArticleController.favoriteArticleList);
+router.delete("/favorite/delete/:userId/:articleId",ArticleController.removeFavorite);
 router.get("/uniqueSource",ArticleController.uniqueSource);
 router.get("/uniqueSourceArticle",ArticleController.uniqueSourceArticle);
 

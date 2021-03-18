@@ -62,6 +62,9 @@ export class ArticleService {
   hideArticle(articleId,userId){
     return this.http.put(this.baseUrl+"/auth/hideArticle/"+articleId,{"userId":userId}).toPromise();
   }
+  removeFavorite(article,userId){
+    return this.http.delete(this.baseUrl+"/article/favorite/delete/"+userId+"/"+article).toPromise();
+  }
   paginatePage(){
     this.pageNo++;
   }

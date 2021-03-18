@@ -325,6 +325,23 @@ exports.favoriteArticleList =[
         }
     }
 ];
+exports.removeFavorite =[
+    (req,res)=>{
+        try{
+
+                FavoriteArticle.findOneAndRemove({user:req.params.userId,article:req.params.articleId}).then((favArticle)=> {
+                    if (!favArticle) {
+                        return apiResponse.ErrorResponse(res, "error");
+                    }
+                    return apiResponse.successResponse(res, "remove article");
+                });
+        }
+        catch (e) {
+            return apiResponse.ErrorResponse(res, e);
+        }
+    }
+
+];
 exports.storeArticle = [
     body("title", "Title must not be empty.").trim(),
     body("description", "Description must not be empty.").trim(),

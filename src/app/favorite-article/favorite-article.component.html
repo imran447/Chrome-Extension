@@ -10,14 +10,14 @@
     <div *ngFor="let article of articles;let i =index" class="margin-top">
       <div class="tile-post">
         <div class="hover-options">
-          <span class="Share-icon" ng-click="::openSharer($event, 'share', item)" data-toggle="tooltip" data-placement="left" title="Share"></span>
+          <span class="Share-icon" ng-click="::openSharer($event, 'share', item)"  flow="left" tooltip="Share"></span>
         </div>
         <!-- Post link-->
         <a class="post-link" (click)="addVisitor(article._id,article.link)" >
           <div class="post-photo video-photo">
             <!-- logo -->
-            <div class="source-logo" data-toggle="tooltip" data-placement="top" title="Bleacher report">
-              <img class="image-source" src="../../assets/images/BleacherReport.png">
+            <div class="source-logo"  >
+              <img class="image-source" (click)="applySourceFilter(article.source)" src="https://www.google.com/s2/favicons?domain={{article.link}}">
             </div>
             <div [ngClass]="{'player-image':article.playerVideo}"></div>
             <!--<span class="icon-play-plain video-modal video-play-button-external">
@@ -36,22 +36,25 @@
         </a>
         <div class="post-meta">
           <div class="left-pull">
-            <button class="btn btn-menu upvote" data-toggle="tooltip" data-placement="top" data-original-title="Upvote" (click)="addUpvote(article._id)">
+            <button class="btn btn-menu upvote"  flow="up" tooltip="Upvote" (click)="addUpvote(article._id)">
               <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill"><path pid="0" d="M13.162 3.813a2 2 0 01.465.465l6.674 9.343a1 1 0 01-1.102 1.539l-4.032-1.21a1 1 0 00-1.277.816l-.767 5.375a1 1 0 01-.99.859h-.266a1 1 0 01-.99-.859l-.767-5.375a1 1 0 00-1.278-.816l-4.031 1.21a1 1 0 01-1.102-1.54l6.674-9.342a2 2 0 012.79-.465z" _fill="#fff" fill-rule="evenodd"></path></svg>
               <span>{{article.upvote}}</span>
             </button>
             <div class="btn-group dropup btn-g-height">
-              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="activateOption(i)">
-                <i class="material-icons icon-menu" data-toggle="tooltip" data-placement="top" data-original-title="More options">more_horiz</i>
+              <button type="button" class="btn btn-secondary dropdown-toggle btn-g-height" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false" >
+                <i class="material-icons icon-menu"
+                   tooltip="More options" flow="up">more_horiz</i>
               </button>
-              <div class="dropdown-menu display-none" aria-labelledby="dropdownMenuButton" id="{{i}}">
-                <button class="dropdown-item"  href="#"  (click)="hideArticle(article._id)" >Hide post</button>
-                <button class="dropdown-item"   href="#" (click)="hideArticle(article._id)" >Broken link</button>
-                <button class="dropdown-item"  href="#"  (click)="hideArticle(article._id)">Report NSFW</button>
+              <div class="dropdown-menu more-open " aria-labelledby="dropdownMenuButton" id="{{i}}">
+                <button class="dropdown-item"  (click)="hideArticle(article._id)">Hide post</button>
+                <button class="dropdown-item"  (click)="hideArticle(article._id)">Broken link</button>
+                <button class="dropdown-item"  (click)="hideArticle(article._id)">Report NSFW</button>
+                <button class="dropdown-item"  (click)="removeFavorite(article._id)">Remove Favorite</button>
               </div>
             </div>
           </div>
-          <div class="click-count" data-toggle="tooltip" data-placement="top" data-original-title="View" ng-if="::item.clicks > 0">
+          <div class="click-count"  flow="up" tooltip="View" ng-if="::item.clicks > 0">
             <i class="material-icons">visibility</i>
             <span>{{article.visitor}}</span>
           </div>
