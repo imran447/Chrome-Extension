@@ -50,7 +50,7 @@ export class ArticleService {
   applyFilter(filter,userId):Observable<any>{
     return this.http.get<[]>(this.baseUrl+"/article/filterArticle/"+userId+"/"+filter);
   }
-  sourceApplyFilter(filter,userId):Observable<any>{
+    sourceApplyFilter(filter,userId):Observable<any>{
     return this.http.get<[]>(this.baseUrl+"/article/filterSourceArticle/"+userId+"/"+filter);
   }
   mostViewedAticles():Observable<any>{

@@ -310,6 +310,7 @@ export class SportsAdsComponent implements OnInit {
     }
     this.articleService.sourceApplyFilter(value, localStorage.getItem("userId")).subscribe(response => {
       this.articles=[];
+      console.log(response);
       this.arrangeArticles(response);
     });
   }
