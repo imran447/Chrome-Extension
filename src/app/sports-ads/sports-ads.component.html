@@ -350,7 +350,7 @@
                 <div class="nice-select custom-t right" tabindex="0"><span class="current">All websites</span>
                   <ul class="list" >
                     <li  (click)="applySourceFilter('')" class="option selected">All websites</li>
-                    <li  *ngFor="let article of sources;let i=index" (click)="applySourceFilter(article.source)"
+                    <li  *ngFor="let article of unSelectedSources;let i=index" (click)="applySourceFilter(article.source)"
                          class="option">{{article.source}}</li>
                   </ul>
                 </div>
@@ -381,10 +381,9 @@
                         flow="left" tooltip="Share"></span>
                 </div>
                 <!-- Post link-->
-                <a class="post-link"  target="_blank"  (click)="addVisitor(article._id,article.link)">
-                  <div class="post-photo video-photo">
+                <div class="post-photo video-photo">
                     <!-- logo -->
-                    <div class="source-logo" tooltip="{{article.source}}" flow="up">
+                    <div class="source-logo" tooltip="Source" flow="up">
                       <img class="image-source" (click)="applySourceFilter(article.source)" src="https://www.google.com/s2/favicons?domain={{article.link}}">
                     </div>
                     <div [ngClass]="{'player-image':article.playerVideo}"></div>
@@ -392,8 +391,10 @@
                        <span class="duration">6:31</span>
                    </span>-->
                     <!-- post main image -->
-                    <img  class="image_url" src="{{article.image_url}}" />
+                  <a class="post-link"  target="_blank"  (click)="addVisitor(article._id,article.link)">
 
+                  <img  class="image_url" src="{{article.image_url}}" />
+                  </a>
                   </div>
                   <div class="postInfo " [ngClass]="{'videoinfo':article.playerVideo}">
                     <!-- Post Title-->
@@ -401,7 +402,7 @@
                     <!-- Post publish time-->
                     <span class="created">{{article.published_date | date}}</span>
                   </div>
-                </a>
+
                 <div class="post-meta">
                   <div class="left-pull">
                     <button class="btn btn-menu upvote"

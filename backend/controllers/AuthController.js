@@ -1,4 +1,5 @@
 const UserModel = require("../models/UserModel");
+const SourceModel = require("../models/SourceModel");
 const ArticleModel=require("../models/ArticleModel");
 const ChromeTopSitesModel = require("../models/TopChromeSites");
 const { body,validationResult } = require("express-validator");
@@ -134,6 +135,50 @@ exports.userunSelectedSources=[
 		return apiResponse.ErrorResponse(res,e);
 	}
 }];
+exports.getSource=[
+	(req,res)=>{
+		try{
+			SourceModel.find({}).then((data)=>{
+				if(data)
+					return apiResponse.successResponseWithData(res,"sources",data);
+				return apiResponse.successResponse(res,"not found");
+			})
+		}catch (err) {
+			//throw error in json response with status 500.
+			return apiResponse.ErrorResponse(res, err);
+		}
+	}
+];
+exports.sourceStore=[
+	body("source").isLength({ min: 1 }).trim().withMessage("source must be specified."),
+	body("icon").isLength({ min: 1 }).trim().withMessage("icon must be specified."),
+
+	sanitizeBody("*").escape(),
+	// Process request after validation and sanitization.
+	(req, res) => {
+		try {
+			// Extract the validation errors from a request.
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				// Display sanitized values/errors messages.
+				return apiResponse.validationErrorWithData(res, "Validation Error.", errors.array());
+			}else {
+				let source= new SourceModel({
+					source:req.body.source,
+					icon:req.body.icon
+				});
+				source.save(function (err) {
+					if(!err)
+						return apiResponse.successResponseWithData(res,"sources",source);
+					return apiResponse.successResponse(res,"not store");
+				})
+			}
+		} catch (err) {
+			//throw error in json response with status 500.
+			return apiResponse.ErrorResponse(res, err);
+		}
+	}
+];
 exports.userSelectedSources=[
 	(req,res)=>{
 		try{

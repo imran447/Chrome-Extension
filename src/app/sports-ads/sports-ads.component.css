@@ -48,6 +48,9 @@
   background-color: white;
 }
 
+.source-logo{
+  position: absolute !important;
+}
 .btn-g-height{
   width: 31px;
   height: 24px

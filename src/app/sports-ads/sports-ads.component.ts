@@ -65,13 +65,19 @@ export class SportsAdsComponent implements OnInit {
     });
     this.articleService.unSelectedSource().subscribe(data=>{
       if(data){
+        console.log("asdf");
+        console.log(data);
         for(let i=0;i<data.data.length;i++){
           let s={
-            source:''
+            source:'',
+            icon:''
           };
-          s.source=data.data[i];
+          s.source=data.data[i].source;
+          s.icon=data.data[i].icon;
           this.unSelectedSources.push(s);
+
         }
+        console.log(this.unSelectedSources);
       }
     });
     this.articleService.getUniSourceArticle().subscribe(data=>{
@@ -89,13 +95,16 @@ export class SportsAdsComponent implements OnInit {
     });
   }
   getValue(source){
-   if(this.uniqueSource.length>0){
-     for(let i=0;i<this.uniqueSource.length;i++){
-       if(source==this.uniqueSource[i].source)
-         return this.uniqueSource[i].link
+   if(this.unSelectedSources.length>0){
+     for(let i=0;i<this.unSelectedSources.length;i++){
+       if(source==this.unSelectedSources[i].source)
+         return this.unSelectedSources[i].icon;
      }
    }
     return '';
+  }
+  getsource(source){
+    return source;
   }
   getArticle=()=>{
     this.articleService.getArticles(localStorage.getItem("userId")).subscribe(data=>{
@@ -329,7 +338,6 @@ export class SportsAdsComponent implements OnInit {
     this.getArticlesFlag=true;
     this.getUpvoteFlag= false;
     this.getViewedFlag =false;
-
     this.getArticle();
   }
     mostUpvoteArticles=()=> {

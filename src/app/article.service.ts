@@ -32,7 +32,7 @@ export class ArticleService {
     return this.http.get<[]>(this.baseUrl+"/auth/userSelectedSources/"+localStorage.getItem("userId"));
   }
   unSelectedSource():Observable<any>{
-    return this.http.get<[]>(this.baseUrl+"/auth/userunSelectedSources/"+localStorage.getItem("userId"));
+    return this.http.get<[]>(this.baseUrl+"/auth/source/Store/");
   }
   selectSources(value){
     return this.http.put(this.baseUrl+"/auth/selectSources/"+localStorage.getItem("userId")+"/"+value,{});
