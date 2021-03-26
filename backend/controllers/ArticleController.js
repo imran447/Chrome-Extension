@@ -150,7 +150,7 @@ exports.filterSourceArticle =[
         try {
             UserModel.findOne({_id:req.params.userId}).then((data)=>{
                 var articleArry=data.hideArticle;
-                Article.find({"_id":{$nin:articleArry},"source":req.params.filter}).then((articles) => {
+                Article.find({"_id":{$nin:articleArry},"source":req.params.filter}).sort({created_date:-1}).then((articles) => {
                     if (articles.length > 0) {
                         return apiResponse.successResponseWithData(res, "Operation success", articles);
                     } else {

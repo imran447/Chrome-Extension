@@ -15,7 +15,6 @@ router.get("/userSelectedSources/:userId",AuthController.userSelectedSources);
 router.put("/selectSources/:userId/:source",AuthController.selectSources);
 router.post("/sourceStore",AuthController.sourceStore);
 router.get("/source/Store",AuthController.getSource);
-
 router.put("/unSelectSources/:userId/:source",AuthController.unSelectSources);
 
 module.exports = router;

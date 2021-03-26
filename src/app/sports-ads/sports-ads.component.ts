@@ -11,12 +11,17 @@ export class SportsAdsComponent implements OnInit {
   public articles =[];
   public bannerArticles=[];
   public sources=[];
+  public filterFlags=false;
+  public filterTag:String='';
+  public filterLink:String='';
   private getArticlesFlag= false;
   private getUpvoteFlag= false;
   private getViewedFlag= false;
   public uniqueSource=[];
   public selectedSources=[];
   public unSelectedSources=[];
+  public totalSource=[];
+
   public activate:boolean=false;
   public filter:boolean=false;
 
@@ -65,19 +70,27 @@ export class SportsAdsComponent implements OnInit {
     });
     this.articleService.unSelectedSource().subscribe(data=>{
       if(data){
-        console.log("asdf");
-        console.log(data);
-        for(let i=0;i<data.data.length;i++){
-          let s={
-            source:'',
-            icon:''
-          };
-          s.source=data.data[i].source;
-          s.icon=data.data[i].icon;
-          this.unSelectedSources.push(s);
+        this.articleService.unSelectedCustomSource().subscribe(response=>{
+          console.log(response);
+          console.log(data);
+          for(var j=0;j<response.data.length;j++){
+            for(let i=0;i<data.data.length;i++) {
+              let s = {
+                source: '',
+                icon: ''
+              };
+              s.source = data.data[i].source;
+              s.icon = data.data[i].icon;
+              this.totalSource.push(s);
+              if(response.data[j]==data.data[i].source){
+                this.unSelectedSources.push(s);
+                break;
+              }
+            }
+          }
 
-        }
-        console.log(this.unSelectedSources);
+        })
+
       }
     });
     this.articleService.getUniSourceArticle().subscribe(data=>{
@@ -95,10 +108,11 @@ export class SportsAdsComponent implements OnInit {
     });
   }
   getValue(source){
-   if(this.unSelectedSources.length>0){
-     for(let i=0;i<this.unSelectedSources.length;i++){
-       if(source==this.unSelectedSources[i].source)
-         return this.unSelectedSources[i].icon;
+
+   if(this.totalSource.length>0){
+     for(let i=0;i<this.totalSource.length;i++){
+       if(source==this.totalSource[i].source)
+         return this.totalSource[i].icon;
      }
    }
     return '';
@@ -317,8 +331,11 @@ export class SportsAdsComponent implements OnInit {
       this.getArticle();
       return;
     }
+    this.filterFlags=true;
+    this.filterTag=value;
     this.articleService.sourceApplyFilter(value, localStorage.getItem("userId")).subscribe(response => {
       this.articles=[];
+       this.filterLink=response.data[0].link;
       console.log(response);
       this.arrangeArticles(response);
     });
@@ -478,6 +495,31 @@ export class SportsAdsComponent implements OnInit {
               s.source=data.data[i];
               this.selectedSources.push(s);
             }
+            this.unSelectedSources=[];
+            this.articleService.unSelectedSource().subscribe(data=>{
+              if(data){
+                this.articleService.unSelectedCustomSource().subscribe(response=>{
+                  console.log(response);
+                  console.log(data);
+                  for(var j=0;j<response.data.length;j++){
+                    for(let i=0;i<data.data.length;i++) {
+                      if(response.data[j]==data.data[i].source){
+                        let s = {
+                          source: '',
+                          icon: ''
+                        };
+                        s.source = data.data[i].source;
+                        s.icon = data.data[i].icon;
+                        this.unSelectedSources.push(s);
+                        break;
+                      }
+                    }
+                  }
+
+                })
+
+              }
+            });
           }
         });
         this.getArticlesFlag=true;
@@ -501,6 +543,31 @@ export class SportsAdsComponent implements OnInit {
               s.source=data.data[i];
               this.selectedSources.push(s);
             }
+            this.unSelectedSources=[];
+            this.articleService.unSelectedSource().subscribe(data=>{
+              if(data){
+                this.articleService.unSelectedCustomSource().subscribe(response=>{
+                  console.log(response);
+                  console.log(data);
+                  for(var j=0;j<response.data.length;j++){
+                    for(let i=0;i<data.data.length;i++) {
+                      if(response.data[j]==data.data[i].source){
+                        let s = {
+                          source: '',
+                          icon: ''
+                        };
+                        s.source = data.data[i].source;
+                        s.icon = data.data[i].icon;
+                        this.unSelectedSources.push(s);
+                        break;
+                      }
+                    }
+                  }
+
+                })
+
+              }
+            });
           }
         });
       }

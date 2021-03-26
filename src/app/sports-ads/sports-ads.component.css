@@ -9,6 +9,11 @@
   background-color: green;
   padding: 14px
 }
+
+.displayInline{
+  display: inline;
+  margin-left: 10px;
+}
 .success-container h3{
   font-size: 19px;
   color: white;

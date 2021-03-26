@@ -5,7 +5,6 @@ const ChromeTopSitesModel = require("../models/TopChromeSites");
 const { body,validationResult } = require("express-validator");
 const { sanitizeBody } = require("express-validator");
 const apiResponse = require("../helpers/apiResponse");
-const Article = require("../models/ArticleModel");
 exports.register = [
 	// Validate fields.
 	body("name").isLength({ min: 1 }).trim().withMessage("name must be specified."),
@@ -23,7 +22,7 @@ exports.register = [
 				// Display sanitized values/errors messages.
 				return apiResponse.validationErrorWithData(res, "Validation Error.", errors.array());
 			}else {
-				Article.distinct("source").then((data)=>{
+				SourceModel.distinct("source").then((data)=>{
 					var user = new UserModel(
 						{
 							name: req.body.name,
@@ -199,22 +198,18 @@ exports.selectSources=[
 		try {
 			UserModel.findOne({_id: req.params.userId}).then((data) => {
 				if (data) {
-					let flag=1;
 					var selectedArray=data.selectedSources;
-					for(let i=0;i<selectedArray.length;i++){
-						if(selectedArray[i]==req.params.source)
-						{
-							flag=0;
-							break;
-						}
-					}
-					if(flag){
-						selectedArray.push(req.params.source);
+					var unSelectedArray=data.unSelectedSources;
+					var arry=[];
+					selectedArray.push(req.params.source);
+					for(let j=0;j<unSelectedArray.length;j++){
+						if(unSelectedArray[j]!=req.params.source)
+							arry.push(unSelectedArray[j]);
 					}
 
 					UserModel.findOneAndUpdate({_id:req.params.userId},
 						{
-							selectedSources:selectedArray}).then((data)=>{
+							selectedSources:selectedArray ,unSelectedSources:arry}).then((data)=>{
 								if(data){
 									return  apiResponse.successResponse(res,"success");
 								}
@@ -234,15 +229,16 @@ exports.unSelectSources=[
 			UserModel.findOne({_id: req.params.userId}).then((data) => {
 				if (data) {
 
-
 					var selectedArray=[];
+					var unSelectedArray=data.unSelectedSources;
 					for(let i=0;i<data.selectedSources.length;i++){
 						if(data.selectedSources[i]!=req.params.source)
 							selectedArray.push(data.selectedSources[i]);
 					}
+					unSelectedArray.push(req.params.source);
 					UserModel.findOneAndUpdate({_id:req.params.userId},
 						{
-							selectedSources:selectedArray}).then((data)=>{
+							selectedSources:selectedArray,unSelectedSources:unSelectedArray}).then((data)=>{
 						if(data){
 							return  apiResponse.successResponse(res,"success");
 						}

@@ -22,7 +22,7 @@
 
 
 
-        <ul class="aboveTheFold" >
+        <ul class="aboveTheFold" [ngClass]="{'display-none':filterFlags}" >
 
             <div class="article">
              <div class="tile-post">
@@ -270,6 +270,7 @@
                 </div>
               </div>
             </div>
+
             <div class="article">
               <div class="tile-post">
                 <div class="hover-options">
@@ -316,9 +317,9 @@
 
       </div>
 
-      <div id="feed-menu" class="dashboard_body content-tab">
+      <div id="feed-menu" class="dashboard_body content-tab" >
         <div class="headline">
-          <div class="headline-row">
+          <div class="headline-row"[ngClass]="{'display-none':filterFlags}" >
             <div>
               <div class="title">Article's that match your search</div>
               <h4 class="SearchResultsHeadings__ResultCountText">720 article's are available</h4>
@@ -343,7 +344,7 @@
               </div>
             </div>
           </div>
-          <div id="filter" class="display-filter">
+          <div id="filter" class="display-filter" [ngClass]="{'display-none':filterFlags}">
             <ul class="filter">
               <li class="select-box">
 
@@ -369,6 +370,10 @@
                 </div>
               </li>
             </ul>
+          </div>
+          <div class="mb-5" [ngClass]="{'display-none':!filterFlags}">
+            <img src="https://www.google.com/s2/favicons?domain={{filterLink}}" />
+            <h5 class="displayInline">{{this.filterTag}}</h5>
           </div>
           <div class="small_desk" id="small_desk">
             <div *ngFor="let article of articles;let i =index">
@@ -540,7 +545,7 @@
         <a data-tab="ta" href="#b1" class="linkhover">
           <div class="rowinfo">
             <div class="align">
-              <img   src="https://www.google.com/s2/favicons?domain={{getValue(s.source)}}"s/>
+              <img   src="https://www.google.com/s2/favicons?domain={{getValue(s.source)}}"/>
               <span>{{s.source}}</span>
             </div>
             <i class="material-icons remove" (click)="userCrossSource(s.source)">close</i>
