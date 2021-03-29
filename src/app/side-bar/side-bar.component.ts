@@ -53,6 +53,7 @@ export class SideBarComponent implements OnInit {
   removeFavoriteArticle():void{
     this.favoriteArticle.emit(false);
   }
+
   darkmode=()=>{
     var appBody= document.getElementsByTagName("BODY")[0];
 

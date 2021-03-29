@@ -8,6 +8,7 @@ router.get("/filterArticle/:userId/:filter",ArticleController.filterArticle);
 router.get("/filterSourceArticle/:userId/:filter",ArticleController.filterSourceArticle);
 router.get("/most/Upvote/:userId/:pageNo",ArticleController.mostUpvote);
 router.get("/most/Viewed/:userId/:pageNo",ArticleController.mostViewed);
+router.get("/most/Viewed/:userId/:pageNo",ArticleController.mostViewed);
 router.post("/favorite-article",ArticleController.favoriteArticle);
 router.post("/", ArticleController.storeArticle);
 router.get("/getHigherArticle",ArticleController.getHigherArticle);

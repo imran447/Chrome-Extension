@@ -11,7 +11,7 @@ export class SportsAdsComponent implements OnInit {
   public articles =[];
   public bannerArticles=[];
   public sources=[];
-  public filterFlags=false;
+   public filterFlags;
   public filterTag:String='';
   public filterLink:String='';
   private getArticlesFlag= false;
@@ -36,6 +36,7 @@ export class SportsAdsComponent implements OnInit {
   @Input() newsApi;
 
   ngOnInit(): void {
+    this.totalSource=[];
    this.getArticlesFlag=true;
    this.getUpvoteFlag= false;
    this.getViewedFlag =false;
@@ -70,10 +71,8 @@ export class SportsAdsComponent implements OnInit {
     });
     this.articleService.unSelectedSource().subscribe(data=>{
       if(data){
+
         this.articleService.unSelectedCustomSource().subscribe(response=>{
-          console.log(response);
-          console.log(data);
-          for(var j=0;j<response.data.length;j++){
             for(let i=0;i<data.data.length;i++) {
               let s = {
                 source: '',
@@ -82,6 +81,15 @@ export class SportsAdsComponent implements OnInit {
               s.source = data.data[i].source;
               s.icon = data.data[i].icon;
               this.totalSource.push(s);
+            }
+          for(var j=0;j<response.data.length;j++){
+            for(let i=0;i<data.data.length;i++) {
+              let s = {
+                source: '',
+                icon: ''
+              };
+              s.source = data.data[i].source;
+              s.icon = data.data[i].icon;
               if(response.data[j]==data.data[i].source){
                 this.unSelectedSources.push(s);
                 break;
@@ -93,6 +101,7 @@ export class SportsAdsComponent implements OnInit {
 
       }
     });
+
     this.articleService.getUniSourceArticle().subscribe(data=>{
       if(data){
         for(let i=0;i<data.data.length;i++){
@@ -246,6 +255,12 @@ export class SportsAdsComponent implements OnInit {
       }
     });
   }
+  closeFilterArticles(){
+    this.filterFlags=! this.filterFlags;
+    this.articles=[];
+    this.getArticlesFlag=true;
+    this.getArticle();
+  }
   showSeeMore(){
     document.body.classList.add('show_sidebar');
     document.getElementById("see_more").classList.add('d-none');
@@ -324,6 +339,10 @@ export class SportsAdsComponent implements OnInit {
     });
   }
   applySourceFilter=(value)=> {
+    this.getArticlesFlag= false;
+    this.getUpvoteFlag= false;
+    this.getViewedFlag= false;
+    this.loadedAll=true;
     if(value==''){
       this.getArticlesFlag=true;
       this.getUpvoteFlag= false;
@@ -331,12 +350,24 @@ export class SportsAdsComponent implements OnInit {
       this.getArticle();
       return;
     }
-    this.filterFlags=true;
     this.filterTag=value;
     this.articleService.sourceApplyFilter(value, localStorage.getItem("userId")).subscribe(response => {
       this.articles=[];
        this.filterLink=response.data[0].link;
-      console.log(response);
+      this.arrangeArticles(response);
+    });
+  }
+  applySourceFilter1=(value)=>{
+  this.getArticlesFlag= false;
+  this.getUpvoteFlag= false;
+  this.getViewedFlag= false;
+  this.loadedAll=true;
+
+    this.filterFlags=true;
+    this.filterTag=value;
+    this.articleService.sourceApplyFilter(value, localStorage.getItem("userId")).subscribe(response => {
+      this.articles=[];
+      this.filterLink=response.data[0].link;
       this.arrangeArticles(response);
     });
   }
@@ -577,5 +608,4 @@ export class SportsAdsComponent implements OnInit {
         this.getArticle();
     });
   }
-
 }

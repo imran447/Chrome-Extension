@@ -11,7 +11,8 @@ export class AppComponent implements OnInit{
   isLogin=false;
   loginData:any;
   public scrollEffect:boolean=true;
-  favArtcile:any;
+  favArtcile:false;
+  fFilter:boolean=false;
   newsApiFlag:any;
 
   constructor(private loginService: LoginService) {
@@ -44,9 +45,10 @@ export class AppComponent implements OnInit{
   loginManage=(data)=>{
     this.isLogin=data;
   }
+
   favoriteArticle=(event)=>{
     this.favArtcile=event;
-  }
+    }
   newsApiManage=(event)=>{
     this.newsApiFlag=event;
   }
