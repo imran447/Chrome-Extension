@@ -255,17 +255,21 @@ export class SportsAdsComponent implements OnInit {
       }
     });
   }
+
   closeFilterArticles(){
-    this.filterFlags=! this.filterFlags;
+    this.filterFlags=!this.filterFlags;
     this.articles=[];
-    this.getArticlesFlag=true;
-    this.getArticle();
+    // this.getArticlesFlag=true;
+    this.applySourceFilter('');
   }
+
+
   showSeeMore(){
     document.body.classList.add('show_sidebar');
     document.getElementById("see_more").classList.add('d-none');
   }
   addVisitor=(id: String,link)=>{
+    console.log("hello world");
     //  this.openYoutubeVideo(url);
     var url =link;
     if (url != undefined || url != '') {
@@ -528,28 +532,34 @@ export class SportsAdsComponent implements OnInit {
             }
             this.unSelectedSources=[];
             this.articleService.unSelectedSource().subscribe(data=>{
-              if(data){
-                this.articleService.unSelectedCustomSource().subscribe(response=>{
-                  console.log(response);
-                  console.log(data);
-                  for(var j=0;j<response.data.length;j++){
-                    for(let i=0;i<data.data.length;i++) {
-                      if(response.data[j]==data.data[i].source){
-                        let s = {
-                          source: '',
-                          icon: ''
-                        };
-                        s.source = data.data[i].source;
-                        s.icon = data.data[i].icon;
-                        this.unSelectedSources.push(s);
-                        break;
-                      }
-                    }
-                  }
-
-                })
-
+              for(let i=0;i<data.data.length;i++) {
+                  let s = {
+                    source: '',
+                    icon: ''
+                  };
+                  s.source = data.data[i].source;
+                  s.icon = data.data[i].icon;
+                this.unSelectedSources.push(s);
               }
+              // if(data){
+              //   this.articleService.unSelectedCustomSource().subscribe(response=>{
+              //
+              //     for(var j=0;j<response.data.length;j++){
+              //       for(let i=0;i<data.data.length;i++) {
+              //         if(response.data[j]==data.data[i].source){
+              //           let s = {
+              //             source: '',
+              //             icon: ''
+              //           };
+              //
+              //           break;
+              //         }
+              //       }
+              //     }
+              //
+              //   })
+              //
+              // }
             });
           }
         });

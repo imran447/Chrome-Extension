@@ -7,6 +7,7 @@ const { sanitizeBody } = require("express-validator");
 const apiResponse = require("../helpers/apiResponse");
 exports.register = [
 	// Validate fields.
+
 	body("name").isLength({ min: 1 }).trim().withMessage("name must be specified."),
 	body("provider").isLength({ min: 1 }).trim().withMessage("provider must be specified."),
 	body("picture").isLength({ min: 1 }).trim().withMessage("Picture must be specified."),

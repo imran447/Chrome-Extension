@@ -16,6 +16,7 @@ export class ChromeTopSitesService {
   getChromeTopSites(id):Observable<any>{
     return this.http.get<[]>(this.baseUrl+"/auth/getChromeSites/"+id);
   }
+
   removeChromeTopSites(id){
     return this.http.delete(this.baseUrl+"/auth/deleteChromeSites/"+id);
   }

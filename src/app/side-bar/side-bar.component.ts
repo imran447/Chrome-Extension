@@ -65,6 +65,7 @@ export class SideBarComponent implements OnInit {
     }
     this.dMode=!this.dMode;
   }
+
   getNewsApi=()=>{
     this.newsApi.emit(this.manageArticle.getNewsApiFlag());
   }

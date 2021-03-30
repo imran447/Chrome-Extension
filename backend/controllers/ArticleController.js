@@ -7,25 +7,13 @@ const apiResponse = require("../helpers/apiResponse");
 var mongoose = require("mongoose");
 mongoose.set("useFindAndModify", false);
 
+
 exports.articleList = [
     function (req, res) {
         try {
             UserModel.findOne({_id:req.params.id}).then((data)=>{
                 var articleArry=data.hideArticle;
-                if(data.selectedSources.length>0){
-                    Article.find({ $and:[
-                    {"_id":{$nin:articleArry}},
-                    {"source":{$in:data.selectedSources}}
-                            ]}
-                    ).skip(req.params.pageNo*30).limit(30).sort({created_date:-1}).then((articles) => {
-                      if(articles.length>0){
-                            return apiResponse.successResponseWithData(res, "Operation success", articles);
-                        } else {
-                            return apiResponse.successResponseWithData(res, "Operation success", []);
-                        }
-                    });
-                }
-                else{
+
                     Article.find({"_id":{$nin:articleArry}}).skip(req.params.pageNo*30).limit(30).sort({created_date:-1}).then((articles) => {
                         if(articles.length>0){
                             return apiResponse.successResponseWithData(res, "Operation success", articles);
@@ -33,7 +21,7 @@ exports.articleList = [
                             return apiResponse.successResponseWithData(res, "Operation success", []);
                         }
                     });
-                }
+
 
             })
         } catch (err) {
@@ -72,20 +60,7 @@ exports.mostUpvote=[
             UserModel.findOne({_id:req.params.userId}).then((data)=>{
                 if(data.hideArticle!=null)
                  articleArry=data.hideArticle;
-                if(data.selectedSources.length>0){
-                    Article.find({ $and:[
-                            {"_id":{$nin:articleArry}},
-                            {"source":{$in:data.selectedSources}}
-                        ]}
-                    ).skip(req.params.pageNo*30).limit(30).sort({upvoteCounter:-1}).then((articles) => {
-                        if(articles.length>0){
-                            return apiResponse.successResponseWithData(res, "Operation success", articles);
-                        } else {
-                            return apiResponse.successResponseWithData(res, "Operation success", []);
-                        }
-                    });
-                }
-                else{
+
                     Article.find({"_id":{$nin:articleArry}}).skip(req.params.pageNo*30).limit(30).sort({upvoteCounter:-1}).then((articles) => {
                         console.log(articles.length);
 
@@ -95,7 +70,7 @@ exports.mostUpvote=[
                             return apiResponse.successResponseWithData(res, "Operation success", []);
                         }
                     });
-                }
+
 
 
             })
@@ -113,20 +88,7 @@ exports.mostViewed=[
             UserModel.findOne({_id:req.params.userId}).then((data)=>{
                 if(data.hideArticle!=null)
                     articleArry=data.hideArticle;
-                if(data.selectedSources.length>0){
-                    Article.find({ $and:[
-                            {"_id":{$nin:articleArry}},
-                            {"source":{$in:data.selectedSources}}
-                        ]}
-                    ).skip(req.params.pageNo*30).limit(30).sort({visitor:-1}).then((articles) => {
-                        if(articles.length>0){
-                            return apiResponse.successResponseWithData(res, "Operation success", articles);
-                        } else {
-                            return apiResponse.successResponseWithData(res, "Operation success", []);
-                        }
-                    });
-                }
-                else{
+
                     Article.find({"_id":{$nin:articleArry}}).skip(req.params.pageNo*30).limit(30).sort({visitor:-1}).then((articles) => {
                         if(articles.length>0){
                             return apiResponse.successResponseWithData(res, "Operation success", articles);
@@ -134,7 +96,7 @@ exports.mostViewed=[
                             return apiResponse.successResponseWithData(res, "Operation success", []);
                         }
                     });
-                }
+
 
 
             })

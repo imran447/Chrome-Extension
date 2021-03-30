@@ -379,6 +379,7 @@
               <a (click)="closeFilterArticles()" >back</a>
             </div>
 
+
           </div>
           <div class="small_desk" id="small_desk">
             <div *ngFor="let article of articles;let i =index">
@@ -391,20 +392,22 @@
                         flow="left" tooltip="Share"></span>
                 </div>
                 <!-- Post link-->
+                <div class="source-logo" tooltip="Source" flow="up">
+                  <img class="image-source" (click)="applySourceFilter1(article.source)" src="https://www.google.com/s2/favicons?domain={{article.link}}">
+                </div>
+                <a class="post-link"  target="_blank"  (click)="addVisitor(article._id,article.link)">
                 <div class="post-photo video-photo">
                     <!-- logo -->
-                    <div class="source-logo" tooltip="Source" flow="up">
-                      <img class="image-source" (click)="applySourceFilter1(article.source)" src="https://www.google.com/s2/favicons?domain={{article.link}}">
-                    </div>
+
                     <div [ngClass]="{'player-image':article.playerVideo}"></div>
                     <!--<span class="icon-play-plain video-modal video-play-button-external">
                        <span class="duration">6:31</span>
                    </span>-->
                     <!-- post main image -->
-                  <a class="post-link"  target="_blank"  (click)="addVisitor(article._id,article.link)">
 
-                  <img  class="image_url" src="{{article.image_url}}" />
-                  </a>
+
+                     <img  class="image_url" src="{{article.image_url}}" />
+
                   </div>
                   <div class="postInfo " [ngClass]="{'videoinfo':article.playerVideo}">
                     <!-- Post Title-->
@@ -412,6 +415,7 @@
                     <!-- Post publish time-->
                     <span class="created">{{article.published_date | date}}</span>
                   </div>
+                </a>
 
                 <div class="post-meta">
                   <div class="left-pull">
@@ -565,7 +569,7 @@
       </div>
       <li class="position-relative group_list selector"
           tooltip="View source" *ngFor="let s of unSelectedSources">
-        <a data-tab="ta" href="#b1" class="linkhover">
+        <a data-tab="ta" (click)="applySourceFilter(s.source)" class="linkhover">
           <div class="rowinfo">
             <div class="align">
 
@@ -574,7 +578,7 @@
                 alt="" class="fevorite-image website"/>
               <span>{{s.source}}</span>
             </div>
-            <i class="right-cuts" (click)="userChooseMoreSource(s.source)">Add</i>
+<!--            <i class="right-cuts" (click)="userChooseMoreSource(s.source)">Add</i>-->
           </div>
         </a>
       </li>
