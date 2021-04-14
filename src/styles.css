@@ -283,6 +283,9 @@ body {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
 }
+.dropup .dropdown-toggle::after{
+  display: none;
+}
 
 .search-container .input {
   max-width: 710px;
@@ -2782,7 +2785,7 @@ h4 {
 #SaveForLater {
   display: block;
   animation: fadeIn 0.3s ease-in forwards;
-  height: 100vh;
+  height: 86vh;
 }
 .SaveForLater-content {
   display: flex;

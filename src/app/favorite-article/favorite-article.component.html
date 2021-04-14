@@ -1,3 +1,20 @@
+<div id="SaveForLater"  [ngClass]="{'display-none':defaultSection}" >
+  <div class="SaveForLater-content">
+    <div class="savearticles">
+      <div class="bottbuttons">
+        <div class="save-img"><img src="assets/images/logosave.png"></div>
+        <div class="textsave">
+          <p>אין לך עדיין כתבות שמורות, חזור לעמוד הכתבות וסמן כתבות שתרצה לשמור למועד מאוחר יותר</p>
+        </div>
+        <div class="videorow" onclick="playButton()">
+          <img src="assets/images/play.png">
+          <button class="btn textsavebutton">הראו לי איך</button>
+        </div>
+      </div>
+      <div class="onboarding-sceneBg"></div>
+    </div>
+  </div>
+</div>
 <div [ngClass]="{'display-none':activeIframe}" class="iframe-mainContainer">
   <button class="closeButton" (click)="closeIframe()"><img src="assets/images/cross.png" width="20px"/></button>
   <div class=""  >
@@ -7,7 +24,7 @@
 <div class="">
 
 <div class="small_desk ">
-    <div *ngFor="let article of articles;let i =index" class="margin-top">
+    <div *ngFor="let article of articles;let i =index"  class="margin-top">
       <div class="tile-post">
         <div class="hover-options">
           <span class="Share-icon" ng-click="::openSharer($event, 'share', item)"  flow="left" tooltip="Share"></span>
