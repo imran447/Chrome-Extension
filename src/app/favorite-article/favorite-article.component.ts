@@ -11,9 +11,8 @@ export class FavoriteArticleComponent implements OnInit {
   constructor(private articleService: ArticleService,private eRef:ElementRef,private sanitizer: DomSanitizer) { }
   public articles =[];
   public youtubeVideo:any;
-  public activeIframe:boolean=true;
+  public activeIframe : boolean = true;
   public defaultSection:boolean = true;
-
   ngOnInit(): void {
     this.articleService.getFavoriteArticle(localStorage.getItem("userId")).subscribe(data=>{
       if(data.data.length>0)
@@ -21,7 +20,6 @@ export class FavoriteArticleComponent implements OnInit {
       else
         this.defaultSection=false;
     this.arrangeArticles(data);
-
     });
   }
   removeFavorite=(articleId)=>{
@@ -37,7 +35,6 @@ export class FavoriteArticleComponent implements OnInit {
       this.defaultSection=true;
     else
       this.defaultSection=false;
-
 
     this.articleService.removeFavorite(articleId,localStorage.getItem("userId")).then((data)=>{
       if(data){}

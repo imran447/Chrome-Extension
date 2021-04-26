@@ -204,7 +204,7 @@ exports.favoriteArticle =[
 exports.getHigherArticle=[
     (req,res)=>{
         try{
-            Article.find().sort({"visitor":"desc"}).limit(7).then((favArticle)=> {
+            Article.find({ $or: [ { hot: true }, { veryHot: true } ] }).sort({"created_date":"desc"}).limit(7).then((favArticle)=> {
                 if (!favArticle) {
                     return apiResponse.successResponse(res, "hi");
                 }

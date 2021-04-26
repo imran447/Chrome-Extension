@@ -2,7 +2,7 @@
 <div  *ngIf="isLogin" >
     <app-side-bar [loginData]="loginData" (loginManage)="loginManage($event)"  (favoriteArticle)="favoriteArticle($event)" (newsApi)="newsApiManage($event)"></app-side-bar>
     <app-nav-bar></app-nav-bar>
-    <app-sports-ads *ngIf="!(favArtcile)"  > </app-sports-ads>
+    <app-sports-ads *ngIf="!(favArtcile)" (sendShowMore)="sendShowMore($event)"  [showMore]="showMore" > </app-sports-ads>
     <app-favorite-article *ngIf="favArtcile"></app-favorite-article>
 </div>
 

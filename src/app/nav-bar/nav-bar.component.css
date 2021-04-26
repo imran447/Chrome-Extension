@@ -8,10 +8,7 @@
 .websiteLink{
   margin-right: 65px;
 }
-.topsites-container{
-  height: 330px;
-  width: 500px;
-}
+
 .transparent-background{
   background-color: transparent;
 }
@@ -25,7 +22,7 @@
   display: none;
 }
 .navbar-custom{
-  width: 83% !important;
+  width: 84% !important;
   position: relative !important;
   top: 136px;
   margin: auto;

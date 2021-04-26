@@ -10,6 +10,7 @@ export class AppComponent implements OnInit{
   title = 'Chrome-Extension-Like-Muszli-main';
   isLogin=false;
   loginData:any;
+  showMore:boolean=false;
   public scrollEffect:boolean=true;
   favArtcile:false;
   fFilter:boolean=false;
@@ -41,6 +42,9 @@ export class AppComponent implements OnInit{
   sendLoginData=(data)=>{
     this.loginData=data;
     this.isLogin=true;
+  }
+  sendShowMore=(data)=>{
+    this.showMore=data;
   }
   loginManage=(data)=>{
     this.isLogin=data;

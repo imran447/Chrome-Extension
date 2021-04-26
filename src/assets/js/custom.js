@@ -3,7 +3,7 @@
 	$(document).on('click','li', function(){
 			$(this).addClass('active').siblings().removeClass('active')
 		})
-
+		
 		$(document).ready(function(){
 			$(".button").click(function(){
 			$(this).addClass('active');
@@ -468,14 +468,15 @@ $(document).ready(function () {
   	});
   	$('.btn-custom')
 });
+
+function save() {
+	document.getElementById("Save").classList.toggle('active');
+}
+
 function menu() {
  				 	document.getElementById("feed").classList.toggle('active');
  				 	document.getElementById("feed-menu").classList.toggle('active');
  				 	document.getElementById("featured-feed-menu").classList.toggle('active');
-				}
-
-					function save() {
- 				 	document.getElementById("save").classList.toggle('active');
 				}
 
 				function openfilter() {

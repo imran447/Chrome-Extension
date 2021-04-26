@@ -13,9 +13,6 @@
 .display-none{
   display: none !important;
 }
-.display-block{
-  display: block !important;
-}
 .iframe-mainContainer{
   position: fixed;
   right: 1%;

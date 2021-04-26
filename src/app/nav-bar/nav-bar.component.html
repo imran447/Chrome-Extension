@@ -1,13 +1,6 @@
  <div class="header top-nav">
   <div class="inner-content" style="z-index: 1">
     <div class="pull-left nav-icon">
-      <div class="googleapps_icon">
-        <button class="btn btn-custom GoogleApps align" (click)="manageGoogleBar()"
-                flow="down" tooltip="Google Apps">
-          <img src="assets/images/googleappsoff.svg" alt="googleappsoff">
-          <img id="clickImage" src="assets/images/googleappson.svg" class="img-top" alt="googleappson">
-        </button>
-      </div>
       <div class="search-container">
         <form id="searchForm" (ngSubmit)="openGoogle(google.value)"
               class="ng-pristine ng-valid ng-valid-maxlength">
@@ -19,6 +12,13 @@
                    lookahead="" autocomplete="off">
           </div>
         </form>
+      </div>
+      <div class="googleapps_icon">
+        <button class="btn btn-custom GoogleApps align" (click)="manageGoogleBar()"
+                flow="down" tooltip="Google Apps">
+          <img src="assets/images/googleappsoff.svg" alt="googleappsoff">
+          <img id="clickImage" src="assets/images/googleappson.svg" class="img-top" alt="googleappson">
+        </button>
       </div>
     </div>
 
@@ -224,8 +224,10 @@
         <div class="new-source__footer no-padding">
           <div class="radio" *ngFor="let topsite of topSites">
             <div class="radio-item">
-              <img src="https://www.google.com/s2/favicons?domain={{topsite.url}}">
+              <div>
+              <img src="https://www.google.com/s2/favicons?sz=64&domain={{topsite.url}}">
               <span class="webAddress websiteLink">{{topsite.url}}</span>
+            </div>
               <button class="btn-icon modal__close-btn chromeTopSitesCrossButton" (click)="removeTopSites(topsite._id)" >
                 <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill">
                   <path pid="0"
@@ -261,9 +263,9 @@
        <div class="social_header">
          <div class="social_icon">
            <ul>
-             <li  flow="down" tooltip="Add shortcuts" class="social-icons-custom">
+             <li  flow="down" tooltip="Add shortcuts" class="social_icon_link add">
                <a (click)="handleChromeTopSites()">
-                 <svg class="transparent-background" width="20" height="20" viewBox="0 0 11 10" fill="none"
+                 <svg class="transparent-background" width="15" height="15" viewBox="0 0 11 10" fill="none"
                       xmlns="http://www.w3.org/2000/svg">
                    <path fill-rule="evenodd" clip-rule="evenodd"
                          d="M6.16379 0.353027H4.83615V4.33573L0.853149 4.33573L0.853149 5.66337H4.83615V9.6465H6.16379V5.66337H10.1466V4.33573L6.16379 4.33573V0.353027Z"
@@ -272,9 +274,9 @@
                </a>
              </li>
 
-             <li class="btn btn-custom social-icons-custom" data-toggle="tooltip"
+             <li class="btn btn-custom social_icon_link" data-toggle="tooltip"
                    *ngFor="let topsite of topSites">
-               <a href="{{topsite.url}}">  <img class="" src="https://www.google.com/s2/favicons?domain={{topsite.url}}"></a>
+               <a href="{{topsite.url}}">  <img class="" src="https://www.google.com/s2/favicons?sz=64&domain={{topsite.url}}"></a>
              </li>
            </ul>
          </div>

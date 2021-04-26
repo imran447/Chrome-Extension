@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, OnChanges, HostListener} from '@angular/core';
+import {Component, Input, OnInit, OnChanges, HostListener, Output, EventEmitter} from '@angular/core';
 import {ArticleService} from "../article.service";
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import set = Reflect.set;
@@ -11,7 +11,7 @@ export class SportsAdsComponent implements OnInit {
   public articles =[];
   public bannerArticles=[];
   public sources=[];
-   public filterFlags;
+  public filterFlags;
   public filterTag:String='';
   public filterLink:String='';
   private getArticlesFlag= false;
@@ -26,9 +26,14 @@ export class SportsAdsComponent implements OnInit {
   public filter:boolean=false;
 
   public loadedAll:boolean=true;
-
+  @Input() showMore;
+  @Output()  sendShowMore:EventEmitter<any>= new EventEmitter();
   public activeIframe:boolean=true;
   public youtubeVideo:any;
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll($event) {
+    this.sendShowMore.emit(true);
+  }
   constructor(private articleService: ArticleService,private sanitizer: DomSanitizer) {
 
   }
@@ -130,7 +135,9 @@ export class SportsAdsComponent implements OnInit {
     return source;
   }
   getArticle=()=>{
+    console.log("getArticles",localStorage.getItem("userId"));
     this.articleService.getArticles(localStorage.getItem("userId")).subscribe(data=>{
+      console.log("user daa",data);
       if (data.data.length) {
         for(var j=0;j<data.data.length;j++){
           let  articleData={
@@ -149,6 +156,8 @@ export class SportsAdsComponent implements OnInit {
             published_date:'',
             type:'',
             upvote:0,
+            hot:false,
+            veryHot:false,
             updatedAt:''
           };
           articleData._id=data.data[j]._id;
@@ -172,6 +181,8 @@ export class SportsAdsComponent implements OnInit {
           articleData.league=data.data[j].league;
           articleData.type=data.data[j].type;
           articleData.visitor=data.data[j].visitor;
+          articleData.hot=data.data[j].hot,
+            articleData.veryHot=data.data[j].veryHot,
           articleData.updatedAt=data.data[j].updatedAt;
           this.articles.push(articleData);
         }
@@ -206,7 +217,9 @@ export class SportsAdsComponent implements OnInit {
             published_date: '',
             type: '',
             upvote: 0,
-            updatedAt: ''
+            updatedAt: '',
+            hot: false,
+            veryHot: false
           };
           ;
 
@@ -231,6 +244,8 @@ export class SportsAdsComponent implements OnInit {
           articleData.description = data.data[j].description;
           articleData.league = data.data[j].league;
           articleData.type = data.data[j].type;
+          articleData.hot = data.data[j].hot,
+            articleData.veryHot = data.data[j].veryHot,
           articleData.visitor = data.data[j].visitor;
           articleData.updatedAt = data.data[j].updatedAt;
           this.bannerArticles.push(articleData);
@@ -238,6 +253,11 @@ export class SportsAdsComponent implements OnInit {
       }
     });
     this.handleScroll();
+  }
+  getBannerArticle(value:any){
+    if(this.bannerArticles.length>value)
+      return true;
+    return false;
   }
   addUpvote(id:string){
     this.articleService.upvoteArticle(id,localStorage.getItem("userId")).toPromise().then((response:any)=>{
@@ -320,11 +340,24 @@ export class SportsAdsComponent implements OnInit {
 
   addFavoriteArticle=(id: String) =>{
 
-    this.articleService.addFavoriteArticle(id, localStorage.getItem("userId"));
-    document.getElementById('successContainer').classList.remove('display-none');
-    setTimeout(function () {
-      document.getElementById('successContainer').classList.add('display-none');
-    },3000);
+    this.articleService.addFavoriteArticle(id, localStorage.getItem("userId")).subscribe((data)=>{
+      if(data.message=="Already Add."){
+
+        this.articleService.removeFavorite(id,localStorage.getItem("userId")).then((data)=>{
+          if(data){}
+        });
+        document.getElementById('removeContainer').classList.remove('display-none');
+        setTimeout(function () {
+          document.getElementById('removeContainer').classList.add('display-none');
+        },3000);
+        return;
+      }
+      document.getElementById('successContainer').classList.remove('display-none');
+      setTimeout(function () {
+        document.getElementById('successContainer').classList.add('display-none');
+      },3000);
+    })
+
   }
 
   applyFilter=(value)=> {

@@ -1,6 +1,9 @@
 <div class="success-container display-none" id="successContainer">
   <h3>Article Save for later Succussfully.</h3>
 </div>
+<div class="success-container display-none" id="removeContainer">
+  <h3>Article remove  from save later.</h3>
+</div>
 <div [ngClass]="{'display-none':activeIframe}" class="iframe-mainContainer">
   <button class="closeButton" (click)="closeIframe()"><img src="assets/images/cross.png" width="20px"/></button>
   <div class=""  >
@@ -10,7 +13,7 @@
 <div class="manager2_container">
   <div class="manager2_container-inner">
     <div class="cu-dashboard">
-      <div class="seemore-scroll">
+      <div class="seemore-scroll" [ngClass]="{'display-none':showMore}">
         <a (click)="showSeeMore()" class="see_more" id="see_more">See more</a>
       </div>
 
@@ -23,16 +26,20 @@
 
 
         <ul class="aboveTheFold" [ngClass]="{'display-none':filterFlags}" >
-
-            <div class="article">
+               <div *ngIf="getBannerArticle(0)" class="article">
              <div class="tile-post">
                 <div class="hover-options">
-                  <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                  <span class="Share-icon material-icons"  flow="left"  tooltip="Share">reply</span>
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[0]._id,bannerArticles[0].link)">
                   <div class="post-photo">
                     <div class="hot-article-badge">
-                      <img class="image-source" src="assets/images/very-hot.svg">
+                      <div *ngIf="bannerArticles[0].veryHot">
+                       <img  class="image-source" src="assets/images/very-hot.svg">
+                      </div>
+                      <div *ngIf="bannerArticles[0].hot">
+                        <img  class="image-source" src="assets/images/hot.svg"/>
+                      </div>
                     </div>
                     <div [ngClass]="{'player-image':bannerArticles[0].playerVideo}"></div>
                     <img class="image_url footer-pan" [src]="bannerArticles[0].image_url">
@@ -45,7 +52,7 @@
                 <div class="post-meta">
                   <div class="left-pull">
                     <div class="book-save btn btn-custom transparent"    tooltip="Save item">
-                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[0]._id)"></i>
+                      <i class="material-icons" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[0]._id)">bookmark</i>
                     </div>
                     <div class="btn-group dropup btn-g-height">
                       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -65,15 +72,21 @@
                 </div>
               </div>
             </div>
-            <div class="article">
+
+            <div *ngIf="getBannerArticle(1)" class="article">
               <div class="tile-post">
                 <div class="hover-options">
-                  <span class="Share-icon"  flow="left" title="" tooltip="Share"></span>
+                  <span class="Share-icon material-icons"  flow="left"  tooltip="Share">reply</span>
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[1]._id,bannerArticles[1].link)">
                   <div class="post-photo">
                     <div class="hot-article-badge">
-                      <img class="image-source" src="assets/images/very-hot.svg">
+                      <div *ngIf="bannerArticles[1].veryHot">
+                        <img  class="image-source" src="assets/images/very-hot.svg">
+                      </div>
+                      <div *ngIf="bannerArticles[1].hot">
+                        <img  class="image-source" src="assets/images/hot.svg">
+                      </div>
                     </div>
                     <div [ngClass]="{'player-image':bannerArticles[1].playerVideo}"></div>
                     <img class="image_url footer-pan" [src]="bannerArticles[1].image_url">
@@ -86,7 +99,7 @@
                 <div class="post-meta">
                   <div class="left-pull">
                     <div class="book-save btn btn-custom transparent"   data-custom-class="tooltip-primary" title="" tooltip="Save item">
-                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[1]._id)"></i>
+                      <i class="material-icons" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[1]._id)">bookmark</i>
                     </div>
                     <div class="btn-group dropup btn-g-height">
                       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,15 +119,20 @@
                 </div>
               </div>
             </div>
-            <div class="article">
+            <div  *ngIf="getBannerArticle(2)" class="article">
             <div class="tile-post">
               <div class="hover-options">
-                <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                <span class="Share-icon material-icons" flow="left"  tooltip="Share">reply</span>
               </div>
               <a class="post-link" (click)="addVisitor(bannerArticles[2]._id,bannerArticles[2].link)">
                 <div class="post-photo">
                   <div class="hot-article-badge">
-                    <img class="image-source" src="assets/images/very-hot.svg">
+                    <div *ngIf="bannerArticles[2].veryHot">
+                      <img  class="image-source" src="assets/images/very-hot.svg">
+                    </div>
+                    <div *ngIf="bannerArticles[2].hot">
+                      <img  class="image-source" src="assets/images/hot.svg">
+                    </div>
                   </div>
                   <div [ngClass]="{'player-image':bannerArticles[2].playerVideo}"></div>
                   <img class="image_url footer-pan" [src]="bannerArticles[2].image_url">
@@ -127,7 +145,7 @@
               <div class="post-meta">
                 <div class="left-pull">
                   <div class="book-save btn btn-custom transparent"   data-custom-class="tooltip-primary" title="" tooltip="Save item">
-                    <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[2]._id)"></i>
+                    <i class="material-icons" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[2]._id)">bookmark</i>
                   </div>
                   <div class="btn-group dropup btn-g-height">
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -147,15 +165,20 @@
               </div>
             </div>
           </div>
-            <div class="article">
+            <div *ngIf="getBannerArticle(3)" class="article">
               <div class="tile-post">
                 <div class="hover-options">
-                  <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                  <span class="Share-icon material-icons"  flow="left"  tooltip="Share">reply</span>
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[3]._id,bannerArticles[3].link)">
                   <div class="post-photo">
                     <div class="hot-article-badge">
-                      <img class="image-source" src="assets/images/very-hot.svg">
+                      <div *ngIf="bannerArticles[3].veryHot">
+                        <img  class="image-source" src="assets/images/very-hot.svg">
+                      </div>
+                      <div *ngIf="bannerArticles[3].hot">
+                        <img  class="image-source" src="assets/images/hot.svg">
+                      </div>
                     </div>
                     <div [ngClass]="{'player-image':bannerArticles[3].playerVideo}"></div>
                     <img class="image_url footer-pan" [src]="bannerArticles[3].image_url">
@@ -168,7 +191,7 @@
                 <div class="post-meta">
                   <div class="left-pull">
                     <div class="book-save btn btn-custom transparent"   flow="left" tooltip="Save item">
-                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[3]._id)"></i>
+                      <i class="material-icons" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[3]._id)">bookmark</i>
                     </div>
                     <div class="btn-group dropup btn-g-height">
                       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -188,15 +211,20 @@
                 </div>
               </div>
             </div>
-            <div class="article">
+            <div *ngIf="getBannerArticle(4)" class="article">
               <div class="tile-post">
                 <div class="hover-options">
-                  <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                  <span class="Share-icon material-icons"  flow="left"  tooltip="Share">reply</span>
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[4]._id,bannerArticles[4].link)">
                   <div class="post-photo">
                     <div class="hot-article-badge">
-                      <img class="image-source" src="assets/images/very-hot.svg">
+                      <div *ngIf="bannerArticles[4].veryHot">
+                        <img  class="image-source" src="assets/images/very-hot.svg">
+                      </div>
+                      <div *ngIf="bannerArticles[4].hot">
+                        <img  class="image-source" src="assets/images/hot.svg">
+                      </div>
                     </div>
                     <div [ngClass]="{'player-image':bannerArticles[4].playerVideo}"></div>
                     <img class="image_url footer-pan" [src]="bannerArticles[4].image_url">
@@ -209,7 +237,7 @@
                 <div class="post-meta">
                   <div class="left-pull">
                     <div class="book-save btn btn-custom transparent"   data-custom-class="tooltip-primary" title="" tooltip="Save item">
-                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[4]._id)"></i>
+                      <i class="material-icons" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[4]._id)">bookmark</i>
                     </div>
                     <div class="btn-group dropup btn-g-height">
                       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -229,15 +257,20 @@
                 </div>
               </div>
             </div>
-            <div class="article">
+            <div  *ngIf="getBannerArticle(5)" class="article">
               <div class="tile-post">
                 <div class="hover-options">
-                  <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                  <span class="Share-icon material-icons"  flow="left"  tooltip="Share">reply</span>
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[5]._id,bannerArticles[5].link)">
                   <div class="post-photo">
-                    <div class="hot-article-badge">
-                      <img class="image-source" src="assets/images/very-hot.svg">
+                     <div class="hot-article-badge">
+                       <div *ngIf="bannerArticles[5].veryHot">
+                         <img  class="image-source" src="assets/images/very-hot.svg">
+                       </div>
+                       <div *ngIf="bannerArticles[5].hot">
+                         <img  class="image-source" src="assets/images/hot.svg">
+                       </div>
                     </div>
                     <div [ngClass]="{'player-image':bannerArticles[5].playerVideo}"></div>
                     <img class="image_url footer-pan" [src]="bannerArticles[5].image_url">
@@ -250,7 +283,7 @@
                 <div class="post-meta">
                   <div class="left-pull">
                     <div class="book-save btn btn-custom transparent"   data-custom-class="tooltip-primary" title="" tooltip="Save item">
-                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[5]._id)"></i>
+                      <i class="material-icons" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[5]._id)">bookmark</i>
                     </div>
                     <div class="btn-group dropup btn-g-height">
                       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -271,15 +304,20 @@
               </div>
             </div>
 
-            <div class="article">
+            <div *ngIf="getBannerArticle(6)" class="article">
               <div class="tile-post">
                 <div class="hover-options">
-                  <span class="Share-icon"  flow="left"  tooltip="Share"></span>
+                  <span class="Share-icon material-icons"  flow="left"  tooltip="Share">reply</span>
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[6]._id,bannerArticles[6].link)">
                   <div class="post-photo">
                     <div class="hot-article-badge">
-                      <img class="image-source" src="assets/images/very-hot.svg">
+                      <div *ngIf="bannerArticles[6].veryHot">
+                        <img  class="image-source" src="assets/images/very-hot.svg">
+                      </div>
+                      <div *ngIf="bannerArticles[6].hot">
+                        <img  class="image-source" src="assets/images/hot.svg">
+                      </div>
                     </div>
                     <div [ngClass]="{'player-image':bannerArticles[6].playerVideo}"></div>
                     <img class="image_url footer-pan" [src]="bannerArticles[6].image_url">
@@ -292,7 +330,7 @@
                 <div class="post-meta">
                   <div class="left-pull">
                     <div class="book-save btn btn-custom transparent"   data-custom-class="tooltip-primary" title="" tooltip="Save item">
-                      <i class="fa fa-bookmark" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[6]._id)"></i>
+                      <i class="material-icons" aria-hidden="true" (click)="addFavoriteArticle(bannerArticles[6]._id)">bookmark</i>
                     </div>
                     <div class="btn-group dropup btn-g-height">
                       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -327,13 +365,12 @@
             <div class="right-pull">
               <div class="sortBy">
                 <p class="filterCustomParagraph">Sort by:</p>
-                <div class="nice-select custom-t right filtersCustom" tabindex="0"><span class="current">Most Popular</span>
+                <div class="nice-select custom-t right filtersCustom" tabindex="0"><span class="current">Most Recent</span>
 
                   <ul class="list">
+                  <li (click)="mostRecentArticles()" class="option active selected focus">Most Recent</li>
                   <li  (click)="mostUpvoteArticles()" class="option">Most upvote</li>
                   <li (click)="mostViewedArticles()" class="option">Most Viewed</li>
-                    <li (click)="mostRecentArticles()" class="option">Most Recent</li>
-
                 </ul>
                 </div>
 
@@ -386,15 +423,18 @@
               <div class="article">
               <div class="tile-post">
                 <div class="hover-options">
-                  <span class="Bookmark-icon" (click)="addFavoriteArticle(article._id)"
-                        flow="left" tooltip="Save for later"></span>
-                  <span class="Share-icon" ng-click="::openSharer($event, 'share', item)"
-                        flow="left" tooltip="Share"></span>
+                  <span class="Bookmark-icon material-icons" (click)="addFavoriteArticle(article._id)"
+                        flow="left" tooltip="Save for later">bookmark</span>
+                  <span class="Share-icon material-icons" ng-click="::openSharer($event, 'share', item)"
+                        flow="left" tooltip="Share">reply</span>
                 </div>
                 <!-- Post link-->
-                <div class="source-logo" tooltip="Source" flow="up">
+                <div class="source-logo tooltip1" >
                   <img class="image-source" (click)="applySourceFilter1(article.source)" src="https://www.google.com/s2/favicons?domain={{article.link}}">
+                  <span class="tooltiptext1">{{article.source}}</span>
                 </div>
+
+
                 <a class="post-link"  target="_blank"  (click)="addVisitor(article._id,article.link)">
                 <div class="post-photo video-photo">
                     <!-- logo -->
@@ -541,7 +581,11 @@
 
 
 
-
+<button class="sidebar-trigger has-tooltip v-tooltip-open" onclick="menu()" data-original-title="null" aria-describedby="tooltip_0bdgaluu0q">
+  <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill">
+    <path pid="0" d="M12 11.545L7.176 16.37a1.86 1.86 0 11-2.631-2.631l6.077-6.077a1.949 1.949 0 012.756 0l6.077 6.077a1.86 1.86 0 11-2.631 2.63L12 11.546z" _fill="#FFF" fill-rule="evenodd"></path>
+  </svg>
+</button>
 <div class="feed_sidebar" id="feed">
   <div class="Settingsmenu_content feedmenu_content">
     <ul class="fevoriteSources">
@@ -554,7 +598,7 @@
         <a data-tab="ta" href="#b1" class="linkhover">
           <div class="rowinfo">
             <div class="align">
-              <img   src="https://www.google.com/s2/favicons?domain={{getValue(s.source)}}"/>
+              <img   src="https://www.google.com/s2/favicons?sz=64&domain={{getValue(s.source)}}"/>
               <span>{{s.source}}</span>
             </div>
             <i class="material-icons remove" (click)="userCrossSource(s.source)">close</i>
@@ -562,11 +606,23 @@
         </a>
       </li>
     </ul>
-    <span class="line-break"></span>
     <ul class="moreSources">
       <div class="titleRow">
         <h4 class="sidebartiltle">More sources</h4>
       </div>
+      <li class="position-relative group_list selector"
+      tooltip="View source">
+    <a  class="linkhover">
+      <div class="rowinfo">
+        <div class="align">
+          <img
+            src="assets/images/Filter/Websites/Home-web.png"
+            alt="" class="fevorite-image website"/>
+        </div>
+      </div>
+    </a>
+  </li>
+      <span class="separator">• • •</span>
       <li class="position-relative group_list selector"
           tooltip="View source" *ngFor="let s of unSelectedSources">
         <a data-tab="ta" (click)="applySourceFilter(s.source)" class="linkhover">
@@ -574,17 +630,22 @@
             <div class="align">
 
               <img
-                src="https://www.google.com/s2/favicons?domain={{getValue(s.source)}}"
+                src="https://www.google.com/s2/favicons?sz=64&domain={{getValue(s.source)}}"
                 alt="" class="fevorite-image website"/>
               <span>{{s.source}}</span>
             </div>
-<!--            <i class="right-cuts" (click)="userChooseMoreSource(s.source)">Add</i>-->
+            <!-- <i class="right-cuts" (click)="userChooseMoreSource(s.source)">Add</i>-->
           </div>
         </a>
       </li>
 
     </ul>
-    <!-- <button class="sidebar__element btn btn-menu"><svg version="1.1" viewBox="0 0 24 24" class="sidebar__element__image svg-icon svg-fill"><path pid="0" d="M13.78 10.22h4.44a1.78 1.78 0 010 3.56h-4.44v4.44a1.78 1.78 0 01-3.56 0v-4.44H5.78a1.78 1.78 0 010-3.56h4.44V5.78a1.78 1.78 0 013.56 0v4.44z" _fill="#FFF" fill-rule="evenodd"></path></svg><span>Add new source</span></button> -->
+  <button class="sidebar__element btn btn-menu">
+    <svg version="1.1" viewBox="0 0 24 24" class="sidebar__element__image svg-icon svg-fill">
+      <path pid="0" d="M13.78 10.22h4.44a1.78 1.78 0 010 3.56h-4.44v4.44a1.78 1.78 0 01-3.56 0v-4.44H5.78a1.78 1.78 0 010-3.56h4.44V5.78a1.78 1.78 0 013.56 0v4.44z" _fill="#FFF" fill-rule="evenodd"></path>
+    </svg>
+    <!-- <span>Add new source</span> -->
+  </button>
   </div>
 </div>
 

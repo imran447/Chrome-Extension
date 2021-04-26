@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class ArticleService {
-  baseUrl:String = "http://localhost:8000/api";
+   baseUrl:String = "http://localhost:8000/api";
   // baseUrl:string ="api";
   private pageNo=0;
 
@@ -46,9 +46,8 @@ export class ArticleService {
   upvoteArticle(id,userId) {
     return this.http.get(this.baseUrl + "/auth/upvoteArticle/" + id + "/" + userId, {});
   }
-  addFavoriteArticle(id,user_Id){
-    this.http.post(this.baseUrl+"/article/favorite-article",{userId:user_Id,article:id}).toPromise().then((data:any)=>{
-    });
+  addFavoriteArticle(id,user_Id):Observable<any>{
+   return this.http.post<{}>(this.baseUrl+"/article/favorite-article",{userId:user_Id,article:id});
   }
   applyFilter(filter,userId):Observable<any>{
     return this.http.get<[]>(this.baseUrl+"/article/filterArticle/"+userId+"/"+filter);
