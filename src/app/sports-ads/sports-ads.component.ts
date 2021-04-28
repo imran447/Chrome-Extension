@@ -21,7 +21,7 @@ export class SportsAdsComponent implements OnInit {
   public selectedSources=[];
   public unSelectedSources=[];
   public totalSource=[];
-
+  public favoriteArticles=[];
   public activate:boolean=false;
   public filter:boolean=false;
 
@@ -45,6 +45,7 @@ export class SportsAdsComponent implements OnInit {
    this.getArticlesFlag=true;
    this.getUpvoteFlag= false;
    this.getViewedFlag =false;
+
    if(this.articles.length==0){
      document.getElementById("loadingIcons").classList.remove('display-none');
      setTimeout(function () {
@@ -135,9 +136,8 @@ export class SportsAdsComponent implements OnInit {
     return source;
   }
   getArticle=()=>{
-    console.log("getArticles",localStorage.getItem("userId"));
+
     this.articleService.getArticles(localStorage.getItem("userId")).subscribe(data=>{
-      console.log("user daa",data);
       if (data.data.length) {
         for(var j=0;j<data.data.length;j++){
           let  articleData={
@@ -149,6 +149,7 @@ export class SportsAdsComponent implements OnInit {
             playerVideo:false,
             source:'',
             game:'',
+            saveLater:false,
             league:'',
             team:'',
             link:'',
@@ -170,6 +171,7 @@ export class SportsAdsComponent implements OnInit {
           }else{
             articleData.playerVideo=false;
           }
+          articleData.saveLater=false;
           articleData.link=data.data[j].link;
           articleData.game=data.data[j].game;
           articleData.team=data.data[j].team;
@@ -186,13 +188,30 @@ export class SportsAdsComponent implements OnInit {
           articleData.updatedAt=data.data[j].updatedAt;
           this.articles.push(articleData);
         }
+
+
         if(data.data.length<30){
           this.loadedAll=true;
         }
         else{
           this.loadedAll=false;
         }
+        this.articleService.getFavoriteArticle(localStorage.getItem("userId")).subscribe(data=>{
+          if(data.data.length>0){
+            console.log("fu",data.data);
+            this.favoriteArticles = data.data;
+            console.log(this.favoriteArticles);
+            for(let i=0;i<this.favoriteArticles.length ; i++){
+              for(let j=0;j<this.articles.length;j++){
+                if(this.favoriteArticles[i].article._id == this.articles[j]._id){
+                  this.articles[j].saveLater=true;
+                  console.log("hello article");
+                }
+              }
+            }
+          }
 
+        });
       } else {
         this.loadedAll = true;
       }
@@ -338,25 +357,26 @@ export class SportsAdsComponent implements OnInit {
 
   }
 
-  addFavoriteArticle=(id: String) =>{
+  addFavoriteArticle=(index:any,id: String) =>{
 
     this.articleService.addFavoriteArticle(id, localStorage.getItem("userId")).subscribe((data)=>{
       if(data.message=="Already Add."){
-
+        this.articles[index].saveLater=!this.articles[index].saveLater;
         this.articleService.removeFavorite(id,localStorage.getItem("userId")).then((data)=>{
           if(data){}
         });
         document.getElementById('removeContainer').classList.remove('display-none');
         setTimeout(function () {
           document.getElementById('removeContainer').classList.add('display-none');
-        },3000);
+        },1000);
         return;
       }
       document.getElementById('successContainer').classList.remove('display-none');
       setTimeout(function () {
         document.getElementById('successContainer').classList.add('display-none');
-      },3000);
+      },1000);
     })
+    this.articles[index].saveLater = !this.articles[index].saveLater;
 
   }
 
@@ -521,25 +541,28 @@ export class SportsAdsComponent implements OnInit {
   }
 
   detectBottom(): void {
-
-    if ((window.innerHeight + window.scrollY+50) >= document.body.offsetHeight) {
+     if ((window.innerHeight + window.scrollY+60) >= document.body.offsetHeight) {
+       console.log("bottom");
+      console.log("hello wg");
       if (!this.loadedAll) {
         if(this.articles.length>0){
           document.getElementById("loadingIcons").classList.remove('display-none');
           setTimeout(function () {
             document.getElementById("loadingIcons").classList.add('display-none');
-          },600);
+          },1700);
           this.articleService.paginatePage();
-          if(this.getArticlesFlag)
+          if(this.getArticlesFlag){
             this.getArticle();
+          }
           if(this.getUpvoteFlag)
             this.getUpvoteArticles();
           if(this.getViewedFlag)
             this.getViewedArticles();
+          this.loadedAll=true;
         }
 
       }
-    }
+     }
   }
   playVideo(link){
     this.youtubeVideo=this.sanitizer.bypassSecurityTrustResourceUrl(link);

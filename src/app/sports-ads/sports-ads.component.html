@@ -423,7 +423,7 @@
               <div class="article">
               <div class="tile-post">
                 <div class="hover-options">
-                  <span class="Bookmark-icon material-icons" (click)="addFavoriteArticle(article._id)"
+                  <span class="Bookmark-icon material-icons" [ngClass]="{'darkBg':article.saveLater}" (click)="addFavoriteArticle(i,article._id)"
                         flow="left" tooltip="Save for later">bookmark</span>
                   <span class="Share-icon material-icons" ng-click="::openSharer($event, 'share', item)"
                         flow="left" tooltip="Share">reply</span>

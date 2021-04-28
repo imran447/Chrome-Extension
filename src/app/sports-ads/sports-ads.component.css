@@ -126,6 +126,9 @@ button.closeButton {
   margin-top: -34px;
   opacity: 0.8;
 }
+.darkBg{
+  background-color: black;
+}
 
 .tooltip1:hover .tooltiptext1 {
   visibility: visible;

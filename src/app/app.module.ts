@@ -40,8 +40,7 @@ import { FavoriteArticleComponent } from './favorite-article/favorite-article.co
             {
               id: GoogleLoginProvider.PROVIDER_ID,
               provider: new GoogleLoginProvider(
-                '1095448180134-0uvsd95b4v0k2710ibdfj7jufjonpft6.apps.googleusercontent.com'
-                // '664526784532-q8i5a965d7jquaait7iml6b3eucktd34.apps.googleusercontent.com',
+                '664526784532-q8i5a965d7jquaait7iml6b3eucktd34.apps.googleusercontent.com'
               ),
             },
             {
