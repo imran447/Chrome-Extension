@@ -7,6 +7,7 @@ import set = Reflect.set;
   templateUrl: './sports-ads.component.html',
   styleUrls: ['./sports-ads.component.css']
 })
+
 export class SportsAdsComponent implements OnInit {
   public articles =[];
   public bannerArticles=[];
