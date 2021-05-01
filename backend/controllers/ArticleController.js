@@ -18,6 +18,7 @@ exports.articleList = [
                     let skipArticle = parseInt(req.params.pageNo)*page_size;
                     console.log(skipArticle);
 
+
                     Article.find({"_id":{$nin:articleArry}}).sort({created_date:-1}).skip(30*(parseInt(req.params.pageNo))).limit(page_size).then((articles) => {
                         if(articles.length>0){
 
