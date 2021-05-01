@@ -14,8 +14,13 @@ exports.articleList = [
             UserModel.findOne({_id:req.params.id}).then((data)=>{
                 var articleArry=data.hideArticle;
 
-                    Article.find({"_id":{$nin:articleArry}}).skip(req.params.pageNo*30).limit(30).sort({created_date:-1}).then((articles) => {
+                    let page_size=30;
+                    let skipArticle = parseInt(req.params.pageNo)*page_size;
+                    console.log(skipArticle);
+
+                    Article.find({"_id":{$nin:articleArry}}).sort({created_date:-1}).skip(30*(parseInt(req.params.pageNo))).limit(page_size).then((articles) => {
                         if(articles.length>0){
+
                             return apiResponse.successResponseWithData(res, "Operation success", articles);
                         } else {
                             return apiResponse.successResponseWithData(res, "Operation success", []);
@@ -263,7 +268,6 @@ exports.favoriteArticleList =[
                    var data=[];
                    var flag=0;
                    for(var i=0;i<favArticle.length;i++){
-                       console.log(favArticle[i]);
                        flag=0;
                        for(var j=0;j<articleArry.length;j++){
                            if(favArticle[i].article._id==articleArry[j]){

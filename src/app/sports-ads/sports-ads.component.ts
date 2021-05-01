@@ -139,6 +139,7 @@ export class SportsAdsComponent implements OnInit {
 
     this.articleService.getArticles(localStorage.getItem("userId")).subscribe(data=>{
       if (data.data.length) {
+        console.log("article",data.data);
         for(var j=0;j<data.data.length;j++){
           let  articleData={
             visitor:'',
@@ -189,7 +190,6 @@ export class SportsAdsComponent implements OnInit {
           this.articles.push(articleData);
         }
 
-
         if(data.data.length<30){
           this.loadedAll=true;
         }
@@ -198,15 +198,13 @@ export class SportsAdsComponent implements OnInit {
         }
         this.articleService.getFavoriteArticle(localStorage.getItem("userId")).subscribe(data=>{
           if(data.data.length>0){
-            console.log("fu",data.data);
             this.favoriteArticles = data.data;
-            console.log(this.favoriteArticles);
+            console.log("fy",this.favoriteArticles);
             for(let i=0;i<this.favoriteArticles.length ; i++){
               for(let j=0;j<this.articles.length;j++){
-                if(this.favoriteArticles[i].article._id == this.articles[j]._id){
+                if(this.favoriteArticles[i].article._id === this.articles[j]._id){
                   this.articles[j].saveLater=true;
-                  console.log("hello article");
-                }
+                  }
               }
             }
           }
