@@ -10,7 +10,7 @@ export class SideBarComponent implements OnInit {
   settingManage     : boolean = false;
   sideFeedBar       : boolean = false;
   notificationManage :boolean = false;
-  dMode            :boolean =false;
+  dMode            :string ="false";
   showNotification :boolean =false;
   favArticle :boolean =false;
   darkModeArray :any=[];
@@ -31,6 +31,12 @@ export class SideBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('darkMode')==null) {
+      this.dMode="false";
+    }else if(localStorage.getItem('darkMode')=='false'){
+      this.dMode="true";
+      this.darkmode();
+    }
 
   }
   profileSettingMange=()=>{
@@ -57,13 +63,18 @@ export class SideBarComponent implements OnInit {
   darkmode=()=>{
     var appBody= document.getElementsByTagName("BODY")[0];
 
-    if(!this.dMode){
+    if(!(this.dMode=="false")){
         appBody.classList.add('darkmode');
     }
     else{
         appBody.classList.remove('darkmode');
     }
-    this.dMode=!this.dMode;
+
+    if(this.dMode=="false")
+      this.dMode='true';
+    else
+      this.dMode='false';
+    localStorage.setItem('darkMode',this.dMode);
   }
 
   getNewsApi=()=>{

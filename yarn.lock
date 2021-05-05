@@ -154,10 +154,10 @@
     "universal-analytics" "0.4.23"
     "uuid" "8.3.0"
 
-"@angular/common@~10.2.4":
-  "integrity" "sha512-bBfsLJNDQaC2OI1mReDJuSZ/uBb7Pf3HVpRmlQKNIPllIxqX1hLH8I3Plodrns9m32JMJ6FMsQthcP0KMdRCJA=="
-  "resolved" "https://registry.npmjs.org/@angular/common/-/common-10.2.4.tgz"
-  "version" "10.2.4"
+"@angular/common@^10.2.5":
+  "integrity" "sha512-553yf6ZUHNqT4XpOqbW7EKKMfX56u/8DkwYXuSv8MAKdl4/AW6gliFOEJGYo04JcKF7Knq3VPvGSCO9kupf0hg=="
+  "resolved" "https://registry.npmjs.org/@angular/common/-/common-10.2.5.tgz"
+  "version" "10.2.5"
   dependencies:
     "tslib" "^2.0.0"
 
@@ -192,10 +192,10 @@
   "resolved" "https://registry.npmjs.org/@angular/compiler/-/compiler-9.0.0.tgz"
   "version" "9.0.0"
 
-"@angular/core@~10.2.4":
-  "integrity" "sha512-5xpAvmZwD9nZ8eWx10urjibqEeePGEiFXVMEn3IaJWgfdOcMmeSoioW9JUllT3w85+DlNVWbRbhz0YfE9a4jyw=="
-  "resolved" "https://registry.npmjs.org/@angular/core/-/core-10.2.4.tgz"
-  "version" "10.2.4"
+"@angular/core@~10.2.4", "@angular/core@10.2.5":
+  "integrity" "sha512-krhOKNTj5XE92Rk9ASX5KmgTF72j7qT2PLVxrGEVjuUKjBY2XaK3TV0Kotq9zI3qa9WgeCrP/Njn6jlKQCCAEQ=="
+  "resolved" "https://registry.npmjs.org/@angular/core/-/core-10.2.5.tgz"
+  "version" "10.2.5"
   dependencies:
     "tslib" "^2.0.0"
 

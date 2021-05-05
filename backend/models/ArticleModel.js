@@ -17,6 +17,7 @@ var ArticleSchema = new Schema({
     language:{type: String, required: false},
     hot:{type: Boolean, required: false},
     veryHot:{type: Boolean, required: false},
+    aboveFold:{type: Boolean, required: false},
     upvoteCounter:{type:Number,required:false,default:0},
     picks:{type: String, required: false},
     created_date:{type: String, required: false},

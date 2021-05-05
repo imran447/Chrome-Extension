@@ -17,8 +17,6 @@ exports.articleList = [
                     let page_size=30;
                     let skipArticle = parseInt(req.params.pageNo)*page_size;
                     console.log(skipArticle);
-
-
                     Article.find({"_id":{$nin:articleArry}}).sort({created_date:-1}).skip(30*(parseInt(req.params.pageNo))).limit(page_size).then((articles) => {
                         if(articles.length>0){
 
@@ -210,7 +208,7 @@ exports.favoriteArticle =[
 exports.getHigherArticle=[
     (req,res)=>{
         try{
-            Article.find({ $or: [ { hot: true }, { veryHot: true } ] }).sort({"created_date":"desc"}).limit(7).then((favArticle)=> {
+            Article.find({  aboveFold: true }).sort({"created_date":"desc"}).limit(7).then((favArticle)=> {
                 if (!favArticle) {
                     return apiResponse.successResponse(res, "hi");
                 }
