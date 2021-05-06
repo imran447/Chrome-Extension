@@ -33,7 +33,7 @@
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[0]._id,bannerArticles[0].link)">
                   <div class="post-photo">
-                    <div class="hot-article-badge">
+                    <div class="hot-article-badge" *ngIf=" bannerArticles[0].veryHot || bannerArticles[0].hot">
                       <div *ngIf="bannerArticles[0].veryHot">
                        <img  class="image-source" src="assets/images/very-hot.svg">
                       </div>
@@ -80,7 +80,7 @@
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[1]._id,bannerArticles[1].link)">
                   <div class="post-photo">
-                    <div class="hot-article-badge">
+                    <div class="hot-article-badge" *ngIf=" bannerArticles[1].veryHot || bannerArticles[1].hot">
                       <div *ngIf="bannerArticles[1].veryHot">
                         <img  class="image-source" src="assets/images/very-hot.svg">
                       </div>
@@ -126,7 +126,7 @@
               </div>
               <a class="post-link" (click)="addVisitor(bannerArticles[2]._id,bannerArticles[2].link)">
                 <div class="post-photo">
-                  <div class="hot-article-badge">
+                  <div class="hot-article-badge" *ngIf=" bannerArticles[2].veryHot || bannerArticles[2].hot">
                     <div *ngIf="bannerArticles[2].veryHot">
                       <img  class="image-source" src="assets/images/very-hot.svg">
                     </div>
@@ -172,7 +172,7 @@
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[3]._id,bannerArticles[3].link)">
                   <div class="post-photo">
-                    <div class="hot-article-badge">
+                    <div class="hot-article-badge" *ngIf=" bannerArticles[3].veryHot || bannerArticles[3].hot">
                       <div *ngIf="bannerArticles[3].veryHot">
                         <img  class="image-source" src="assets/images/very-hot.svg">
                       </div>
@@ -218,7 +218,7 @@
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[4]._id,bannerArticles[4].link)">
                   <div class="post-photo">
-                    <div class="hot-article-badge">
+                    <div class="hot-article-badge" *ngIf=" bannerArticles[4].veryHot || bannerArticles[4].hot">
                       <div *ngIf="bannerArticles[4].veryHot">
                         <img  class="image-source" src="assets/images/very-hot.svg">
                       </div>
@@ -264,7 +264,7 @@
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[5]._id,bannerArticles[5].link)">
                   <div class="post-photo">
-                     <div class="hot-article-badge">
+                     <div class="hot-article-badge" *ngIf=" bannerArticles[5].veryHot || bannerArticles[5].hot">
                        <div *ngIf="bannerArticles[5].veryHot">
                          <img  class="image-source" src="assets/images/very-hot.svg">
                        </div>
@@ -311,7 +311,7 @@
                 </div>
                 <a class="post-link" (click)="addVisitor(bannerArticles[6]._id,bannerArticles[6].link)">
                   <div class="post-photo">
-                    <div class="hot-article-badge">
+                    <div class="hot-article-badge" *ngIf=" bannerArticles[6].veryHot || bannerArticles[6].hot">
                       <div *ngIf="bannerArticles[6].veryHot">
                         <img  class="image-source" src="assets/images/very-hot.svg">
                       </div>

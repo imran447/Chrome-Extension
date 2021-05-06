@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
 })
 export class ChromeTopSitesService {
 
-   baseUrl:String = "http://localhost:8000/api";
+   baseUrl:string = "http://localhost:8000/api";
   // baseUrl:string ="api";
   constructor(private http: HttpClient) { }
   addChromeTopSites(url,user_Id){

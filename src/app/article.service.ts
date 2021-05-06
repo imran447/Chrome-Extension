@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class ArticleService {
-   baseUrl:String = "http://localhost:8000/api";
+   baseUrl:string = "http://localhost:8000/api";
   // baseUrl:string ="api";
   private pageNo=0;
 

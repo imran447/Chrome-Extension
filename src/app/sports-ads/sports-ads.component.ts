@@ -236,6 +236,7 @@ export class SportsAdsComponent implements OnInit {
             upvote: 0,
             updatedAt: '',
             hot: false,
+            aboveFold:false,
             veryHot: false
           };
           ;
@@ -262,6 +263,7 @@ export class SportsAdsComponent implements OnInit {
           articleData.league = data.data[j].league;
           articleData.type = data.data[j].type;
           articleData.hot = data.data[j].hot,
+            articleData.aboveFold = data.data[j].aboveFold,
             articleData.veryHot = data.data[j].veryHot,
           articleData.visitor = data.data[j].visitor;
           articleData.updatedAt = data.data[j].updatedAt;
